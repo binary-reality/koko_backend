@@ -6,3 +6,5 @@ class testUnit(models.Model):
     class Meta():
         verbose_name = "test_table"
         verbose_name_plural = "OOHH"
+
+# class user(models.Model):
