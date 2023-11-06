@@ -1,0 +1,48 @@
+version: '3'
+services:
+  app:
+    build: .
+    container_name: backend
+    command: /bin/bash -c "python manage.py makemigrations app && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    expose:
+      - "8000"
+    depends_on:
+      - db
+    networks:
+      - db_net
+      - web_net
+    volumes:
+      - .:/code
+    restart: always
+
+  db:
+    image: mysql:8.2.0
+    container_name: mysql
+    expose:
+      - "3306"
+    volumes:
+      - "./db/my.cnf:/etc/my.cnf"
+      - "./db/datadir:/var/lib/mysql"
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345
+    networks:
+      - db_net
+    restart: always
+
+  nginx:
+    container_name: nginx
+    restart: always
+    image: nginx:latest
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+    depends_on:
+      - app
+    networks:
+      - web_net
+networks:
+  db_net:
+    driver: bridge
+  web_net:
+    driver: bridge
