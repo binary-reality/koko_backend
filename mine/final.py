@@ -68,36 +68,38 @@ def analyze_tones(json_file_path, accents):
 
 # ...（其它函数不变）...
 
-def main(audio_input, json_input):
+# def main(audio_input, json_input):
+def main(audio_input, accents):
     # 提取文件名（无扩展名）并为wav文件设置新的文件路径
     file_path_without_extension, _ = os.path.splitext(audio_input)
     wav_output = file_path_without_extension + '.wav'
 
     # 首先调用 audio_trans2wav.py 来转换音频文件到 WAV 格式
-    call_script('audio_trans2wav.py', [audio_input, wav_output])
+    call_script('./mine/audio_trans2wav.py', [audio_input, wav_output])
 
     # 接下来调用 get_freq.py 来提取频率信息到 JSON 文件
-    call_script('get_freq.py', [wav_output])
+    call_script('./mine/get_freq.py', [wav_output])
 
     # 最后调用 smooth.py 来平滑数据，并将结果保存在同一 JSON 文件中
-    call_script('smooth.py', [wav_output.replace('.wav', '.json')])
+    call_script('./mine/smooth.py', [wav_output.replace('.wav', '.json')])
 
-    # 从 JSON 输入文件读取accents
-    with open(json_input, 'r') as file:
-        data = json.load(file)
-        accents = data['accents']
+    # # 从 JSON 输入文件读取accents
+    # with open(json_input, 'r') as file:
+    #     data = json.load(file)
+    #     accents = data['accents']
 
     # 分析音调
     result = analyze_tones(wav_output.replace('.wav', '.json'), accents)
 
-    # 输出文件的路径是输入文件路径后加上'1'
-    json_output = json_input.replace('.json', '1.json')
+    return result
+    # # 输出文件的路径是输入文件路径后加上'1'
+    # json_output = json_input.replace('.json', '1.json')
 
-    # 将结果写入 JSON 输出文件
-    with open(json_output, 'w') as file:
-        json.dump({'results': result}, file, indent=4)
+    # # 将结果写入 JSON 输出文件
+    # with open(json_output, 'w') as file:
+    #     json.dump({'results': result}, file, indent=4)
 
-    print(f"Analysis results written to {json_output}")
+    # print(f"Analysis results written to {json_output}")
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:
