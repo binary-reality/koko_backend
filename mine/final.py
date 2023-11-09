@@ -40,7 +40,6 @@ def analyze_tones(json_file_path, accents):
 
     word_res = []
     delta_freq = 5  # 假设的频率变化阈值
-
     # Determine the accents based on the mean frequencies and given conditions
     for i, accent in enumerate(accents):
         if accent == 0:

@@ -51,12 +51,20 @@ def login(request):
 @csrf_exempt
 def read(request):
     if request.method == "POST":
-        json_param = json.loads(request.body)
-        audio = json_param['file']
-        with open("./mine/hi.m4a", "rb") as ft:
-            audio = ft.read()
-        wave = json_param['wave']
-        openid = json_param['openid']
+        files = request.FILES
+        # print(files)
+        wavelist = request.POST.get("wave")
+        wave = []
+        for x in wavelist:
+            if x.isdigit():
+                wave.append(int(x))
+        # print(wave)
+        openid = request.POST.get("openid")
+        audio = files['word.mp3'].read()
+        # print(audio)
+
+        # with open("./mine/hi.m4a", "rb") as ft:
+        #     audio = ft.read()
         acc_fileName = "./mine/" + openid + "_tmp"
         with open(acc_fileName + ".mp3", "wb") as f:
             f.write(audio)
@@ -70,7 +78,7 @@ def read(request):
             {
                 "code": 0,
                 "info": "Success in word analyzing",
-                "result": result
+                "accent": result
             },
             status = 200
         )
