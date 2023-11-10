@@ -25,7 +25,7 @@ class Dic():
         for word in self.d.keys():
             if query_word in word:
                 results.append(word)
-        return results
+        return results[:20]
     
     def get_detail(self,word):
         '''

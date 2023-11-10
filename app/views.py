@@ -91,14 +91,15 @@ def read(request):
 @csrf_exempt
 def search(request):
     if request.method == "POST":
-        files = request.FILES
         # print(files)
-        word = request.POST.get("searchWord")
+        json_param = json.loads(request.body)
+        word = json_param["searchWord"]
         diction=Dic()
         
         # print(wave)
         openid = request.POST.get("openid")
-        
+        print(word)
+        print(diction.search_results(word))
         return JsonResponse(
             {
                 "code": 0,
@@ -115,9 +116,9 @@ def search(request):
 @csrf_exempt
 def detail(request):
     if request.method == "POST":
-        files = request.FILES
         # print(files)
-        word = request.POST.get("word")
+        json_param = json.loads(request.body)
+        word = json_param["word"]
         diction=Dic()
         
         # print(wave)
@@ -139,9 +140,9 @@ def detail(request):
 @csrf_exempt
 def getlist(request):
     if request.method == "POST":
-        files = request.FILES
         # print(files)
-        word = request.POST.get("type")
+        json_param = json.loads(request.body)
+        word = json_param["type"]
         diction=Dic()
         
         # print(wave)
