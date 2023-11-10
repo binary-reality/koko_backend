@@ -24,6 +24,8 @@ def analyze_tones(json_file_path, accents):
 
     # Calculate intervals
     ac_length = len(accents)
+    if ac_length==0 :
+        return []
     interval = (end_time - start_time) / ac_length
     start_points = np.arange(start_time, end_time, interval)
     end_points = start_points + interval

@@ -22,4 +22,7 @@ urlpatterns = [
     path("", views.helloView),
     path("login/", views.login),
     path("read/", views.read),
+    path("search/", views.search),
+    path("detail/", views.detail),
+    path("list/", views.getlist),
 ]
