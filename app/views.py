@@ -94,7 +94,7 @@ def search(request):
         files = request.FILES
         # print(files)
         word = request.POST.get("searchWord")
-        diction=Dic("dicts/koko.json")
+        diction=Dic()
         
         # print(wave)
         openid = request.POST.get("openid")
@@ -118,7 +118,7 @@ def detail(request):
         files = request.FILES
         # print(files)
         word = request.POST.get("word")
-        diction=Dic("dicts/koko.json")
+        diction=Dic()
         
         # print(wave)
         openid = request.POST.get("openid")
@@ -142,7 +142,7 @@ def getlist(request):
         files = request.FILES
         # print(files)
         word = request.POST.get("type")
-        diction=Dic("dicts/koko.json")
+        diction=Dic()
         
         # print(wave)
         openid = request.POST.get("openid")

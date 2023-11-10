@@ -1,7 +1,7 @@
 import json
 import random
 
-class Dic(path="koko.json"):
+class Dic():
     '''
     字典类
     只要创建一个示例，然后调用函数就行
@@ -11,7 +11,7 @@ class Dic(path="koko.json"):
         medical_list
     '''
     def __init__(self) -> None:
-        f=open(self.path,'r',encoding="utf-8")
+        f=open("dicts/koko.json",'r',encoding="utf-8")
         content=f.read()
         self.d=json.loads(content)
         self.items=self.d.items()
