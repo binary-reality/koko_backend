@@ -6,6 +6,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
 from mine import final
+from dicts.dic_func import Dic
 import os
 # Create your views here.
 
@@ -79,6 +80,78 @@ def read(request):
                 "code": 0,
                 "info": "Success in word analyzing",
                 "accent": result
+            },
+            status = 200
+        )
+
+    else:
+        return JsonResponse({"code": "405", "message": "Method not allowed"}, status = 405)
+    
+
+@csrf_exempt
+def search(request):
+    if request.method == "POST":
+        files = request.FILES
+        # print(files)
+        word = request.POST.get("searchWord")
+        diction=Dic("dicts/koko.json")
+        
+        # print(wave)
+        openid = request.POST.get("openid")
+        
+        return JsonResponse(
+            {
+                "code": 0,
+                "info": "Success in word searching",
+                "results": diction.search_results(word)
+            },
+            status = 200
+        )
+
+    else:
+        return JsonResponse({"code": "405", "message": "Method not allowed"}, status = 405)
+    
+
+@csrf_exempt
+def detail(request):
+    if request.method == "POST":
+        files = request.FILES
+        # print(files)
+        word = request.POST.get("word")
+        diction=Dic("dicts/koko.json")
+        
+        # print(wave)
+        openid = request.POST.get("openid")
+        
+        return JsonResponse(
+            {
+                "code": 0,
+                "info": "Success in word searching",
+                "accent": diction.get_detail(word)
+            },
+            status = 200
+        )
+
+    else:
+        return JsonResponse({"code": "405", "message": "Method not allowed"}, status = 405)
+    
+
+@csrf_exempt
+def getlist(request):
+    if request.method == "POST":
+        files = request.FILES
+        # print(files)
+        word = request.POST.get("type")
+        diction=Dic("dicts/koko.json")
+        
+        # print(wave)
+        openid = request.POST.get("openid")
+        
+        return JsonResponse(
+            {
+                "code": 0,
+                "info": "Success in word searching",
+                "accent": diction.medical_list(word)
             },
             status = 200
         )
