@@ -8,24 +8,25 @@ import json
 from mine import final
 from dicts.dic_func import Dic
 import os
+
 # Create your views here.
 
-@csrf_exempt
-def helloView(request):
-    if request.method == "GET":
-        models.testUnit.objects.create(var1="Added infomation")
+# @csrf_exempt
+# def helloView(request):
+#     if request.method == "GET":
+#         # models.testUnit.objects.create(var1="Added infomation")
 
-        testUnit = models.testUnit.objects.get(pk=1)
-        json_obj = {
-            "json": "json",
-            "hello": "hello",
-        }
-        return JsonResponse(json_obj, status = 200)
-        return render(request, "index.html", {"testUnit": testUnit})
-    if request.method == "POST":
-        print(request)
-        testUnit = models.testUnit.objects.get(pk=1)
-        return render(request, "index.html", {"testUnit": testUnit})
+#         # testUnit = models.testUnit.objects.get(pk=1)
+#         json_obj = {
+#             "json": "json",
+#             "hello": "hello",
+#         }
+#         return JsonResponse(json_obj, status = 200)
+#         return render(request, "index.html", {"testUnit": testUnit})
+#     if request.method == "POST":
+#         print(request)
+#         testUnit = models.testUnit.objects.get(pk=1)
+#         return render(request, "index.html", {"testUnit": testUnit})
 
 @csrf_exempt
 def login(request):
@@ -44,8 +45,31 @@ def login(request):
                 "grant_type": "authorization_code"
             }
         )
-        print(login_response.text)
-        return JsonResponse(json.loads(login_response.text), status = 200)
+        response_json = json.loads(login_response.text)
+        if response_json['errcode'] == 0:
+            user_id = response_json['openid']
+            valid_user_list = models.user.objects.filter(open_id=user_id)
+            if len(valid_user_list) == 0:
+                models.user.objects.create(open_id=user_id, status=1)
+                models.create_my_wordlist(user_id, 0)
+            elif len(valid_user_list) == 1:
+                valid_user_list.update(status=1)
+            else:
+                pass
+        
+        # valid_user_list = models.user.objects.filter(open_id=user_id)
+        # if len(valid_user_list) == 0:
+        #     models.user.objects.create(open_id=user_id, status=1)
+        #     user = models.user.objects.filter(open_id=user_id)
+        #     list_0 = models.create_my_wordlist(user_id, 0)
+        #     list_0.objects.create(list_id=0, owner_openid=user[0], content="hello")
+        # elif len(valid_user_list) == 1:
+        #     valid_user_list.update(status=1)
+        # else:
+        #     pass
+
+
+        return JsonResponse(response_json, status = 200)
     else:
         return JsonResponse({"code": "405", "message": "Method not allowed"}, status = 405)
     
