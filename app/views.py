@@ -152,7 +152,7 @@ def getlist(request):
             {
                 "code": 0,
                 "info": "Success in word searching",
-                "accent": diction.medical_list(word)
+                "medicine": diction.medical_list(word)
             },
             status = 200
         )

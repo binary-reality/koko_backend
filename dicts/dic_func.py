@@ -54,7 +54,7 @@ class Dic():
         ]
         results = []
         for word in self.d.keys():
-            if typelist[type] in word:
+            if typelist[type] in word and self.d[word]["accent"] != -1:
                 results.append(self.d[word])
         return random.sample(results,10)
     
