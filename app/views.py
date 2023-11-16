@@ -87,15 +87,13 @@ def read(request):
     else:
         return JsonResponse({"code": "405", "message": "Method not allowed"}, status = 405)
     
-
+diction=Dic()
 @csrf_exempt
 def search(request):
     if request.method == "POST":
         # print(files)
         json_param = json.loads(request.body)
         word = json_param["searchWord"]
-        diction=Dic()
-        
         # print(wave)
         openid = request.POST.get("openid")
         print(word)
@@ -119,7 +117,6 @@ def detail(request):
         # print(files)
         json_param = json.loads(request.body)
         word = json_param["word"]
-        diction=Dic()
         
         # print(wave)
         openid = request.POST.get("openid")
@@ -128,7 +125,7 @@ def detail(request):
             {
                 "code": 0,
                 "info": "Success in word searching",
-                "accent": diction.get_detail(word)
+                "detail": diction.get_detail(word)
             },
             status = 200
         )
@@ -143,7 +140,6 @@ def getlist(request):
         # print(files)
         json_param = json.loads(request.body)
         word = json_param["type"]
-        diction=Dic()
         
         # print(wave)
         openid = request.POST.get("openid")
