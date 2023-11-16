@@ -57,6 +57,11 @@ def get_feature(word):
     if word[-2] in circled_numbers_dict.keys():
         accent=circled_numbers_dict[word[-2]]
         end-=1
+        seq=-3
+        while word[seq] in circled_numbers_dict.keys():
+            accent=circled_numbers_dict[word[seq]]
+            end-=1
+            seq-=1
     else:
         accent=-1
     results["accent"]=accent
