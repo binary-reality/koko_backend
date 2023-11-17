@@ -4,15 +4,15 @@ from django.db import models
 
 def create_my_wordlist(openid: str, index: int):
     list_field = {
-        'list_id': models.IntegerField(blank=False),
-        'owner_openid': models.ForeignKey("user", on_delete=models.CASCADE, related_name=str(index)),
+        'owner_openid': models.ForeignKey(to="user", to_field="open_id", on_delete=models.CASCADE, related_name='list' + str(index)),
         'content': models.CharField(max_length=100, blank=False),
         '__module__': __name__,
     }
-    my_model = type(openid + "-" + str(index), (models.Model,), list_field)
-    my_model._meta.db_table = openid + "-" + str(index)
+    model_name = openid + "-" + str(index)
+    my_model = type(model_name, (models.Model,), list_field)
+    my_model._meta.db_table = model_name
     my_model._meta.app_label = "app"
-    my_model._meta.model_name = "wordlist"
+    my_model._meta.model_name = model_name
     my_model._meta.apps.register_model(app_label=my_model._meta.app_label, model=my_model)
 
     from django.db import connection
@@ -21,12 +21,80 @@ def create_my_wordlist(openid: str, index: int):
         editor.create_model(model=my_model)
     return my_model
 
+def create_my_readingrecord(openid: str):
+    list_field = {
+        'owner_openid': models.ForeignKey(to="user", to_field="open_id", on_delete=models.CASCADE, related_name='readingrecord'),
+        'content': models.CharField(max_length=100, blank=False),
+        'rdnumber': models.IntegerField(default=0),
+        'date': models.DateField(auto_now=True),
+        'lastrd': models.CharField(max_length=100),
+        '__module__': __name__,
+    }
+    model_name = openid + "-readingrecord"
+    my_model = type(model_name, (models.Model,), list_field)
+    my_model._meta.db_table = model_name
+    my_model._meta.app_label = "app"
+    my_model._meta.model_name = model_name
+    my_model._meta.apps.register_model(app_label=my_model._meta.app_label, model=my_model)
 
+    from django.db import connection
+    from django.db.backends.base.schema import BaseDatabaseSchemaEditor
+    with BaseDatabaseSchemaEditor(connection) as editor:
+        editor.create_model(model=my_model)
+    return my_model
+
+def create_my_searchrecord(openid: str):
+    list_field = {
+        'owner_openid': models.ForeignKey(to="user", to_field="open_id", on_delete=models.CASCADE, related_name='searchrecord'),
+        'content': models.CharField(max_length=100, blank=False),
+        'schnumber': models.IntegerField(default=0),
+        'date': models.DateField(auto_now=True),
+        '__module__': __name__,
+    }
+    model_name = openid + "-searchrecord"
+    my_model = type(model_name, (models.Model,), list_field)
+    my_model._meta.db_table = model_name
+    my_model._meta.app_label = "app"
+    my_model._meta.model_name = model_name
+    my_model._meta.apps.register_model(app_label=my_model._meta.app_label, model=my_model)
+
+    from django.db import connection
+    from django.db.backends.base.schema import BaseDatabaseSchemaEditor
+    with BaseDatabaseSchemaEditor(connection) as editor:
+        editor.create_model(model=my_model)
+    return my_model
+
+def create_my_wordlistinfo(openid: str):
+    list_field = {
+        'owner_openid': models.ForeignKey(to="user", to_field="open_id", on_delete=models.CASCADE, related_name='wbinfo'),
+        'name': models.CharField(max_length=100, blank=False),
+        'intro': models.CharField(max_length=1000, blank=True),
+        'image': models.ImageField(upload_to='./wb/' + openid, default='./headicon.png'),
+        'date': models.DateField(auto_now_add=True),
+        '__module__': __name__,
+    }
+    model_name = openid + "-wbinfo"
+    my_model = type(model_name, (models.Model,), list_field)
+    my_model._meta.db_table = model_name
+    my_model._meta.app_label = "app"
+    my_model._meta.model_name = model_name
+    my_model._meta.apps.register_model(app_label=my_model._meta.app_label, model=my_model)
+
+    from django.db import connection
+    from django.db.backends.base.schema import BaseDatabaseSchemaEditor
+    with BaseDatabaseSchemaEditor(connection) as editor:
+        editor.create_model(model=my_model)
+    return my_model
 
 class user(models.Model):
     open_id = models.CharField(max_length=100, primary_key=True, unique=True, blank=False)
     create_time = models.DateField(auto_now_add=True)
     status = models.IntegerField(default=0)
+    nickname = models.CharField(max_length=100, blank=False, default="")
+    headicon = models.ImageField(upload_to='./', default='./headicon.png')
+    reserved_time = models.IntegerField(default=10)
+    read_keep = models.IntegerField(default=1)
+    wdlistnumber = models.IntegerField(default=0)
     class Meta():
         verbose_name = "user_info"
         verbose_name_plural = verbose_name

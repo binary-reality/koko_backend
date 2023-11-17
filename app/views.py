@@ -51,18 +51,32 @@ def login(request):
             valid_user_list = models.user.objects.filter(open_id=user_id)
             if len(valid_user_list) == 0:
                 models.user.objects.create(open_id=user_id, status=1)
-                models.create_my_wordlist(user_id, 0)
+                models.create_my_wordlistinfo(user_id)
+                models.create_my_readingrecord(user_id)
+                models.create_my_searchrecord(user_id)
             elif len(valid_user_list) == 1:
                 valid_user_list.update(status=1)
             else:
                 pass
-        
+        # user_id = '345'
         # valid_user_list = models.user.objects.filter(open_id=user_id)
         # if len(valid_user_list) == 0:
         #     models.user.objects.create(open_id=user_id, status=1)
+        #     models.create_my_wordlistinfo(user_id)
+        #     models.create_my_readingrecord(user_id)
+        #     models.create_my_searchrecord(user_id)
         #     user = models.user.objects.filter(open_id=user_id)
         #     list_0 = models.create_my_wordlist(user_id, 0)
-        #     list_0.objects.create(list_id=0, owner_openid=user[0], content="hello")
+        #     list_0.objects.create(owner_openid=user[0], content="hello" + user_id)
+        #     list_1 = models.create_my_wordlist(user_id, 1)
+        #     list_1.objects.create(owner_openid=user[0], content="make")
+        #     list_1.objects.create(owner_openid=user[0], content="hello" + user_id)
+        #     list_1.objects.create(owner_openid=user[0], content="hellop" + user_id)
+        #     list_1.objects.create(owner_openid=user[0], content="make")
+        #     list_1.objects.create(owner_openid=user[0], content="make")
+        #     list = user[0].list1.filter(content='make')
+        #     for record in list:
+        #         print(record.id)
         # elif len(valid_user_list) == 1:
         #     valid_user_list.update(status=1)
         # else:
