@@ -26,8 +26,10 @@ def create_my_readingrecord(openid: str):
         'owner_openid': models.ForeignKey(to="user", to_field="open_id", on_delete=models.CASCADE, related_name='readingrecord'),
         'content': models.CharField(max_length=100, blank=False),
         'rdnumber': models.IntegerField(default=0),
+        'cornumber': models.IntegerField(default=0),
         'date': models.DateField(auto_now=True),
         'lastrd': models.CharField(max_length=100),
+        'lastres': models.IntegerField(default=0),
         '__module__': __name__,
     }
     model_name = openid + "-readingrecord"
