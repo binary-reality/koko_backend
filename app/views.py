@@ -129,10 +129,12 @@ def read(request):
         if len(rec)==0:
             models.rdrecord.objects.create(owner_openid=user, content=word, lastrd=result,rdnumber=1,cornumber=(result==wave),lastres=(result==wave))
         else:
-            rec[0].rdnumber+=1
-            rec[0].cornumber+=(result==wave)
+            rec[0].rdnumber=rec[0].rdnumber+1
+            rec[0].cornumber=rec[0].cornumber+(result==wave)
             rec[0].lastrd=result
             rec[0].lastres=(result==wave)
+            rec[0].save()
+
         return JsonResponse(
             {
                 "code": 0,
