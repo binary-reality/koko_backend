@@ -21,6 +21,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     # path("", views.helloView),
     path("login/", views.login),
+    path("login/headicon/", views.getlogheadicon),
     path("read/", views.read),
     path("search/", views.search),
     path("detail/", views.detail),

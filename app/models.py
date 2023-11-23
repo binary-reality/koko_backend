@@ -103,7 +103,7 @@ class user(models.Model):
         db_table = "user_info"
 
 class rdrecord(models.Model):
-    owner_openid = models.ForeignKey(to="user", to_field="open_id", on_delete=models.CASCADE, related_name='reading_record')
+    owner_openid = models.ForeignKey(to="user", to_field="open_id", on_delete=models.CASCADE, related_name='readingrecord')
     content = models.CharField(max_length=100, blank=False)
     rdnumber = models.IntegerField(default=0)
     cornumber = models.IntegerField(default=0)
@@ -133,3 +133,11 @@ class wordlist_info(models.Model):
     class Meta():
         verbose_name = "wordlist_info"
         db_table = "wordlist_info"
+
+class wordlist(models.Model):
+    owner_openid = models.ForeignKey(to="user", to_field="open_id", on_delete=models.CASCADE, related_name='wordlist')
+    content = models.CharField(max_length=100, blank=False)
+    index = models.IntegerField(blank=False)
+    class Meta():
+        verbose_name = "wordlist"
+        db_table = "wordlist"
