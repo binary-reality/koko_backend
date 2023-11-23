@@ -32,7 +32,10 @@ class Dic():
         param:word='赤い【あかい◎】',字典中的key
         return:字典，包括该单词各种信息。
         '''
-        return self.d[word]
+        if word in self.d.keys():
+            return self.d[word]
+        else:
+            return {}
     
     def medical_list(self,type):
         '''

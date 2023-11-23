@@ -2,24 +2,24 @@ from django.db import models
 
 # Create your models here.
 
-def create_my_wordlist(index: int):
-    list_field = {
-        'owner_openid': models.ForeignKey(to="user", to_field="open_id", on_delete=models.CASCADE, related_name='list' + str(index)),
-        'content': models.CharField(max_length=100, blank=False),
-        '__module__': __name__,
-    }
-    model_name = "list" + str(index)
-    my_model = type(model_name, (models.Model,), list_field)
-    my_model._meta.db_table = model_name
-    my_model._meta.app_label = "app"
-    my_model._meta.model_name = model_name
-    my_model._meta.apps.register_model(app_label=my_model._meta.app_label, model=my_model)
+# def create_my_wordlist(index: int):
+#     list_field = {
+#         'owner_openid': models.ForeignKey(to="user", to_field="open_id", on_delete=models.CASCADE, related_name='list' + str(index)),
+#         'content': models.CharField(max_length=100, blank=False),
+#         '__module__': __name__,
+#     }
+#     model_name = "list" + str(index)
+#     my_model = type(model_name, (models.Model,), list_field)
+#     my_model._meta.db_table = model_name
+#     my_model._meta.app_label = "app"
+#     my_model._meta.model_name = model_name
+#     my_model._meta.apps.register_model(app_label=my_model._meta.app_label, model=my_model)
 
-    from django.db import connection
-    from django.db.backends.base.schema import BaseDatabaseSchemaEditor
-    with BaseDatabaseSchemaEditor(connection) as editor:
-        editor.create_model(model=my_model)
-    return my_model
+#     from django.db import connection
+#     from django.db.backends.base.schema import BaseDatabaseSchemaEditor
+#     with BaseDatabaseSchemaEditor(connection) as editor:
+#         editor.create_model(model=my_model)
+#     return my_model
 
 # def create_my_readingrecord(openid: str):
 #     list_field = {

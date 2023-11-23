@@ -252,8 +252,16 @@ def detail(request):
         word = json_param["word"]
         
         # print(wave)
-        openid = request.POST.get("openid")
-        
+        openid = json_param['openid']
+        user = models.user.objects.get(open_id=openid)
+        list = user.searchrecord.filter(content=word)
+        if len(list) == 0:
+            models.schrcd.objects.create(owner_openid=user, content=word, schnumber=1)
+        elif len(list) == 1:
+            list[0].schnumber = list[0].schnumber + 1
+            list[0].save()
+        else:
+            pass
         return JsonResponse(
             {
                 "code": 0,
