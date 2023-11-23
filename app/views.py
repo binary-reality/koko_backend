@@ -104,6 +104,7 @@ def read(request):
         files = request.FILES
         # print(files)
         wavelist = request.POST.get("wave")
+        word=request.POST.get("word")
         wave = []
         for x in wavelist:
             if x.isdigit():
@@ -123,8 +124,15 @@ def read(request):
         os.remove(acc_fileName + ".json")
         os.remove(acc_fileName + ".mp3")
         os.remove(acc_fileName + ".wav")
-        # user = models.user.objects.get(open_id=openid)
-        # models.rdrecord.objects.create(owner_openid=user, content="make", lastrd="[]")
+        user = models.user.objects.get(open_id=openid)
+        rec=models.rdrecord.objects.filter(owner_openid=user, content=word)
+        if len(rec)==0:
+            models.rdrecord.objects.create(owner_openid=user, content=word, lastrd=result,rdnumber=1,cornumber=(result==wave),lastres=(result==wave))
+        else:
+            rec[0].rdnumber+=1
+            rec[0].cornumber+=(result==wave)
+            rec[0].lastrd=result
+            rec[0].lastres=(result==wave)
         return JsonResponse(
             {
                 "code": 0,
