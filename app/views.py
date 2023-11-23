@@ -61,9 +61,10 @@ def login(request):
             valid_user_list = models.user.objects.filter(open_id=user_id)
             if len(valid_user_list) == 0:
                 models.user.objects.create(open_id=user_id, status=1)
-                models.create_my_wordlistinfo(user_id)
-                models.create_my_readingrecord(user_id)
-                models.create_my_searchrecord(user_id)
+                # user = models.user.objects.get(open_id=user_id)
+                # models.create_my_wordlistinfo(user_id)
+                # models.create_my_readingrecord(user_id)
+                # models.create_my_searchrecord(user_id)
             elif len(valid_user_list) == 1:
                 valid_user_list.update(status=1)
             else:
@@ -122,7 +123,8 @@ def read(request):
         os.remove(acc_fileName + ".json")
         os.remove(acc_fileName + ".mp3")
         os.remove(acc_fileName + ".wav")
-
+        # user = models.user.objects.get(open_id=openid)
+        # models.rdrecord.objects.create(owner_openid=user, content="make", lastrd="[]")
         return JsonResponse(
             {
                 "code": 0,
