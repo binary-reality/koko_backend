@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from . import models
 import requests
 from django.http import JsonResponse
+from django.http import FileResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
 from mine import final
@@ -69,6 +70,64 @@ def login(request):
                 valid_user_list.update(status=1)
             else:
                 pass
+            curuser = models.user.objects.get(open_id=user_id)
+            user_data = {}
+
+            # file
+            # user_data['file'] = curuser.headicon
+            # info
+            user_data_info = {}
+            user_data_info['openid'] = curuser.open_id
+            user_data_info['nickname'] = curuser.nickname
+            user_data_info['timeline'] = curuser.reserved_time
+            if curuser.read_keep == 1:
+                user_data_info['recordOn'] = 'true'
+            else:
+                user_data_info['recordOn'] = 'false'
+            user_data_info['wbnum'] = curuser.wdlistnumber
+            user_data['info'] = user_data_info
+
+            # wordbooks
+            user_data_wdbks = []
+            curuser_word = curuser.wordlist.all()
+            curuser_wbinfo = curuser.wbinfo.all()
+            for i in range(1, curuser.wdlistnumber + 1):
+                wd_content = {}
+                cur_info = curuser_wbinfo.get(index=i)
+                wd_content['id'] = i
+                wd_content['name'] = cur_info.name
+                wd_content['intro'] = cur_info.intro
+                # wd_content['coverUrl'] = cur_info.image
+                words = []
+                wdlist = curuser_word.filter(index=i)
+                for x in wdlist:
+                    words.append(x.content)
+                user_data_wdbks.append(wd_content)
+            user_data['wordbooks'] = user_data_wdbks
+
+            # wordHistory
+            wdHis = []
+            curuser_his = curuser.searchrecord.all()
+            for x in curuser_his:
+                record = []
+                record.append(x.content)
+                record.append(x.date)
+                record.append(x.schnumber)
+                wdHis.append(record)
+            user_data['wordHistory'] = wdHis
+
+            # readHistory
+            rdHis = []
+            curuser_rdHis = curuser.readingrecord.all()
+            for x in curuser_rdHis:
+                record = []
+                record.append(x.content)
+                record.append(x.date)
+                record.append(x.lastrd)
+                record.append(x.lastres)
+                rdHis.append(record)
+            user_data['readHistory'] = rdHis
+            response_json['user_data'] = user_data
         # user_id = '345'
         # valid_user_list = models.user.objects.filter(open_id=user_id)
         # if len(valid_user_list) == 0:
@@ -97,7 +156,21 @@ def login(request):
         return JsonResponse(response_json, status = 200)
     else:
         return JsonResponse({"code": "405", "message": "Method not allowed"}, status = 405)
-    
+
+@csrf_exempt
+def getlogheadicon(request):
+    if request.method == "POST":
+        json_param = json.loads(request.body)
+        user_id = json_param['openid']
+        list = models.user.objects.filter(open_id=user_id)
+        if (len(list) == 0):
+            return JsonResponse({'code': '401', "message": "User Unauthorized"}, status=401)
+        elif len(list) == 1:
+            image = list[0].headicon
+            return FileResponse(image, as_attachment=True, filename="headicon.jpg")
+    else:
+        return JsonResponse({'code': '405', "message": "Method not allowed"}, status=405)
+
 @csrf_exempt
 def read(request):
     if request.method == "POST":

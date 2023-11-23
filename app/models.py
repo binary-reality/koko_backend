@@ -135,9 +135,9 @@ class wordlist_info(models.Model):
         db_table = "wordlist_info"
 
 class wordlist(models.Model):
-    owner_openid: models.ForeignKey(to="user", to_field="open_id", on_delete=models.CASCADE, related_name='wordlist')
-    content: models.CharField(max_length=100, blank=False)
-    index: models.IntegerField(blank=False)
+    owner_openid = models.ForeignKey(to="user", to_field="open_id", on_delete=models.CASCADE, related_name='wordlist')
+    content = models.CharField(max_length=100, blank=False)
+    index = models.IntegerField(blank=False)
     class Meta():
-        verbose_name = 'wordlist'
-        db_table = 'wordlist'
+        verbose_name = "wordlist"
+        db_table = "wordlist"
