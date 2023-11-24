@@ -61,20 +61,19 @@ def login(request):
             user_id = response_json['openid']
             valid_user_list = models.user.objects.filter(open_id=user_id)
             if len(valid_user_list) == 0:
-                models.user.objects.create(open_id=user_id, status=1)
-                # user = models.user.objects.get(open_id=user_id)
+                models.user.objects.create(open_id=user_id, nickname="用户"+user_id)
                 # models.create_my_wordlistinfo(user_id)
                 # models.create_my_readingrecord(user_id)
                 # models.create_my_searchrecord(user_id)
             elif len(valid_user_list) == 1:
-                valid_user_list.update(status=1)
+                pass
             else:
                 pass
             curuser = models.user.objects.get(open_id=user_id)
             user_data = {}
 
             # file
-            # user_data['file'] = curuser.headicon
+            user_data['file'] = curuser.headicon_name
             # info
             user_data_info = {}
             user_data_info['openid'] = curuser.open_id

@@ -91,9 +91,9 @@ from django.db import models
 class user(models.Model):
     open_id = models.CharField(max_length=100, primary_key=True, unique=True, blank=False)
     create_time = models.DateField(auto_now_add=True)
-    status = models.IntegerField(default=0)
-    nickname = models.CharField(max_length=100, blank=False, default="")
+    nickname = models.CharField(max_length=100, blank=False)
     headicon = models.ImageField(upload_to='./', default='./headicon.png')
+    headicon_name = models.CharField(max_length=100, default='headicon.png')
     reserved_time = models.IntegerField(default=10)
     read_keep = models.IntegerField(default=1)
     wdlistnumber = models.IntegerField(default=0)
@@ -128,7 +128,8 @@ class wordlist_info(models.Model):
     name = models.CharField(max_length=100, blank=False)
     index = models.IntegerField(blank=False)
     intro = models.CharField(max_length=1000, blank=True)
-    image = models.ImageField(upload_to='./wb/', default='./headicon.png')
+    image = models.ImageField(upload_to='./wb/', default='./wb/default_wb.png')
+    image_name = models.CharField(max_length=100, default='default_wb.png')
     date = models.DateField(auto_now_add=True)
     class Meta():
         verbose_name = "wordlist_info"
