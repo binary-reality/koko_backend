@@ -257,7 +257,7 @@ def detail(request):
         userlist = user.searchrecord.filter(content=word)
         if len(userlist) == 0:
             models.schrcd.objects.create(owner_openid=user, content=word, schnumber=1)
-        elif len(list) == 1:
+        elif len(userlist) == 1:
             userlist[0].schnumber = userlist[0].schnumber + 1
             userlist[0].save()
         else:
