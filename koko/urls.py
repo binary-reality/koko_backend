@@ -20,10 +20,16 @@ from app import views
 urlpatterns = [
     path("admin/", admin.site.urls),
     # path("", views.helloView),
+
     path("login/", views.login),
     path("login/headicon/", views.getlogheadicon),
+
     path("read/", views.read),
     path("search/", views.search),
     path("detail/", views.detail),
     path("list/", views.getlist),
+
+    path("setting/nickname/", views.nickname_change),
+    path("setting/timeline/", views.timeline_change),
+    path("setting/record", views.record_change),
 ]

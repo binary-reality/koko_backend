@@ -254,12 +254,12 @@ def detail(request):
         # print(wave)
         openid = json_param['openid']
         user = models.user.objects.get(open_id=openid)
-        list = user.searchrecord.filter(content=word)
-        if len(list) == 0:
+        userlist = user.searchrecord.filter(content=word)
+        if len(userlist) == 0:
             models.schrcd.objects.create(owner_openid=user, content=word, schnumber=1)
         elif len(list) == 1:
-            list[0].schnumber = list[0].schnumber + 1
-            list[0].save()
+            userlist[0].schnumber = userlist[0].schnumber + 1
+            userlist[0].save()
         else:
             pass
         return JsonResponse(
@@ -296,3 +296,65 @@ def getlist(request):
 
     else:
         return JsonResponse({"code": "405", "message": "Method not allowed"}, status = 405)
+
+@csrf_exempt
+def nickname_change(request):
+    if request.method == "POST":
+        json_param = json.loads(request.body)
+        openid = json_param['openid']
+        new_nickname = json_param['nickname']
+        userlist = models.user.objects.filter(open_id=openid)
+        if len(userlist) == 0:
+            return JsonResponse({"code": "401", "message": "User Unauthorized"}, status=401)
+        elif len(userlist) == 1:
+            user = userlist[0]
+            user.nickname = new_nickname
+            user.save()
+            return JsonResponse({"code": 0, "message": "Nickname successfully changed!"}, status=200)
+        else:
+            pass
+    else:
+        return JsonResponse({"code": "405", "message": "Method not allowed"}, status=405)
+
+@csrf_exempt 
+def timeline_change(request):
+    if request.method == "POST":
+        json_param = json.loads(request.body)
+        openid = json_param['openid']
+        new_timeline = json_param['timeline']
+        userlist = models.user.objects.filter(open_id=openid)
+        if len(userlist) == 0:
+            return JsonResponse({"code": "401", "message": "User Unauthorized"}, status=401)
+        elif len(userlist) == 1:
+            user = userlist[0]
+            user.reserved_time = new_timeline
+            user.save()
+            return JsonResponse({"code": 0, "message": "Timeline successfully changed!"}, status=200)
+        else:
+            pass
+    else:
+        return JsonResponse({"code": "405", "message": "Method not allowed"}, status=405)
+
+@csrf_exempt
+def record_change(request):
+    if request.method == "POST":
+        json_param = json.loads(request.body)
+        openid = json_param['openid']
+        new_record = json_param['recordOn']
+        userlist = models.user.objects.filter(open_id=openid)
+        if len(userlist) == 0:
+            return JsonResponse({"code": "401", "message": "User Unauthorized"}, status=401)
+        elif len(userlist) == 1:
+            user = userlist[0]
+            if new_record == "False":
+                user.read_keep = 0
+            elif new_record == "True":
+                user.read_keep = 1
+            else:
+                return JsonResponse({"code": "400", "message": "Bad request: invalid request argument"}, status=400)
+            user.save()
+            return JsonResponse({"code": 0, "message": "Record button successfully changed!"}, status=200)
+        else:
+            pass
+    else:
+        return JsonResponse({"code": "405", "message": "Method not allowed"}, status=405)
