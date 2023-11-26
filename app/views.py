@@ -167,7 +167,7 @@ def getlogheadicon(request):
             return JsonResponse({'code': '401', "message": "User Unauthorized"}, status=401)
         elif len(list) == 1:
             image = list[0].headicon
-            return FileResponse(image, as_attachment=True, filename="headicon.jpg")
+            return FileResponse(image, as_attachment=True, filename="headicon.jpg", status=200)
     else:
         return JsonResponse({'code': '405', "message": "Method not allowed"}, status=405)
 
@@ -382,7 +382,8 @@ def record_change(request):
             pass
     else:
         return JsonResponse({"code": "405", "message": "Method not allowed"}, status=405)
-    
+
+@csrf_exempt
 def wb_create(request):
     if request.method == "POST":
         json_param = json.loads(request.body)
@@ -393,7 +394,7 @@ def wb_create(request):
         elif len(userlist) == 1:
             user = userlist[0]
             cur_wbnumber = user.wdlistnumber
-            user.wbinfo.create(owner_openid=user, index=cur_wbnumber+1)
+            user.wbinfo.create(owner_openid=user, index=cur_wbnumber+1, name="未命名单词本"+str(cur_wbnumber+1), intro="这是单词本的介绍", image_name="wb"+str(cur_wbnumber+1)+".png")
             user.wdlistnumber = user.wdlistnumber + 1
             user.save()
             return JsonResponse({"code": 0, "message": "New wordbook successfully created!"}, status=200)
@@ -401,4 +402,90 @@ def wb_create(request):
             pass
     else:
         return JsonResponse({"code": "405", "message": "Method not allowed"}, status=405)
-    
+
+@csrf_exempt
+def wb_info_change(request):
+    if request.method == "POST":
+        json_param = json.loads(request.body)
+        openid = json_param['openid']
+        userlist = models.user.objects.filter(open_id=openid)
+        print("xxxx")
+        if len(userlist) == 0:
+            return JsonResponse({"code": "401", "message": "User Unauthorized"}, status=401)
+        elif len(userlist) == 1:
+            user = userlist[0]
+            wbindex = json_param['index']
+            wblist = user.wbinfo.filter(index=wbindex)
+            if len(wblist) == 0:
+                return JsonResponse({"code": "404", "message": "Wordbook not found"}, status=404)
+            elif len(wblist) == 1:
+                user_wb = wblist[0]
+                user_wb.name = json_param['name']
+                user_wb.intro = json_param['intro']
+                print("xxx")
+                user_wb.save()
+                return JsonResponse({"code": 0, "message": "Wordbook information successfully changed!"}, status=200)
+            else:
+                pass
+        else:
+            pass
+    else:
+        return JsonResponse({"code": "405", "message": "Method not allowed"}, status=405)
+
+
+@csrf_exempt
+def wb_image_get(request):
+    if request.method == "POST":
+        json_param = json.loads(request.body)
+        openid = json_param['openid']
+        userlist = models.user.objects.filter(open_id=openid)
+        if len(userlist) == 0:
+            return JsonResponse({"code": "401", "message": "User Unauthorized"}, status=401)
+        elif len(userlist) == 1:
+            user = userlist[0]
+            wbindex = json_param['index']
+            wblist = user.wbinfo.filter(index=wbindex)
+            if len(wblist) == 0:
+                return JsonResponse({"code": "404", "message": "Wordbook not found"}, status=404)
+            elif len(wblist) == 1:
+                return FileResponse(wblist[0].image, as_attachment=True, filename=wblist[0].image_name, status=200)
+            else:
+                pass
+        else:
+            pass
+    else:
+        return JsonResponse({"code": "405", "message": "Method not allowed"}, status=405)
+
+@csrf_exempt
+def wb_image_set(request):
+    if request.method == "POST":
+        openid = request.POST.get("openid")
+        userlist = models.user.objects.filter(open_id=openid)
+        if len(userlist) == 0:
+            return JsonResponse({"code": "401", "message": "User Unauthorized"}, status=401)
+        elif len(userlist) == 1:
+            user = userlist[0]
+            wbindex = request.POST.get("index")
+            wblist = user.wbinfo.filter(index=wbindex)
+            if len(wblist) == 0:
+                return JsonResponse({"code": "404", "message": "Wordbook not found"}, status=404)
+            elif len(wblist) == 1:
+                name = request.POST.get("name")
+                name_list = name.split(".")
+                new_image = request.FILES.get("image")
+                image_name = "wb" + str(wbindex) + "." + name_list[1]
+
+                user_wb = wblist[0]
+
+                user_wb.image_name = image_name
+                os.remove(os.path.join(settings.MEDIA_ROOT, "wb", user_wb.image.name))
+                user_wb.image = new_image
+                user_wb.save()
+                return JsonResponse({"code": 0, "message": "Wordbook image successfully changed!"}, status=200)
+            else:
+                pass
+        else:
+            pass
+    else:
+        return JsonResponse({"code": "405", "message": "Method not allowed"}, status=405)
+
