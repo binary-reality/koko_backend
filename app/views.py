@@ -89,8 +89,8 @@ def login(request):
 
             # wordbooks
             user_data_wdbks = []
-            curuser_word = curuser.wordlist.all()
             curuser_wbinfo = curuser.wbinfo.all()
+            
             for i in range(1, curuser.wdlistnumber + 1):
                 wd_content = {}
                 cur_info = curuser_wbinfo.get(index=i)
@@ -99,7 +99,7 @@ def login(request):
                 wd_content['intro'] = cur_info.intro
                 # wd_content['coverUrl'] = cur_info.image
                 words = []
-                wdlist = curuser_word.filter(index=i)
+                wdlist = cur_info.wordlist.all()
                 for x in wdlist:
                     words.append(x.content)
                 user_data_wdbks.append(wd_content)
@@ -516,3 +516,70 @@ def wb_remove(request):
             pass
     else:
         return JsonResponse({"code": "405", "message": "Method not allowed"}, status=405)
+
+@csrf_exempt
+def word_add(request):
+    if request.method == "POST":
+        json_param = json.loads(request.body)
+        openid = json_param['openid']
+        userlist = models.user.objects.filter(open_id=openid)
+        if len(userlist) == 0:
+            return JsonResponse({"code": "401", "message": "User Unauthorized"}, status=401)
+        elif len(userlist) == 1:
+            user = userlist[0]
+            wbindex = json_param['index']
+            wblist = user.wbinfo.filter(index=wbindex)
+            if len(wblist) == 0:
+                return JsonResponse({"code": "404", "message": "Wordbook not found"}, status=404)
+            elif len(wblist) == 1:
+                word = json_param['word']
+                wordbook = wblist[0]
+                exist_word = wordbook.wordlist.filter(content=word)
+                if len(exist_word) == 0:
+                    wordbook.wordlist.create(list_info=wordbook, content=word)
+                    return JsonResponse({"code": 0, "message": "Word added successfully!"}, status=200)
+                elif len(exist_word) == 1:
+                    return JsonResponse({"code": 0, "message": "Word already exists"}, status=200)
+                else:
+                    pass
+            else:
+                pass
+        else:
+            pass
+
+    else:
+        return JsonResponse({"code": "405", "message": "Method not allowed"}, status=405)
+
+@csrf_exempt
+def word_remove(request):
+    if request.method == "POST":
+        json_param = json.loads(request.body)
+        openid = json_param['openid']
+        userlist = models.user.objects.filter(open_id=openid)
+        if len(userlist) == 0:
+            return JsonResponse({"code": "401", "message": "User Unauthorized"}, status=401)
+        elif len(userlist) == 1:
+            user = userlist[0]
+            wbindex = json_param['index']
+            wblist = user.wbinfo.filter(index=wbindex)
+            if len(wblist) == 0:
+                return JsonResponse({"code": "404", "message": "Wordbook not found"}, status=404)
+            elif len(wblist) == 1:
+                word = json_param['word']
+                wordbook = wblist[0]
+                exist_word = wordbook.wordlist.filter(content=word)
+                if len(exist_word) == 0:
+                    return JsonResponse({"code": "404", "message": "Word doesn't exist"}, status=404)
+                elif len(exist_word) == 1:
+                    exist_word[0].delete()
+                    return JsonResponse({"code": 0, "message": "Word removed successfully"}, status=200)
+                else:
+                    pass
+                return JsonResponse({"code": 0, "message": "Word added successfully!"}, status=200)
+            else:
+                pass
+        else:
+            pass
+    else:
+        return JsonResponse({"code": "405", "message": "Method not allowed"}, status=405)
+
