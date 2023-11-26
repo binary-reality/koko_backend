@@ -9,6 +9,7 @@ import json
 from mine import final
 from dicts.dic_func import Dic
 import os
+from koko import settings
 
 # Create your views here.
 
@@ -297,6 +298,30 @@ def getlist(request):
         return JsonResponse({"code": "405", "message": "Method not allowed"}, status = 405)
 
 @csrf_exempt
+def headicon_change(request):
+    if request.method == "POST":
+        files = request.FILES
+        openid = request.POST.get("openid")
+        name = request.POST.get("name")
+        image = files.get("headIcon")
+        image_url_list = name.split('.')
+        image_name = openid + "." + image_url_list[1]
+        userlist = models.user.objects.filter(open_id=openid)
+        if len(userlist) == 0:
+            return JsonResponse({"code": "401", "message": "User Unauthorized"}, status=401)
+        elif len(userlist) == 1:
+            user = userlist[0]
+            user.headicon_name = image_name
+            os.remove(os.path.join(settings.MEDIA_ROOT, user.headicon.name))
+            user.headicon = image
+            user.save()
+            return JsonResponse({"code": 0, "message": "Headicon successfully changed!"}, status=200)
+        else:
+            pass
+    else:
+        return JsonResponse({"code": "405", "message": "Method not allowed"}, status=405)
+
+@csrf_exempt
 def nickname_change(request):
     if request.method == "POST":
         json_param = json.loads(request.body)
@@ -357,3 +382,23 @@ def record_change(request):
             pass
     else:
         return JsonResponse({"code": "405", "message": "Method not allowed"}, status=405)
+    
+def wb_create(request):
+    if request.method == "POST":
+        json_param = json.loads(request.body)
+        openid = json_param['openid']
+        userlist = models.user.objects.filter(open_id=openid)
+        if len(userlist) == 0:
+            return JsonResponse({"code": "401", "message": "User Unauthorized"}, status=401)
+        elif len(userlist) == 1:
+            user = userlist[0]
+            cur_wbnumber = user.wdlistnumber
+            user.wbinfo.create(owner_openid=user, index=cur_wbnumber+1)
+            user.wdlistnumber = user.wdlistnumber + 1
+            user.save()
+            return JsonResponse({"code": 0, "message": "New wordbook successfully created!"}, status=200)
+        else:
+            pass
+    else:
+        return JsonResponse({"code": "405", "message": "Method not allowed"}, status=405)
+    

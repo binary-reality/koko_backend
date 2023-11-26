@@ -125,7 +125,7 @@ class schrcd(models.Model):
 
 class wordlist_info(models.Model):
     owner_openid = models.ForeignKey(to="user", to_field="open_id", on_delete=models.CASCADE, related_name='wbinfo')
-    name = models.CharField(max_length=100, blank=False)
+    name = models.CharField(max_length=100, default="默认单词本")
     index = models.IntegerField(blank=False)
     intro = models.CharField(max_length=1000, blank=True)
     image = models.ImageField(upload_to='./wb/', default='./wb/default_wb.png')

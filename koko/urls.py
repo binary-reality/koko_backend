@@ -29,7 +29,10 @@ urlpatterns = [
     path("detail/", views.detail),
     path("list/", views.getlist),
 
+    path("setting/headIcon", views.headicon_change),
     path("setting/nickname/", views.nickname_change),
     path("setting/timeline/", views.timeline_change),
     path("setting/record", views.record_change),
+
+    path("wb/create/", views.wb_create),
 ]
