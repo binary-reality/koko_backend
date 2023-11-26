@@ -409,7 +409,6 @@ def wb_info_change(request):
         json_param = json.loads(request.body)
         openid = json_param['openid']
         userlist = models.user.objects.filter(open_id=openid)
-        print("xxxx")
         if len(userlist) == 0:
             return JsonResponse({"code": "401", "message": "User Unauthorized"}, status=401)
         elif len(userlist) == 1:
@@ -422,7 +421,6 @@ def wb_info_change(request):
                 user_wb = wblist[0]
                 user_wb.name = json_param['name']
                 user_wb.intro = json_param['intro']
-                print("xxx")
                 user_wb.save()
                 return JsonResponse({"code": 0, "message": "Wordbook information successfully changed!"}, status=200)
             else:
@@ -489,3 +487,32 @@ def wb_image_set(request):
     else:
         return JsonResponse({"code": "405", "message": "Method not allowed"}, status=405)
 
+@csrf_exempt
+def wb_remove(request):
+    if request.method == "POST":
+        json_param = json.loads(request.body)
+        openid = json_param['openid']
+        userlist = models.user.objects.filter(open_id=openid)
+        if len(userlist) == 0:
+            return JsonResponse({"code": "401", "message": "User Unauthorized"}, status=401)
+        elif len(userlist) == 1:
+            user = userlist[0]
+            wbindex = json_param['index']
+            wblist = user.wbinfo.filter(index=wbindex)
+            if len(wblist) == 0:
+                return JsonResponse({"code": "404", "message": "Wordbook not found"}, status=404)
+            elif len(wblist) == 1:
+                wblist[0].delete()
+                for i in range(wbindex + 1, user.wdlistnumber + 1):
+                    rev_wb = user.wbinfo.get(index=i)
+                    rev_wb.index = rev_wb.index - 1
+                    rev_wb.save()
+                user.wdlistnumber = user.wdlistnumber - 1
+                user.save()
+                return JsonResponse({"code": 0, "message": "Wordbook removed successfully!"}, status=200)
+            else:
+                pass
+        else:
+            pass
+    else:
+        return JsonResponse({"code": "405", "message": "Method not allowed"}, status=405)
