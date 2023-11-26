@@ -134,11 +134,11 @@ class wordlist_info(models.Model):
     class Meta():
         verbose_name = "wordlist_info"
         db_table = "wordlist_info"
+        unique_together = ("owner_openid", "index")
 
 class wordlist(models.Model):
-    owner_openid = models.ForeignKey(to="user", to_field="open_id", on_delete=models.CASCADE, related_name='wordlist')
+    list_info = models.ForeignKey("wordlist_info", on_delete=models.CASCADE, related_name='wordlist')
     content = models.CharField(max_length=100, blank=False)
-    index = models.IntegerField(blank=False)
     class Meta():
         verbose_name = "wordlist"
         db_table = "wordlist"

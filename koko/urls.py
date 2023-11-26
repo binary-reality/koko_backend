@@ -39,4 +39,7 @@ urlpatterns = [
     path("wb/info/", views.wb_info_change),
     path("wb/image/get", views.wb_image_get),
     path("wb/image/set", views.wb_image_set),
+
+    path("word/add/", views.word_add),
+    path("word/remove/", views.word_remove),
 ]
