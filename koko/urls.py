@@ -35,4 +35,7 @@ urlpatterns = [
     path("setting/record", views.record_change),
 
     path("wb/create/", views.wb_create),
+    path("wb/info/", views.wb_info_change),
+    path("wb/image/get", views.wb_image_get),
+    path("wb/image/set", views.wb_image_set),
 ]
