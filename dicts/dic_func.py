@@ -11,7 +11,7 @@ class Dic():
         medical_list
     '''
     def __init__(self) -> None:
-        f=open("dics/koko.json",'r',encoding="utf-8")
+        f=open("dicts/koko.json",'r',encoding="utf-8")
         content=f.read()
         self.d=json.loads(content)
         self.items=self.d.items()
