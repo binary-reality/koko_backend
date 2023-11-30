@@ -21,11 +21,26 @@ class Dic():
         param:query_word=搜索内容
         return:字符串列表，形如['赤い【あかい◎】', ……]元素就是字典中的key
         '''
-        results=[]
+        first=[]
         for word in self.d.keys():
             if query_word in word:
+                first.append(word)
+        results=[]
+        newl=first[:]
+        for word in newl:
+            if query_word == word[0:len(query_word)]:
                 results.append(word)
-        return results[:20]
+                first.remove(word)
+        kanaWord="【"+query_word
+        newl=first[:]
+        for word in newl:
+            if kanaWord in word:
+                results.append(word)
+                first.remove(word)
+        for word in first:
+            if query_word in word:
+                results.append(word)
+        return results
     
     def get_detail(self,word):
         '''
@@ -64,8 +79,35 @@ class Dic():
 
 
 # 测试部分
-# dict=Dic()
-# sr = dict.search_results("⑧")
+import time
+
+
+t = time.time()
+dict=Dic()
+for e in dict.search_results("そら"):
+    print(e)
+# print(f'coast:{time.time() - t:.4f}s')
+
+# sr = dict.search_results("③◎")
+# print(f'coast:{time.time() - t:.4f}s')
 # print(sr)
 # print(dict.get_detail(sr[0]))
 # print(dict.medical_list(9))
+# sr = dict.search_results("そら")
+# print(f'coast:{time.time() - t:.4f}s')
+# print("--------------------------------")
+# print(" ")
+# sr = dict.search_results("こお")
+# print(f'coast:{time.time() - t:.4f}s')
+# print("--------------------------------")
+# print(" ")
+# sr = dict.search_results("げ")
+# print(f'coast:{time.time() - t:.4f}s')
+# print("--------------------------------")
+# print(" ")
+# sr = dict.search_results("おおお")
+# print(f'coast:{time.time() - t:.4f}s')
+# print("--------------------------------")
+# print(" ")
+# sr = dict.search_results("ぴん")
+# print(f'coast:{time.time() - t:.4f}s')
