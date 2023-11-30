@@ -16,7 +16,7 @@ class Dic():
         self.d=json.loads(content)
         self.items=self.d.items()
 
-    def search_results(self,query_word):
+    def search_results(self,query_word,num=50):
         '''
         param:query_word=搜索内容
         return:字符串列表，形如['赤い【あかい◎】', ……]元素就是字典中的key
@@ -40,7 +40,7 @@ class Dic():
         for word in first:
             if query_word in word:
                 results.append(word)
-        return results
+        return results[0:num]
     
     def get_detail(self,word):
         '''
