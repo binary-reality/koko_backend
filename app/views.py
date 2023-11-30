@@ -102,6 +102,7 @@ def login(request):
                 wdlist = cur_info.wordlist.all()
                 for x in wdlist:
                     words.append(x.content)
+                wd_content['words'] = words
                 user_data_wdbks.append(wd_content)
             user_data['wordbooks'] = user_data_wdbks
 
@@ -370,9 +371,9 @@ def record_change(request):
             return JsonResponse({"code": "401", "message": "User Unauthorized"}, status=401)
         elif len(userlist) == 1:
             user = userlist[0]
-            if new_record == "False":
+            if new_record == "False" or new_record == "false" or new_record == 0 or new_record == "0":
                 user.read_keep = 0
-            elif new_record == "True":
+            elif new_record == "True" or new_record == "true" or new_record == 1 or new_record == "1":
                 user.read_keep = 1
             else:
                 return JsonResponse({"code": "400", "message": "Bad request: invalid request argument"}, status=400)
@@ -532,11 +533,11 @@ def word_add(request):
             if len(wblist) == 0:
                 return JsonResponse({"code": "404", "message": "Wordbook not found"}, status=404)
             elif len(wblist) == 1:
-                word = json_param['word']
+                new_word = json_param['word']
                 wordbook = wblist[0]
-                exist_word = wordbook.wordlist.filter(content=word)
+                exist_word = wordbook.wordlist.filter(content=new_word)
                 if len(exist_word) == 0:
-                    wordbook.wordlist.create(list_info=wordbook, content=word)
+                    wordbook.wordlist.create(list_info=wordbook, content=new_word)
                     return JsonResponse({"code": 0, "message": "Word added successfully!"}, status=200)
                 elif len(exist_word) == 1:
                     return JsonResponse({"code": 0, "message": "Word already exists"}, status=200)
