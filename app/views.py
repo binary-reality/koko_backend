@@ -232,11 +232,17 @@ def search(request):
         openid = request.POST.get("openid")
         print(word)
         print(diction.search_results(word))
+        # 获取首选项中查询结果条数
+        resultNum=50
+        userlist = models.user.objects.filter(open_id=openid)
+        if len(userlist) ==  1:
+            user = userlist[0]
+            resultNum=user.reserved_time
         return JsonResponse(
             {
                 "code": 0,
                 "info": "Success in word searching",
-                "results": diction.search_results(word)
+                "results": diction.search_results(word,num=resultNum)
             },
             status = 200
         )
