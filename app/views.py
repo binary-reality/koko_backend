@@ -30,6 +30,31 @@ from koko import settings
 #         testUnit = models.testUnit.objects.get(pk=1)
 #         return render(request, "index.html", {"testUnit": testUnit})
 
+
+def timeover(recDate):
+    import time
+    t = time.localtime()
+    (y, m, d) = (t.tm_year, t.tm_mon, t.tm_mday)
+    recy = recDate.year
+    recm = recDate.month
+    recd = recDate.day
+    if y - recy > 1:
+        return True
+    elif y == recy:
+        return False
+    else:
+        if recm < m:
+            return True
+        elif recm > m:
+            return False
+        else:
+            if recd >= d:
+                return False
+            else:
+                return True
+    return True
+
+
 @csrf_exempt
 def login(request):
 
@@ -97,7 +122,7 @@ def login(request):
                 wd_content['id'] = i
                 wd_content['name'] = cur_info.name
                 wd_content['intro'] = cur_info.intro
-                # wd_content['coverUrl'] = cur_info.image
+                wd_content['coverUrl'] = cur_info.image_name
                 words = []
                 wdlist = cur_info.wordlist.all()
                 for x in wdlist:
@@ -110,23 +135,29 @@ def login(request):
             wdHis = []
             curuser_his = curuser.searchrecord.all()
             for x in curuser_his:
-                record = []
-                record.append(x.content)
-                record.append(x.date)
-                record.append(x.schnumber)
-                wdHis.append(record)
+                if timeover(x.date):
+                    x.delete()
+                else:
+                    record = []
+                    record.append(x.content)
+                    record.append(x.date)
+                    record.append(x.schnumber)
+                    wdHis.append(record)
             user_data['wordHistory'] = wdHis
 
             # readHistory
             rdHis = []
             curuser_rdHis = curuser.readingrecord.all()
             for x in curuser_rdHis:
-                record = []
-                record.append(x.content)
-                record.append(x.date)
-                record.append(x.lastrd)
-                record.append(x.lastres)
-                rdHis.append(record)
+                if timeover(x.date):
+                    x.delete()
+                else:
+                    record = []
+                    record.append(x.content)
+                    record.append(x.date)
+                    record.append(x.lastrd)
+                    record.append(x.lastres)
+                    rdHis.append(record)
             user_data['readHistory'] = rdHis
             response_json['user_data'] = user_data
         # user_id = '345'
