@@ -79,13 +79,13 @@ class Dic():
 
 
 # 测试部分
-import time
+# import time
 
 
-t = time.time()
-dict=Dic()
-for e in dict.search_results("そら"):
-    print(e)
+# t = time.time()
+# dict=Dic()
+# for e in dict.search_results("そら"):
+#     print(e)
 # print(f'coast:{time.time() - t:.4f}s')
 
 # sr = dict.search_results("③◎")

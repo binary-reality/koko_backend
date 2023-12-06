@@ -265,15 +265,20 @@ def search(request):
         json_param = json.loads(request.body)
         word = json_param["searchWord"]
         # print(wave)
-        openid = request.POST.get("openid")
-        print(word)
-        print(diction.search_results(word))
+        openid = json_param['openid']
+        # print(word)
+        # print(diction.search_results(word))
         # 获取首选项中查询结果条数
         resultNum=50
         userlist = models.user.objects.filter(open_id=openid)
-        if len(userlist) ==  1:
+        # print(openid)
+        # print(len(userlist))
+        if len(userlist) == 1:
             user = userlist[0]
             resultNum=user.reserved_time
+        if resultNum > 50:
+            resultNum = 50
+        # print(resultNum)
         return JsonResponse(
             {
                 "code": 0,
