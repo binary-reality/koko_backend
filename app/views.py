@@ -83,6 +83,11 @@ def login(request):
             }
         else:
             response_json = json.loads(login_response.text)
+            if 'errcode' in response_json:
+                pass
+            else:
+                response_json['errcode'] = 0
+        print(response_json)
         if response_json['errcode'] == 0:
             user_id = response_json['openid']
             valid_user_list = models.user.objects.filter(open_id=user_id)
@@ -350,7 +355,8 @@ def headicon_change(request):
         elif len(userlist) == 1:
             user = userlist[0]
             user.headicon_name = image_name
-            os.remove(os.path.join(settings.MEDIA_ROOT, user.headicon.name))
+            if user.headicon_name != 'headicon.png':
+                os.remove(os.path.join(settings.MEDIA_ROOT, user.headicon.name))
             user.headicon = image
             user.save()
             return JsonResponse({"code": 0, "message": "Headicon successfully changed!"}, status=200)
@@ -432,7 +438,7 @@ def wb_create(request):
         elif len(userlist) == 1:
             user = userlist[0]
             cur_wbnumber = user.wdlistnumber
-            user.wbinfo.create(owner_openid=user, index=cur_wbnumber+1, name="未命名单词本"+str(cur_wbnumber+1), intro="这是单词本的介绍", image_name="wb"+str(cur_wbnumber+1)+".png")
+            user.wbinfo.create(owner_openid=user, index=cur_wbnumber+1, name="未命名单词本"+str(cur_wbnumber+1), intro="这是单词本的介绍")
             user.wdlistnumber = user.wdlistnumber + 1
             user.save()
             return JsonResponse({"code": 0, "message": "New wordbook successfully created!"}, status=200)
