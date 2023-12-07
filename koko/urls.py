@@ -21,26 +21,25 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     # path("", views.helloView),
 
-    path("login/", views.login),
-    path("login/headicon/", views.getlogheadicon),
+    path("login/", views.login, name='login'),
+    path("login/headicon/", views.getlogheadicon, name='getlogheadicon'),
 
-    path("read/", views.read),
-    path("search/", views.search),
-    path("detail/", views.detail),
-    path("list/", views.getlist),
+    path("read/", views.read, name='read'),
+    path("search/", views.search, name='search'),
+    path("detail/", views.detail, name='detail'),
+    path("list/", views.getlist, name='getlist'),
 
-    path("setting/headIcon/", views.headicon_change),
-    path("setting/nickname/", views.nickname_change),
-    path("setting/timeline/", views.timeline_change),
-    path("setting/record/", views.record_change),
+    path("setting/headIcon/", views.headicon_change, name='headicon_change'),
+    path("setting/nickname/", views.nickname_change, name='nickname_change'),
+    path("setting/timeline/", views.timeline_change, name='timeline_change'),
+    path("setting/record/", views.record_change, name='record_change'),
 
-    path("wb/create/", views.wb_create),
-    path("wb/remove/", views.wb_remove),
-    path("wb/info/", views.wb_info_change),
-    path("wb/image/get/", views.wb_image_get),
-    path("wb/image/set/", views.wb_image_set),
+    path("wb/create/", views.wb_create, name='wb_create'),
+    path("wb/remove/", views.wb_remove, name='wb_remove'),
+    path("wb/info/", views.wb_info_change, name='wb_info_change'),
+    path("wb/image/get/", views.wb_image_get, name='wb_image_get'),
+    path("wb/image/set/", views.wb_image_set, name='wb_image_set'),
 
-    path("word/add/", views.word_add),
-    path("word/remove/", views.word_remove),
-
+    path("word/add/", views.word_add, name='word_add'),
+    path("word/remove/", views.word_remove, name='word_remove'),
 ]
