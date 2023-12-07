@@ -635,7 +635,7 @@ def word_remove(request):
     else:
         return JsonResponse({"code": "405", "message": "Method not allowed"}, status=405)
 
-def friend_list(request):
+def friends_list(request):
     if request.method == "POST":
         json_param = json.loads(request.body)
         openid = json_param['openid']
