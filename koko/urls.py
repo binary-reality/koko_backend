@@ -42,4 +42,6 @@ urlpatterns = [
 
     path("word/add/", views.word_add, name='word_add'),
     path("word/remove/", views.word_remove, name='word_remove'),
+
+    path("friend/list/", views.friend_list, name="friend_list"),
 ]
