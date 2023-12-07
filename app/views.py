@@ -359,9 +359,9 @@ def headicon_change(request):
             return JsonResponse({"code": "401", "message": "User Unauthorized"}, status=401)
         elif len(userlist) == 1:
             user = userlist[0]
-            user.headicon_name = image_name
             if user.headicon_name != 'headicon.png':
                 os.remove(os.path.join(settings.MEDIA_ROOT, user.headicon.name))
+            user.headicon_name = image_name
             user.headicon = image
             user.save()
             return JsonResponse({"code": 0, "message": "Headicon successfully changed!"}, status=200)

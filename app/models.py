@@ -92,7 +92,7 @@ class user(models.Model):
     open_id = models.CharField(max_length=100, primary_key=True, unique=True, blank=False)
     create_time = models.DateField(auto_now_add=True)
     nickname = models.CharField(max_length=100, blank=False)
-    headicon = models.ImageField(upload_to='./', default='headicon.png')
+    headicon = models.ImageField(upload_to='./', default='./headicon.png')
     headicon_name = models.CharField(max_length=100, default='headicon.png')
     reserved_time = models.IntegerField(default=10)
     read_keep = models.IntegerField(default=1)
