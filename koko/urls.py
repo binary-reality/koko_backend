@@ -20,9 +20,27 @@ from app import views
 urlpatterns = [
     path("admin/", admin.site.urls),
     # path("", views.helloView),
-    path("login/", views.login,name='login'),
-    path("read/", views.read,name='read'),
-    path("search/", views.search,name='search'),
-    path("detail/", views.detail,name='detail'),
-    path("list/", views.getlist,name='list'),
+
+    path("login/", views.login),
+    path("login/headicon/", views.getlogheadicon),
+
+    path("read/", views.read),
+    path("search/", views.search),
+    path("detail/", views.detail),
+    path("list/", views.getlist),
+
+    path("setting/headIcon/", views.headicon_change),
+    path("setting/nickname/", views.nickname_change),
+    path("setting/timeline/", views.timeline_change),
+    path("setting/record/", views.record_change),
+
+    path("wb/create/", views.wb_create),
+    path("wb/remove/", views.wb_remove),
+    path("wb/info/", views.wb_info_change),
+    path("wb/image/get/", views.wb_image_get),
+    path("wb/image/set/", views.wb_image_set),
+
+    path("word/add/", views.word_add),
+    path("word/remove/", views.word_remove),
+
 ]
