@@ -42,4 +42,5 @@ urlpatterns = [
 
     path("word/add/", views.word_add),
     path("word/remove/", views.word_remove),
+
 ]
