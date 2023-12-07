@@ -89,7 +89,8 @@ from django.db import models
 #     return my_model
 
 class user(models.Model):
-    open_id = models.CharField(max_length=100, primary_key=True, unique=True, blank=False)
+    open_id = models.CharField(max_length=100, unique=True, blank=False)
+    uid = models.BigAutoField(blank=False, unique=True)
     create_time = models.DateField(auto_now_add=True)
     nickname = models.CharField(max_length=100, blank=False)
     headicon = models.ImageField(upload_to='./', default='./headicon.png')
@@ -97,10 +98,12 @@ class user(models.Model):
     reserved_time = models.IntegerField(default=10)
     read_keep = models.IntegerField(default=1)
     wdlistnumber = models.IntegerField(default=0)
+    followee = models.CharField(max_length=1000, blank=False)
     class Meta():
         verbose_name = "user_info"
         verbose_name_plural = verbose_name
         db_table = "user_info"
+        unique_together = ("openid", "uid")
 
 class rdrecord(models.Model):
     owner_openid = models.ForeignKey(to="user", to_field="open_id", on_delete=models.CASCADE, related_name='readingrecord')

@@ -92,7 +92,7 @@ def login(request):
             user_id = response_json['openid']
             valid_user_list = models.user.objects.filter(open_id=user_id)
             if len(valid_user_list) == 0:
-                models.user.objects.create(open_id=user_id, nickname="用户"+user_id)
+                models.user.objects.create(open_id=user_id, nickname="用户"+user_id, followee='[]')
                 # models.create_my_wordlistinfo(user_id)
                 # models.create_my_readingrecord(user_id)
                 # models.create_my_searchrecord(user_id)
@@ -108,8 +108,10 @@ def login(request):
             # info
             user_data_info = {}
             user_data_info['openid'] = curuser.open_id
+            user_data_info['uid'] = str(curuser.uid + 10000000)
             user_data_info['nickname'] = curuser.nickname
             user_data_info['timeline'] = curuser.reserved_time
+            user_data_info['followees'] = curuser.followee
             if curuser.read_keep == 1:
                 user_data_info['recordOn'] = 'true'
             else:
@@ -376,6 +378,7 @@ def nickname_change(request):
         json_param = json.loads(request.body)
         openid = json_param['openid']
         new_nickname = json_param['nickname']
+        print(new_nickname)
         userlist = models.user.objects.filter(open_id=openid)
         if len(userlist) == 0:
             return JsonResponse({"code": "401", "message": "User Unauthorized"}, status=401)
