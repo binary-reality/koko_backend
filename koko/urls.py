@@ -45,4 +45,5 @@ urlpatterns = [
 
     path("friends/list/", views.friends_list, name="friends_list"),
     path("friends/uidsearch/", views.friends_uidsearch, name='friends_uidsearch')
+    path("friends/follow/", views.friends_follow, name='friends_follow'),
 ]
