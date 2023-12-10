@@ -635,6 +635,16 @@ def word_remove(request):
     else:
         return JsonResponse({"code": "405", "message": "Method not allowed"}, status=405)
 
+def followlist(followee: str):
+    followeelist = followee.strip('[').strip(']').split(',')
+    reslist = []
+    if followeelist == ['']:
+        return reslist
+    for x in followeelist:
+        reslist.append(int(x))
+    return reslist
+
+@csrf_exempt
 def friends_list(request):
     if request.method == "POST":
         json_param = json.loads(request.body)
@@ -644,7 +654,7 @@ def friends_list(request):
             return JsonResponse({"code": "401", "message": "User Unauthorized"}, status=401)
         elif len(userlist) == 1:
             user = userlist[0]
-            f_list = user.followee.split('[],')
+            f_list = followlist(user.followee)
             true_f_list = []
             f_info_list = []
             for x in f_list:
