@@ -48,4 +48,5 @@ urlpatterns = [
     path("friends/follow/", views.friends_follow, name='friends_follow'),
     path("friends/unfollow/", views.friends_unfollow, name='friends_unfollow'),
     path("friends/headicon/", views.friends_headicon, name='friends_headicon'),
+    path("friends/namesearch/", views.friends_namesearch, name='friends_namesearch'),
 ]
