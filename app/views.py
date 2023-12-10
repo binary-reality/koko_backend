@@ -654,7 +654,7 @@ def friends_uidsearch(request):
                 f_info.append(str(f_user.uid + 10000000))
                 f_info.append(f_user.nickname)
                 f_info.append(f_user.headicon_name)
-                return JsonResponse({'result': f_info, 'code': 0}, status=200)
+                return JsonResponse({'result': [f_info], 'code': 0}, status=200)
             else:
                 pass
         else:
