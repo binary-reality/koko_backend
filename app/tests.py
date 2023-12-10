@@ -257,7 +257,7 @@ class HeadIconAPITestCase(TestCase):
         测试使用有效请求更改头像。
         """
         mock_file = SimpleUploadedFile("test.jpg", b"file_content", content_type="image/jpeg")
-        valid_data = {"openid": "dskadhkskada", "file": mock_file, "name": "test.jpg"}
+        valid_data = {"openid": "3e5428-ff58yj5", "file": mock_file, "name": "test.jpg"}
         response = self.client.post(self.headicon_url, valid_data, format='multipart')
         response_data = response.json()
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -268,7 +268,7 @@ class HeadIconAPITestCase(TestCase):
         """
         测试使用错误的请求方式更改头像。
         """
-        wrong_method_data = {"openid": "dskadhkskada", "file": ..., "name": "test.jpg"}
+        wrong_method_data = {"openid": "3e5428-ff58yj5", "file": ..., "name": "test.jpg"}
         response = self.client.get(self.headicon_url, wrong_method_data, format='json')
         response_data = response.json()
         self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
@@ -295,7 +295,7 @@ class NicknameAPITestCase(TestCase):
         """
         测试使用有效请求更改昵称。
         """
-        valid_data = {"openid": "xxxx", "nickname": "new_nickname"}
+        valid_data = {"openid": "3e5428-ff58yj5", "nickname": "new_nickname"}
         response = self.client.post(self.nickname_url, valid_data, format='json')
         response_data = response.json()
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -306,7 +306,7 @@ class NicknameAPITestCase(TestCase):
         """
         测试使用错误的请求方式更改昵称。
         """
-        wrong_method_data = {"openid": "xxxx", "nickname": "new_nickname"}
+        wrong_method_data = {"openid": "3e5428-ff58yj5", "nickname": "new_nickname"}
         response = self.client.get(self.nickname_url, wrong_method_data, format='json')
         response_data = response.json()
         self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
@@ -333,7 +333,7 @@ class TimelineAPITestCase(TestCase):
         """
         测试使用有效请求更改时间线。
         """
-        valid_data = {"openid": "xxxx", "timeline": 12}
+        valid_data = {"openid": "3e5428-ff58yj5", "timeline": 12}
         response = self.client.post(self.timeline_url, valid_data, format='json')
         response_data = response.json()
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -344,7 +344,7 @@ class TimelineAPITestCase(TestCase):
         """
         测试使用错误的请求方式更改时间线。
         """
-        wrong_method_data = {"openid": "xxxx", "timeline": 12}
+        wrong_method_data = {"openid": "3e5428-ff58yj5", "timeline": 12}
         response = self.client.get(self.timeline_url, wrong_method_data, format='json')
         response_data = response.json()
         self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
@@ -365,13 +365,13 @@ class TimelineAPITestCase(TestCase):
 class RecordAPITestCase(TestCase):
     def setUp(self):
         self.client = APIClient()
-        self.record_url = reverse('record——change') 
+        self.record_url = reverse('record_change') 
 
     def test_record_change_with_valid_request(self):
         """
         测试使用有效请求更改记录按钮状态。
         """
-        valid_data = {"openid": "xxxx", "recordOn": "false"}
+        valid_data = {"openid": "3e5428-ff58yj5", "recordOn": "false"}
         response = self.client.post(self.record_url, valid_data, format='json')
         response_data = response.json()
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -382,7 +382,7 @@ class RecordAPITestCase(TestCase):
         """
         测试使用错误的请求方式更改记录按钮状态。
         """
-        wrong_method_data = {"openid": "xxxx", "recordOn": "false"}
+        wrong_method_data = {"openid": "3e5428-ff58yj5", "recordOn": "false"}
         response = self.client.get(self.record_url, wrong_method_data, format='json')
         response_data = response.json()
         self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
@@ -399,3 +399,248 @@ class RecordAPITestCase(TestCase):
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
         self.assertEqual(response_data.get('code'), "401")
         self.assertEqual(response_data.get('message'), "User Unauthorized")
+
+class WordbookCreateAPITestCase(TestCase):
+    def setUp(self):
+        self.client = APIClient()
+        self.create_wordbook_url = reverse('wb_create')  # 请确保这里的'create_wordbook'与您urls.py中的名称一致
+
+    def test_create_wordbook_with_valid_request(self):
+        """
+        测试使用有效请求创建单词本。
+        """
+        valid_data = {"openid": "3e5428-ff58yj5"}
+        response = self.client.post(self.create_wordbook_url, valid_data, format='json')
+        response_data = response.json()
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response_data.get('code'), 0)
+        self.assertEqual(response_data.get('message'), "New wordbook successfully created!")
+
+    def test_create_wordbook_with_wrong_method(self):
+        """
+        测试使用错误的请求方式创建单词本。
+        """
+        wrong_method_data = {"openid": "3e5428-ff58yj5"}
+        response = self.client.get(self.create_wordbook_url, wrong_method_data, format='json')
+        response_data = response.json()
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+        self.assertEqual(response_data.get('code'), "405")
+        self.assertEqual(response_data.get('message'), "Method not allowed")
+
+    def test_create_wordbook_with_invalid_user(self):
+        """
+        测试使用不存在的用户创建单词本。
+        """
+        invalid_user_data = {"openid": "invalid_user"}
+        response = self.client.post(self.create_wordbook_url, invalid_user_data, format='json')
+        response_data = response.json()
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+        self.assertEqual(response_data.get('code'), "401")
+        self.assertEqual(response_data.get('message'), "User Unauthorized")
+
+# class WordbookTypeChangeAPITestCase(TestCase):
+#     def setUp(self):
+#         self.client = APIClient()
+#         self.change_type_url = reverse('wb_type')  # 请确保这里的'change_wordbook_type'与您urls.py中的名称一致
+
+#     def test_change_wordbook_type_with_valid_request(self):
+#         """
+#         测试使用有效请求更改单词本公开属性。
+#         """
+#         valid_data = {"openid": "3e5428-ff58yj5", "index": 2, "type": 0}
+#         response = self.client.post(self.change_type_url, valid_data, format='json')
+#         response_data = response.json()
+#         self.assertEqual(response.status_code, status.HTTP_200_OK)
+#         self.assertEqual(response_data.get('code'), 0)
+#         self.assertEqual(response_data.get('message'), "Wordbook information successfully changed!")
+
+#     def test_change_wordbook_type_with_wrong_method(self):
+#         """
+#         测试使用错误的请求方式更改单词本公开属性。
+#         """
+#         wrong_method_data = {"openid": "3e5428-ff58yj5", "index": 2, "type": 0}
+#         response = self.client.get(self.change_type_url, wrong_method_data, format='json')
+#         response_data = response.json()
+#         self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+#         self.assertEqual(response_data.get('code'), "405")
+#         self.assertEqual(response_data.get('message'), "Method not allowed")
+
+#     def test_change_wordbook_type_with_invalid_user(self):
+#         """
+#         测试使用不存在的用户更改单词本公开属性。
+#         """
+#         invalid_user_data = {"openid": "invalid_user", "index": 2, "type": 0}
+#         response = self.client.post(self.change_type_url, invalid_user_data, format='json')
+#         response_data = response.json()
+#         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+#         self.assertEqual(response_data.get('code'), "401")
+#         self.assertEqual(response_data.get('message'), "User Unauthorized")
+
+#     def test_change_wordbook_type_with_nonexistent_wordbook(self):
+#         """
+#         测试更改不存在的单词本公开属性。
+#         """
+#         nonexistent_wordbook_data = {"openid": "3e5428-ff58yj5", "index": 999, "type": 0}
+#         response = self.client.post(self.change_type_url, nonexistent_wordbook_data, format='json')
+#         response_data = response.json()
+#         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+#         self.assertEqual(response_data.get('code'), "404")
+#         self.assertEqual(response_data.get('message'), "Wordbook not found")
+
+class WordbookRemoveAPITestCase(TestCase):
+    def setUp(self):
+        self.client = APIClient()
+        self.remove_wordbook_url = reverse('wb_remove')  # 请确保这里的'remove_wordbook'与您urls.py中的名称一致
+
+    def test_remove_wordbook_with_valid_request(self):
+        """
+        测试使用有效请求删除单词本。
+        """
+        valid_data = {"openid": "3e5428-ff58yj5", "index": 2}
+        response = self.client.post(self.remove_wordbook_url, valid_data, format='json')
+        response_data = response.json()
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response_data.get('code'), 0)
+        self.assertEqual(response_data.get('message'), "Wordbook removed successfully!")
+
+    def test_remove_wordbook_with_wrong_method(self):
+        """
+        测试使用错误的请求方式删除单词本。
+        """
+        wrong_method_data = {"openid": "3e5428-ff58yj5", "index": 2}
+        response = self.client.get(self.remove_wordbook_url, wrong_method_data, format='json')
+        response_data = response.json()
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+        self.assertEqual(response_data.get('code'), "405")
+        self.assertEqual(response_data.get('message'), "Method not allowed")
+
+    def test_remove_wordbook_with_invalid_user(self):
+        """
+        测试使用不存在的用户删除单词本。
+        """
+        invalid_user_data = {"openid": "invalid_user", "index": 2}
+        response = self.client.post(self.remove_wordbook_url, invalid_user_data, format='json')
+        response_data = response.json()
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+        self.assertEqual(response_data.get('code'), "401")
+        self.assertEqual(response_data.get('message'), "User Unauthorized")
+
+    def test_remove_wordbook_with_nonexistent_wordbook(self):
+        """
+        测试删除不存在的单词本。
+        """
+        nonexistent_wordbook_data = {"openid": "3e5428-ff58yj5", "index": 999}
+        response = self.client.post(self.remove_wordbook_url, nonexistent_wordbook_data, format='json')
+        response_data = response.json()
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+        self.assertEqual(response_data.get('code'), "404")
+        self.assertEqual(response_data.get('message'), "Wordbook not found")
+
+class WordAddAPITestCase(TestCase):
+    def setUp(self):
+        self.client = APIClient()
+        self.add_word_url = reverse('word_add')  # 请确保这里的'add_word'与您urls.py中的名称一致
+
+    def test_add_word_with_valid_request(self):
+        """
+        测试使用有效请求添加单词到单词本。
+        """
+        valid_data = {"openid": "xxxx", "index": 2, "word": "あかい…"}
+        response = self.client.post(self.add_word_url, valid_data, format='json')
+        response_data = response.json()
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertIn(response_data.get('code'), [0])
+        self.assertIn(response_data.get('message'), ["Word added successfully!", "Word already exists"])
+
+    def test_add_word_with_wrong_method(self):
+        """
+        测试使用错误的请求方式添加单词到单词本。
+        """
+        wrong_method_data = {"openid": "3e5428-ff58yj5", "index": 2, "word": "あかい…"}
+        response = self.client.get(self.add_word_url, wrong_method_data, format='json')
+        response_data = response.json()
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+        self.assertEqual(response_data.get('code'), "405")
+        self.assertEqual(response_data.get('message'), "Method not allowed")
+
+    def test_add_word_with_invalid_user(self):
+        """
+        测试使用不存在的用户添加单词到单词本。
+        """
+        invalid_user_data = {"openid": "invalid_user", "index": 2, "word": "あかい…"}
+        response = self.client.post(self.add_word_url, invalid_user_data, format='json')
+        response_data = response.json()
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+        self.assertEqual(response_data.get('code'), "401")
+        self.assertEqual(response_data.get('message'), "User Unauthorized")
+
+    def test_add_word_to_nonexistent_wordbook(self):
+        """
+        测试添加单词到不存在的单词本。
+        """
+        nonexistent_wordbook_data = {"openid": "3e5428-ff58yj5", "index": 999, "word": "あかい…"}
+        response = self.client.post(self.add_word_url, nonexistent_wordbook_data, format='json')
+        response_data = response.json()
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+        self.assertEqual(response_data.get('code'), "404")
+        self.assertEqual(response_data.get('message'), "Wordbook not found")
+
+class WordRemoveAPITestCase(TestCase):
+    def setUp(self):
+        self.client = APIClient()
+        self.remove_word_url = reverse('remove_word')  # 请确保这里的'remove_word'与您urls.py中的名称一致
+
+    def test_remove_word_with_valid_request(self):
+        """
+        测试使用有效请求从单词本中删除单词。
+        """
+        valid_data = {"openid": "xxxx", "index": 2, "word": "あかい…"}
+        response = self.client.post(self.remove_word_url, valid_data, format='json')
+        response_data = response.json()
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response_data.get('code'), 0)
+        self.assertEqual(response_data.get('message'), "Word removed successfully!")
+
+    def test_remove_word_with_wrong_method(self):
+        """
+        测试使用错误的请求方式从单词本中删除单词。
+        """
+        wrong_method_data = {"openid": "3e5428-ff58yj5", "index": 2, "word": "あかい…"}
+        response = self.client.get(self.remove_word_url, wrong_method_data, format='json')
+        response_data = response.json()
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+        self.assertEqual(response_data.get('code'), "405")
+        self.assertEqual(response_data.get('message'), "Method not allowed")
+
+    def test_remove_word_with_invalid_user(self):
+        """
+        测试使用不存在的用户从单词本中删除单词。
+        """
+        invalid_user_data = {"openid": "invalid_user", "index": 2, "word": "あかい…"}
+        response = self.client.post(self.remove_word_url, invalid_user_data, format='json')
+        response_data = response.json()
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+        self.assertEqual(response_data.get('code'), "401")
+        self.assertEqual(response_data.get('message'), "User Unauthorized")
+
+    def test_remove_word_from_nonexistent_wordbook(self):
+        """
+        测试从不存在的单词本中删除单词。
+        """
+        nonexistent_wordbook_data = {"openid": "3e5428-ff58yj5", "index": 999, "word": "あかい…"}
+        response = self.client.post(self.remove_word_url, nonexistent_wordbook_data, format='json')
+        response_data = response.json()
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+        self.assertEqual(response_data.get('code'), "404")
+        self.assertEqual(response_data.get('message'), "Wordbook not found")
+
+    def test_remove_nonexistent_word(self):
+        """
+        测试删除不存在的单词。
+        """
+        nonexistent_word_data = {"openid": "3e5428-ff58yj5", "index": 2, "word": "不存在的单词"}
+        response = self.client.post(self.remove_word_url, nonexistent_word_data, format='json')
+        response_data = response.json()
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+        self.assertEqual(response_data.get('code'), "404")
+        self.assertEqual(response_data.get('message'), "Word doesn't exist")
