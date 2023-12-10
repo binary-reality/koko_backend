@@ -144,3 +144,10 @@ class wordlist(models.Model):
     class Meta():
         verbose_name = "wordlist"
         db_table = "wordlist"
+
+class flwordlist(models.Model):
+    follower = models.ForeignKey(to='user', to_field='open_id', on_delete=models.CASCADE, related_name='flwbs')
+    wb_info = models.ForeignKey('wordlist_info', on_delete=models.CASCADE, related_name='follower_info')
+    class Meta():
+        verbose_name = "flwordlist"
+        db_table = "flwordlist"
