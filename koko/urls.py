@@ -21,18 +21,18 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     # path("", views.helloView),
 
-    path("login/", views.login, name='login'),
-    path("login/headicon/", views.getlogheadicon, name='getlogheadicon'),
+    path("login/", views.login, name='login'),#已测试
+    path("login/headicon/", views.getlogheadicon, name='getlogheadicon'),#已测试
 
-    path("read/", views.read, name='read'),
-    path("search/", views.search, name='search'),
-    path("detail/", views.detail, name='detail'),
-    path("list/", views.getlist, name='getlist'),
+    path("read/", views.read, name='read'),#已测试
+    path("search/", views.search, name='search'),#已测试
+    path("detail/", views.detail, name='detail'),#已测试
+    path("list/", views.getlist, name='list'),#已测试
 
-    path("setting/headIcon/", views.headicon_change, name='headicon_change'),
-    path("setting/nickname/", views.nickname_change, name='nickname_change'),
-    path("setting/timeline/", views.timeline_change, name='timeline_change'),
-    path("setting/record/", views.record_change, name='record_change'),
+    path("setting/headIcon/", views.headicon_change, name='headicon_change'),#已测试
+    path("setting/nickname/", views.nickname_change, name='nickname_change'),#已测试
+    path("setting/timeline/", views.timeline_change, name='timeline_change'),#已测试
+    path("setting/record/", views.record_change, name='record_change'),#已测试
 
     path("wb/create/", views.wb_create, name='wb_create'),
     path("wb/remove/", views.wb_remove, name='wb_remove'),
@@ -42,4 +42,12 @@ urlpatterns = [
 
     path("word/add/", views.word_add, name='word_add'),
     path("word/remove/", views.word_remove, name='word_remove'),
+
+    path("friends/list/", views.friends_list, name="friends_list"),
+    path("friends/uidsearch/", views.friends_uidsearch, name='friends_uidsearch'),
+    path("friends/follow/", views.friends_follow, name='friends_follow'),
+    path("friends/unfollow/", views.friends_unfollow, name='friends_unfollow'),
+    path("friends/headicon/", views.friends_headicon, name='friends_headicon'),
+    path("friends/namesearch/", views.friends_namesearch, name='friends_namesearch'),
+    path("friends/info/", views.friends_info, name='friends_info'),
 ]
