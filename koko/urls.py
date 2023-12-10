@@ -51,7 +51,7 @@ urlpatterns = [
     path("friends/namesearch/", views.friends_namesearch, name='friends_namesearch'),
     path("friends/info/", views.friends_info, name='friends_info'),
     path("friends/subscribe/", views.friends_subscribe, name='frineds_subscribe'),
-
+    path("friends/unsubscribe/", views.friends_unsubscribe, name='friends_unsubsrcibe'),
 
     path("test/subscribeall/", views.test_subscribeall),         # deleted, no use, only test
 ]

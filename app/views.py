@@ -937,6 +937,50 @@ def friends_subscribe(request):
         return JsonResponse({"code": "405", "message": "Method not allowed"}, status=405)
     
 @csrf_exempt
+def friends_unsubscribe(request):
+    if request.method == "POST":
+        json_param = json.loads(request.body)
+        openid = json_param['openid']
+        userlist = models.user.objects.filter(open_id=openid)
+        if len(userlist) == 0:
+            return JsonResponse({"code": "401", "message": "User Unauthorized"}, status=401)
+        elif len(userlist) == 1:
+            user = userlist[0]
+            f_uid = int(json_param['uid']) - 10000000
+            f_userlist = models.user.objects.filter(uid=f_uid)
+            if len(f_userlist) == 1:
+                cur_list = followlist(user.followee)
+                if f_uid + 10000000 in cur_list:
+                    f_user = f_userlist[0]
+                    f_wbid = json_param['id']
+                    f_wblist = f_user.wbinfo.filter(index=f_wbid)
+                    if len(f_wblist) == 1:
+                        f_wbinfo = f_wblist[0]
+                        user_flwb_list = user.flwbs.filter(wb_info=f_wbinfo)
+                        if len(user_flwb_list) == 1:
+                            user_flwb_list[0].delete()
+                            return JsonResponse({"code": 0, "message": "successfully unsubscribe"}, status=200)
+                        elif len(user_flwb_list) == 0:
+                            return JsonResponse({"code": "406", "message": "Wordbook not subscribed"}, status=406)
+                        else:
+                            pass
+                    elif len(f_wblist) == 0:
+                        return JsonResponse({"code": "404", "message": "Wordbook not found"}, status=404)
+                    else:
+                        pass
+                else:
+                    return JsonResponse({"code": "406", "message": "Not followed"}, status=406)
+                    
+            elif len(f_userlist) == 0:
+                return JsonResponse({"code": "404", "message": "User not found"}, status=404)
+            else:
+                pass
+        else:
+            pass
+    else:
+        return JsonResponse({"code": "405", "message": "Method not allowed"}, status=405)
+    
+@csrf_exempt
 def test_subscribeall(request):
     json_param = json.loads(request.body)
     openid = json_param['openid']
