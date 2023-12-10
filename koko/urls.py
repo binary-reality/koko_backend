@@ -47,4 +47,5 @@ urlpatterns = [
     path("friends/uidsearch/", views.friends_uidsearch, name='friends_uidsearch'),
     path("friends/follow/", views.friends_follow, name='friends_follow'),
     path("friends/unfollow/", views.friends_unfollow, name='friends_unfollow'),
+    path("friends/headicon/", views.friends_headicon, name='friends_headicon'),
 ]
