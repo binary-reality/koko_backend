@@ -834,3 +834,66 @@ def friends_headicon(request):
             pass
     else:
         return JsonResponse({"code": "405", "message": "Method not allowed"}, status=405)
+    
+@csrf_exempt
+def friends_info(request):
+    if request.method == "POST":
+        json_param = json.loads(request.body)
+        openid = json_param['openid']
+        userlist = models.user.objects.filter(open_id=openid)
+        if len(userlist) == 0:
+            return JsonResponse({"code": "401", "message": "User Unauthorized"}, status=401)
+        elif len(userlist) == 1:
+            user = userlist[0]
+            f_uid = int(json_param['uid']) - 10000000
+            f_userlist = models.user.objects.filter(uid=f_uid)
+            if len(f_userlist) == 1:
+                cur_list = followlist(user.followee)
+                if f_uid + 10000000 in cur_list:
+                    f_user = f_userlist[0]
+                    user_data = {}
+                    # info
+                    user_data_info = {}
+                    user_data_info['openid'] = f_user.open_id
+                    user_data_info['uid'] = str(f_user.uid + 10000000)
+                    user_data_info['nickname'] = f_user.nickname
+                    user_data_info['timeline'] = f_user.reserved_time
+                    user_data_info['followees'] = f_user.followee
+                    if f_user.read_keep == 1:
+                        user_data_info['recordOn'] = 'true'
+                    else:
+                        user_data_info['recordOn'] = 'false'
+                    user_data_info['wbnum'] = f_user.wdlistnumber
+                    user_data['info'] = user_data_info
+
+                    # wordbooks
+                    user_data_wdbks = []
+                    f_user_wbinfo = f_user.wbinfo.all()
+            
+                    for i in range(1, f_user.wdlistnumber + 1):
+                        wd_content = {}
+                        cur_info = f_user_wbinfo.get(index=i)
+                        wd_content['id'] = i
+                        wd_content['name'] = cur_info.name
+                        wd_content['intro'] = cur_info.intro
+                        wd_content['coverUrl'] = cur_info.image_name
+                        words = []
+                        wdlist = cur_info.wordlist.all()
+                        for x in wdlist:
+                            words.append(x.content)
+                        wd_content['words'] = words
+                        user_data_wdbks.append(wd_content)
+                    user_data['wordbooks'] = user_data_wdbks
+                    return JsonResponse({"code": 0, "detail": user_data}, status=200)
+
+                else:
+                    return JsonResponse({"code": "406", "message": "Not followed"}, status=406)
+                    
+            elif len(f_userlist) == 0:
+                return JsonResponse({"code": "404", "message": "User not found"}, status=406)
+            else:
+                pass
+        else:
+            pass
+    else:
+        return JsonResponse({"code": "405", "message": "Method not allowed"}, status=405)
