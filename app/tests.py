@@ -2,6 +2,7 @@ from django.test import TestCase
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APIClient
+import json
 
 class LoginAPITestCase(TestCase):
     def setUp(self):
@@ -149,7 +150,7 @@ class ListAPITestCase(TestCase):
         测试有效请求的训练队列获取。
         """
         response = self.client.post(self.list_url, {
-            "openid": "dskadhkskada",
+            "openid": "3e5428-ff58yj5",
             "type": 2  # 使用一个有效的类型值
         }, format='json')
         response_data = response.json()
@@ -212,5 +213,189 @@ class ReadAPITestCase(TestCase):
         self.assertEqual(response_data.get('code'), '405')
         self.assertEqual(response_data.get('message'), "Method not allowed")
 
+class HeadIconAPITestCase(TestCase):
+    def setUp(self):
+        self.client = APIClient()
+        self.headicon_url = reverse('getlogheadicon')  # 替换'headicon'为在urls.py中对应的name
 
+    def test_headicon_with_valid_openid(self):
+        """
+        测试使用有效openid获取头像。
+        """
+        data = {'openid': '3e5428-ff58yj5'}
+        response = self.client.post(self.headicon_url, json.dumps(data), content_type="application/json")
+        response_data = response.json()
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertIn('headicon', response_data)
 
+    def test_headicon_with_invalid_openid(self):
+        """
+        测试使用无效openid获取头像。
+        """
+        data = {'openid': 'invalid_openid'}
+        response = self.client.post(self.headicon_url, json.dumps(data), content_type="application/json")
+        response_data = response.json()
+        self.assertEqual(response.status_code, 401)
+        self.assertNotIn('headicon', response_data)
+
+    def test_headicon_with_wrong_method(self):
+        """
+        测试使用错误的请求方式。
+        """
+        data = {'openid': '3e5428-ff58yj5'}
+        response = self.client.get(self.headicon_url, data)
+        response_data = response.json()
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+
+class HeadIconAPITestCase(TestCase):
+    def setUp(self):
+        self.client = APIClient()
+        self.headicon_url = reverse('headicon_change')  
+
+    def test_headicon_with_valid_request(self):
+        """
+        测试使用有效请求更改头像。
+        """
+        mock_file = SimpleUploadedFile("test.jpg", b"file_content", content_type="image/jpeg")
+        valid_data = {"openid": "dskadhkskada", "file": mock_file, "name": "test.jpg"}
+        response = self.client.post(self.headicon_url, valid_data, format='multipart')
+        response_data = response.json()
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response_data.get('code'), 0)
+        self.assertEqual(response_data.get('message'), "Headicon successfully changed!")
+
+    def test_headicon_with_wrong_method(self):
+        """
+        测试使用错误的请求方式更改头像。
+        """
+        wrong_method_data = {"openid": "dskadhkskada", "file": ..., "name": "test.jpg"}
+        response = self.client.get(self.headicon_url, wrong_method_data, format='json')
+        response_data = response.json()
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+        self.assertEqual(response_data.get('code'), "405")
+        self.assertEqual(response_data.get('message'), "Method not allowed")
+
+    def test_headicon_with_invalid_user(self):
+        """
+        测试使用不存在用户更改头像。
+        """
+        invalid_user_data = {"openid": "invalid_user", "file": ..., "name": "test.jpg"}
+        response = self.client.post(self.headicon_url, invalid_user_data, format='multipart')
+        response_data = response.json()
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+        self.assertEqual(response_data.get('code'), "401")
+        self.assertEqual(response_data.get('message'), "User Unauthorized")
+
+class NicknameAPITestCase(TestCase):
+    def setUp(self):
+        self.client = APIClient()
+        self.nickname_url = reverse('nickname_change')  
+
+    def test_nickname_change_with_valid_request(self):
+        """
+        测试使用有效请求更改昵称。
+        """
+        valid_data = {"openid": "xxxx", "nickname": "new_nickname"}
+        response = self.client.post(self.nickname_url, valid_data, format='json')
+        response_data = response.json()
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response_data.get('code'), 0)
+        self.assertEqual(response_data.get('message'), "Nickname successfully changed!")
+
+    def test_nickname_change_with_wrong_method(self):
+        """
+        测试使用错误的请求方式更改昵称。
+        """
+        wrong_method_data = {"openid": "xxxx", "nickname": "new_nickname"}
+        response = self.client.get(self.nickname_url, wrong_method_data, format='json')
+        response_data = response.json()
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+        self.assertEqual(response_data.get('code'), "405")
+        self.assertEqual(response_data.get('message'), "Method not allowed")
+
+    def test_nickname_change_with_invalid_user(self):
+        """
+        测试使用不存在用户更改昵称。
+        """
+        invalid_user_data = {"openid": "invalid_user", "nickname": "new_nickname"}
+        response = self.client.post(self.nickname_url, invalid_user_data, format='json')
+        response_data = response.json()
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+        self.assertEqual(response_data.get('code'), "401")
+        self.assertEqual(response_data.get('message'), "User Unauthorized")
+
+class TimelineAPITestCase(TestCase):
+    def setUp(self):
+        self.client = APIClient()
+        self.timeline_url = reverse('timeline_change')  
+
+    def test_timeline_change_with_valid_request(self):
+        """
+        测试使用有效请求更改时间线。
+        """
+        valid_data = {"openid": "xxxx", "timeline": 12}
+        response = self.client.post(self.timeline_url, valid_data, format='json')
+        response_data = response.json()
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response_data.get('code'), 0)
+        self.assertEqual(response_data.get('message'), "Timeline successfully changed!")
+
+    def test_timeline_change_with_wrong_method(self):
+        """
+        测试使用错误的请求方式更改时间线。
+        """
+        wrong_method_data = {"openid": "xxxx", "timeline": 12}
+        response = self.client.get(self.timeline_url, wrong_method_data, format='json')
+        response_data = response.json()
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+        self.assertEqual(response_data.get('code'), "405")
+        self.assertEqual(response_data.get('message'), "Method not allowed")
+
+    def test_timeline_change_with_invalid_user(self):
+        """
+        测试使用不存在的用户更改时间线。
+        """
+        invalid_user_data = {"openid": "invalid_user", "timeline": 12}
+        response = self.client.post(self.timeline_url, invalid_user_data, format='json')
+        response_data = response.json()
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+        self.assertEqual(response_data.get('code'), "401")
+        self.assertEqual(response_data.get('message'), "User Unauthorized")
+
+class RecordAPITestCase(TestCase):
+    def setUp(self):
+        self.client = APIClient()
+        self.record_url = reverse('record——change') 
+
+    def test_record_change_with_valid_request(self):
+        """
+        测试使用有效请求更改记录按钮状态。
+        """
+        valid_data = {"openid": "xxxx", "recordOn": "false"}
+        response = self.client.post(self.record_url, valid_data, format='json')
+        response_data = response.json()
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response_data.get('code'), 0)
+        self.assertEqual(response_data.get('message'), "Record button successfully changed!")
+
+    def test_record_change_with_wrong_method(self):
+        """
+        测试使用错误的请求方式更改记录按钮状态。
+        """
+        wrong_method_data = {"openid": "xxxx", "recordOn": "false"}
+        response = self.client.get(self.record_url, wrong_method_data, format='json')
+        response_data = response.json()
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+        self.assertEqual(response_data.get('code'), "405")
+        self.assertEqual(response_data.get('message'), "Method not allowed")
+
+    def test_record_change_with_invalid_user(self):
+        """
+        测试使用不存在的用户更改记录按钮状态。
+        """
+        invalid_user_data = {"openid": "invalid_user", "recordOn": "false"}
+        response = self.client.post(self.record_url, invalid_user_data, format='json')
+        response_data = response.json()
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+        self.assertEqual(response_data.get('code'), "401")
+        self.assertEqual(response_data.get('message'), "User Unauthorized")

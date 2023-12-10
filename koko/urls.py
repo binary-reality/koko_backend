@@ -21,18 +21,18 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     # path("", views.helloView),
 
-    path("login/", views.login, name='login'),
-    path("login/headicon/", views.getlogheadicon, name='getlogheadicon'),
+    path("login/", views.login, name='login'),#已测试
+    path("login/headicon/", views.getlogheadicon, name='getlogheadicon'),#已测试
 
-    path("read/", views.read, name='read'),
-    path("search/", views.search, name='search'),
-    path("detail/", views.detail, name='detail'),
-    path("list/", views.getlist, name='getlist'),
+    path("read/", views.read, name='read'),#已测试
+    path("search/", views.search, name='search'),#已测试
+    path("detail/", views.detail, name='detail'),#已测试
+    path("list/", views.getlist, name='list'),#已测试
 
-    path("setting/headIcon/", views.headicon_change, name='headicon_change'),
-    path("setting/nickname/", views.nickname_change, name='nickname_change'),
-    path("setting/timeline/", views.timeline_change, name='timeline_change'),
-    path("setting/record/", views.record_change, name='record_change'),
+    path("setting/headIcon/", views.headicon_change, name='headicon_change'),#已测试
+    path("setting/nickname/", views.nickname_change, name='nickname_change'),#已测试
+    path("setting/timeline/", views.timeline_change, name='timeline_change'),#已测试
+    path("setting/record/", views.record_change, name='record_change'),#已测试
 
     path("wb/create/", views.wb_create, name='wb_create'),
     path("wb/remove/", views.wb_remove, name='wb_remove'),
