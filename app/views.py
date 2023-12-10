@@ -644,38 +644,15 @@ def followlist(followee: str):
         reslist.append(int(x))
     return reslist
 
-@csrf_exempt
-def friends_uidsearch(request):
-    if request.method == "POST":
-        json_param = json.loads(request.body)
-        openid = json_param['openid']
-        userlist = models.user.objects.filter(open_id=openid)
-        if len(userlist) == 0:
-            return JsonResponse({"code": "401", "message": "User Unauthorized"}, status=401)
-        elif len(userlist) == 1:
-            f_uid = int(json_param['uid']) - 10000000
-            f_list = models.user.objects.filter(uid=f_uid)
-            if len(f_list) == 0:
-                return JsonResponse({"code": "404", "message": "User not found"}, status=404)
-            elif len(f_list) == 1:
-                f_info = []
-                f_user = f_list[0]
-                f_info.append(str(f_user.uid + 10000000))
-                f_info.append(f_user.nickname)
-                f_info.append(f_user.headicon_name)
-                cur_flist = followlist(userlist[0].followee)
-                if f_uid + 10000000 in cur_flist:
-                    f_info.append(1)
-                else:
-                    f_info.append(0)
-                return JsonResponse({'result': [f_info], 'code': 0}, status=200)
-            else:
-                pass
-        else:
-            pass
-    else:
-        return JsonResponse({"code": "405", "message": "Method not allowed"}, status=405)
-    
+def followlist(followee: str):
+    followeelist = followee.strip('[').strip(']').split(',')
+    reslist = []
+    if followeelist == ['']:
+        return reslist
+    for x in followeelist:
+        reslist.append(int(x))
+    return reslist
+
 @csrf_exempt
 def friends_namesearch(request):
     if request.method == "POST":
@@ -707,7 +684,39 @@ def friends_namesearch(request):
             pass
     else:
         return JsonResponse({"code": "405", "message": "Method not allowed"}, status=405)
-    
+
+@csrf_exempt
+def friends_uidsearch(request):
+    if request.method == "POST":
+        json_param = json.loads(request.body)
+        openid = json_param['openid']
+        userlist = models.user.objects.filter(open_id=openid)
+        if len(userlist) == 0:
+            return JsonResponse({"code": "401", "message": "User Unauthorized"}, status=401)
+        elif len(userlist) == 1:
+            f_uid = int(json_param['uid']) - 10000000
+            f_list = models.user.objects.filter(uid=f_uid)
+            if len(f_list) == 0:
+                return JsonResponse({"code": "404", "message": "User not found"}, status=404)
+            elif len(f_list) == 1:
+                f_info = []
+                f_user = f_list[0]
+                f_info.append(str(f_user.uid + 10000000))
+                f_info.append(f_user.nickname)
+                f_info.append(f_user.headicon_name)
+                cur_flist = followlist(userlist[0].followee)
+                if f_uid + 10000000 in cur_flist:
+                    f_info.append(1)
+                else:
+                    f_info.append(0)
+                return JsonResponse({'result': [f_info], 'code': 0}, status=200)
+            else:
+                pass
+        else:
+            pass
+    else:
+        return JsonResponse({"code": "405", "message": "Method not allowed"}, status=405)
+
 @csrf_exempt
 def friends_list(request):
     if request.method == "POST":
