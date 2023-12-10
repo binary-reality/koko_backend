@@ -661,3 +661,44 @@ def friends_uidsearch(request):
             pass
     else:
         return JsonResponse({"code": "405", "message": "Method not allowed"}, status=405)
+      
+def followlist(followee: str):
+    followeelist = followee.strip('[').strip(']').split(',')
+    reslist = []
+    if followeelist == ['']:
+        return reslist
+    for x in followeelist:
+        reslist.append(int(x))
+    return reslist
+
+@csrf_exempt
+def friends_list(request):
+    if request.method == "POST":
+        json_param = json.loads(request.body)
+        openid = json_param['openid']
+        userlist = models.user.objects.filter(open_id=openid)
+        if len(userlist) == 0:
+            return JsonResponse({"code": "401", "message": "User Unauthorized"}, status=401)
+        elif len(userlist) == 1:
+            user = userlist[0]
+            f_list = followlist(user.followee)
+            true_f_list = []
+            f_info_list = []
+            for x in f_list:
+                f_uid = int(x) - 10000000
+                f_userlist = models.user.objects.filter(uid=f_uid)
+                if len(f_userlist) == 1:
+                    f_user = f_userlist[0]
+                    f_info = []
+                    f_info.append(str(f_user.uid + 10000000))
+                    f_info.append(f_user.nickname)
+                    f_info.append(f_user.headicon_name)
+                    f_info_list.append(f_info)
+                    true_f_list.append(x)
+            user.followee = str(true_f_list)
+            user.save()
+            return JsonResponse({'result': f_info_list, 'code': 0}, status=200)
+        else:
+            pass
+    else:
+        return JsonResponse({"code": "405", "message": "Method not allowed"}, status=405)
