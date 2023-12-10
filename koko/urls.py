@@ -43,5 +43,5 @@ urlpatterns = [
     path("word/add/", views.word_add, name='word_add'),
     path("word/remove/", views.word_remove, name='word_remove'),
 
-    path("friend/follow/", views.friend_follow, name='friend_follow'),
+    path("friends/follow/", views.friends_follow, name='friends_follow'),
 ]

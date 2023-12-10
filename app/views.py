@@ -644,7 +644,7 @@ def followlist(followee: str):
 
 
 @csrf_exempt
-def friend_follow(request):
+def friends_follow(request):
     if request.method == "POST":
         json_param = json.loads(request.body)
         openid = json_param['openid']
