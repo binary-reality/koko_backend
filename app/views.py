@@ -634,6 +634,15 @@ def word_remove(request):
             pass
     else:
         return JsonResponse({"code": "405", "message": "Method not allowed"}, status=405)
+      
+def followlist(followee: str):
+    followeelist = followee.strip('[').strip(']').split(',')
+    reslist = []
+    if followeelist == ['']:
+        return reslist
+    for x in followeelist:
+        reslist.append(int(x))
+    return reslist
 
 def followlist(followee: str):
     followeelist = followee.strip('[').strip(']').split(',')
@@ -695,6 +704,11 @@ def friends_uidsearch(request):
                 f_info.append(str(f_user.uid + 10000000))
                 f_info.append(f_user.nickname)
                 f_info.append(f_user.headicon_name)
+                cur_flist = followlist(userlist[0].followee)
+                if f_uid + 10000000 in cur_flist:
+                    f_info.append(1)
+                else:
+                    f_info.append(0)
                 return JsonResponse({'result': [f_info], 'code': 0}, status=200)
             else:
                 pass
@@ -809,12 +823,8 @@ def friends_headicon(request):
             f_uid = int(json_param['uid']) - 10000000
             f_userlist = models.user.objects.filter(uid=f_uid)
             if len(f_userlist) == 1:
-                f_curlist = followlist(user.followee)
-                if f_uid + 10000000 in f_curlist:
-                    image = f_userlist[0].headicon
-                    return FileResponse(image, as_attachment=True, filename=f_userlist[0].headicon_name, status=200)
-                else:
-                    return JsonResponse({"code": 0, "message": "Not followed"}, status=200)
+                image = f_userlist[0].headicon
+                return FileResponse(image, as_attachment=True, filename=f_userlist[0].headicon_name, status=200)
                     
             elif len(f_userlist) == 0:
                 return JsonResponse({"code": "404", "message": "User not found"}, status=406)
