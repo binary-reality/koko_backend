@@ -133,7 +133,7 @@ class wordlist_info(models.Model):
     image = models.ImageField(upload_to='./wb/', default='./wb/default_wb.png')
     image_name = models.CharField(max_length=100, default='../../images/dictimage/dictimage3.png')
     date = models.DateField(auto_now_add=True)
-    private_lock = models.IntegerField(default=0)       # 1 private 0 imprivate
+    public_ctrl = models.IntegerField(default=0)       # 0 private 1 public
     class Meta():
         verbose_name = "wordlist_info"
         db_table = "wordlist_info"

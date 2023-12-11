@@ -39,6 +39,7 @@ urlpatterns = [
     path("wb/info/", views.wb_info_change, name='wb_info_change'),
     path("wb/image/get/", views.wb_image_get, name='wb_image_get'),
     path("wb/image/set/", views.wb_image_set, name='wb_image_set'),
+    path("wb/type/", views.wb_type, name='wb_type'),
 
     path("word/add/", views.word_add, name='word_add'),
     path("word/remove/", views.word_remove, name='word_remove'),
