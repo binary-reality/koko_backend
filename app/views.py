@@ -98,6 +98,7 @@ def login(request):
         print(response_json)
         if response_json['errcode'] == 0:
             user_id = response_json['openid']
+            del response_json['session_key']
             valid_user_list = models.user.objects.filter(open_id=user_id)
             if len(valid_user_list) == 0:
                 models.user.objects.create(open_id=user_id, nickname="用户"+user_id, followee='[]')
