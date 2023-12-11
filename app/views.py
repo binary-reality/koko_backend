@@ -54,6 +54,14 @@ def timeover(recDate):
                 return True
     return True
 
+def followlist(followee: str):
+    followeelist = followee.strip('[').strip(']').split(',')
+    reslist = []
+    if followeelist == ['']:
+        return reslist
+    for x in followeelist:
+        reslist.append(int(x))
+    return reslist
 
 @csrf_exempt
 def login(request):
@@ -111,7 +119,7 @@ def login(request):
             user_data_info['uid'] = str(curuser.uid + 10000000)
             user_data_info['nickname'] = curuser.nickname
             user_data_info['timeline'] = curuser.reserved_time
-            user_data_info['followees'] = curuser.followee
+            user_data_info['followees'] = followlist(curuser.followee)
             if curuser.read_keep == 1:
                 user_data_info['recordOn'] = 'true'
             else:
@@ -119,6 +127,25 @@ def login(request):
             user_data_info['wbnum'] = curuser.wdlistnumber
             user_data['info'] = user_data_info
 
+            # follow wordbooks
+            user_data_flwbs = []
+            curuser_flwbs = curuser.flwbs.all()
+            for flwb in curuser_flwbs:
+                flwb_content = {}
+                flwb_info = flwb.wb_info
+                flwb_content['name'] = flwb_info.name
+                flwb_content['intro'] = flwb_info.intro
+                flwb_content['coverUrl'] = flwb_info.image_name
+                flwb_content['id'] = flwb_info.index
+                flwb_content['owner_uid'] = flwb_info.owner_openid.uid + 10000000
+                words = []
+                wdlist = flwb_info.wordlist.all()
+                for x in wdlist:
+                    words.append(x.content)
+                flwb_content['words'] = words
+                user_data_flwbs.append(flwb_content)
+            user_data['flwbs'] = user_data_flwbs
+            
             # wordbooks
             user_data_wdbks = []
             curuser_wbinfo = curuser.wbinfo.all()
@@ -130,6 +157,7 @@ def login(request):
                 wd_content['name'] = cur_info.name
                 wd_content['intro'] = cur_info.intro
                 wd_content['coverUrl'] = cur_info.image_name
+                wd_content['type'] = cur_info.public_ctrl
                 words = []
                 wdlist = cur_info.wordlist.all()
                 for x in wdlist:
@@ -293,7 +321,6 @@ def search(request):
     else:
         return JsonResponse({"code": "405", "message": "Method not allowed"}, status = 405)
     
-
 @csrf_exempt
 def detail(request):
     if request.method == "POST":
@@ -324,7 +351,6 @@ def detail(request):
     else:
         return JsonResponse({"code": "405", "message": "Method not allowed"}, status = 405)
     
-
 @csrf_exempt
 def getlist(request):
     if request.method == "POST":
@@ -660,24 +686,6 @@ def word_remove(request):
             pass
     else:
         return JsonResponse({"code": "405", "message": "Method not allowed"}, status=405)
-      
-def followlist(followee: str):
-    followeelist = followee.strip('[').strip(']').split(',')
-    reslist = []
-    if followeelist == ['']:
-        return reslist
-    for x in followeelist:
-        reslist.append(int(x))
-    return reslist
-
-def followlist(followee: str):
-    followeelist = followee.strip('[').strip(']').split(',')
-    reslist = []
-    if followeelist == ['']:
-        return reslist
-    for x in followeelist:
-        reslist.append(int(x))
-    return reslist
 
 @csrf_exempt
 def friends_namesearch(request):
