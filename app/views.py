@@ -482,7 +482,6 @@ def wb_info_change(request):
     else:
         return JsonResponse({"code": "405", "message": "Method not allowed"}, status=405)
 
-
 @csrf_exempt
 def wb_image_get(request):
     if request.method == "POST":
@@ -562,6 +561,33 @@ def wb_remove(request):
                 user.wdlistnumber = user.wdlistnumber - 1
                 user.save()
                 return JsonResponse({"code": 0, "message": "Wordbook removed successfully!"}, status=200)
+            else:
+                pass
+        else:
+            pass
+    else:
+        return JsonResponse({"code": "405", "message": "Method not allowed"}, status=405)
+
+@csrf_exempt
+def wb_type(request):
+    if request.method == "POST":
+        json_param = json.loads(request.body)
+        openid = json_param['openid']
+        userlist = models.user.objects.filter(open_id=openid)
+        if len(userlist) == 0:
+            return JsonResponse({"code": "401", "message": "User Unauthorized"}, status=401)
+        elif len(userlist) == 1:
+            user = userlist[0]
+            wbindex = json_param['index']
+            wblist = user.wbinfo.filter(index=wbindex)
+            if len(wblist) == 0:
+                return JsonResponse({"code": "404", "message": "Wordbook not found"}, status=404)
+            elif len(wblist) == 1:
+                privacy = json_param['type']
+                wb_info = wblist[0]
+                wb_info.public_ctrl = privacy
+                wb_info.save()
+                return JsonResponse({"code": 0, "message": "Wordbook privacy successfully changed"}, status=200)
             else:
                 pass
         else:
