@@ -7,7 +7,7 @@ import json
 class LoginAPITestCase(TestCase):
     def setUp(self):
         self.client = APIClient()
-        self.login_url = reverse('login')  # 假设你在urls.py中命名你的登录视图为'login'
+        self.login_url = reverse('login')  
 
     def test_login_with_valid_credentials(self):
         """
@@ -26,7 +26,7 @@ class LoginAPITestCase(TestCase):
         """
         response = self.client.post(self.login_url, {'code': '12354'}, format='json')
         response_data = response.json()
-        self.assertEqual(response_data.get('errcode'), 40029)  # 替换some_error_code为具体的错误码
+        self.assertEqual(response_data.get('errcode'), 40029)  
         self.assertIsInstance(response_data.get('errmsg'), str)
 
     def test_login_with_wrong_method(self):
@@ -42,7 +42,7 @@ class LoginAPITestCase(TestCase):
 class SearchAPITestCase(TestCase):
     def setUp(self):
         self.client = APIClient()
-        self.search_url = reverse('search')  # 实际URL可能需要调整
+        self.search_url = reverse('search')  
 
     def test_search_with_valid_request(self):
         """
@@ -88,7 +88,7 @@ class SearchAPITestCase(TestCase):
 class WordDetailAPITestCase(TestCase):
     def setUp(self):
         self.client = APIClient()
-        self.detail_url = reverse('detail')  # 实际URL可能需要调整
+        self.detail_url = reverse('detail')  
 
     def test_word_detail_with_valid_request(self):
         """
@@ -143,7 +143,7 @@ class WordDetailAPITestCase(TestCase):
 class ListAPITestCase(TestCase):
     def setUp(self):
         self.client = APIClient()
-        self.list_url = reverse('list')  # 实际URL可能需要调整
+        self.list_url = reverse('list') 
 
     def test_list_with_valid_request(self):
         """
@@ -159,7 +159,7 @@ class ListAPITestCase(TestCase):
         self.assertEqual(response_data.get('info'), "Success in word searching")
         medicine = response_data.get('medicine')
         self.assertIsInstance(medicine, list)
-        # 可以添加更多关于 medicine 列表内容的断言...
+
 
     def test_list_with_wrong_method(self):
         """
@@ -179,7 +179,7 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 class ReadAPITestCase(TestCase):
     def setUp(self):
         self.client = APIClient()
-        self.read_url = reverse('read')   # 实际URL可能需要调整
+        self.read_url = reverse('read')  
 
     # def test_read_with_valid_request(self):
     #     """
@@ -204,7 +204,7 @@ class ReadAPITestCase(TestCase):
         """
         response = self.client.get(self.read_url, {
             "openid": "dskadhkskada",
-            "file": ...,  # 这里的文件模拟可能需要根据实际情况调整
+            "file": ...,  
             "wave": [0, 1, 1, 0],
             "word": "赤い【あかい◎】" 
         }, format='multipart')
@@ -216,7 +216,7 @@ class ReadAPITestCase(TestCase):
 class HeadIconAPITestCase(TestCase):
     def setUp(self):
         self.client = APIClient()
-        self.headicon_url = reverse('getlogheadicon')  # 替换'headicon'为在urls.py中对应的name
+        self.headicon_url = reverse('getlogheadicon')  
 
     def test_headicon_with_valid_openid(self):
         """
@@ -403,7 +403,7 @@ class RecordAPITestCase(TestCase):
 class WordbookCreateAPITestCase(TestCase):
     def setUp(self):
         self.client = APIClient()
-        self.create_wordbook_url = reverse('wb_create')  # 请确保这里的'create_wordbook'与您urls.py中的名称一致
+        self.create_wordbook_url = reverse('wb_create')  
 
     def test_create_wordbook_with_valid_request(self):
         """
@@ -438,59 +438,59 @@ class WordbookCreateAPITestCase(TestCase):
         self.assertEqual(response_data.get('code'), "401")
         self.assertEqual(response_data.get('message'), "User Unauthorized")
 
-# class WordbookTypeChangeAPITestCase(TestCase):
-#     def setUp(self):
-#         self.client = APIClient()
-#         self.change_type_url = reverse('wb_type')  # 请确保这里的'change_wordbook_type'与您urls.py中的名称一致
+class WordbookTypeChangeAPITestCase(TestCase):
+    def setUp(self):
+        self.client = APIClient()
+        self.change_type_url = reverse('wb_type')  
 
-#     def test_change_wordbook_type_with_valid_request(self):
-#         """
-#         测试使用有效请求更改单词本公开属性。
-#         """
-#         valid_data = {"openid": "3e5428-ff58yj5", "index": 2, "type": 0}
-#         response = self.client.post(self.change_type_url, valid_data, format='json')
-#         response_data = response.json()
-#         self.assertEqual(response.status_code, status.HTTP_200_OK)
-#         self.assertEqual(response_data.get('code'), 0)
-#         self.assertEqual(response_data.get('message'), "Wordbook information successfully changed!")
+    def test_change_wordbook_type_with_valid_request(self):
+        """
+        测试使用有效请求更改单词本公开属性。
+        """
+        valid_data = {"openid": "3e5428-ff58yj5", "index": 2, "type": 0}
+        response = self.client.post(self.change_type_url, valid_data, format='json')
+        response_data = response.json()
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response_data.get('code'), 0)
+        self.assertEqual(response_data.get('message'), "Wordbook information successfully changed!")
 
-#     def test_change_wordbook_type_with_wrong_method(self):
-#         """
-#         测试使用错误的请求方式更改单词本公开属性。
-#         """
-#         wrong_method_data = {"openid": "3e5428-ff58yj5", "index": 2, "type": 0}
-#         response = self.client.get(self.change_type_url, wrong_method_data, format='json')
-#         response_data = response.json()
-#         self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
-#         self.assertEqual(response_data.get('code'), "405")
-#         self.assertEqual(response_data.get('message'), "Method not allowed")
+    def test_change_wordbook_type_with_wrong_method(self):
+        """
+        测试使用错误的请求方式更改单词本公开属性。
+        """
+        wrong_method_data = {"openid": "3e5428-ff58yj5", "index": 2, "type": 0}
+        response = self.client.get(self.change_type_url, wrong_method_data, format='json')
+        response_data = response.json()
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+        self.assertEqual(response_data.get('code'), "405")
+        self.assertEqual(response_data.get('message'), "Method not allowed")
 
-#     def test_change_wordbook_type_with_invalid_user(self):
-#         """
-#         测试使用不存在的用户更改单词本公开属性。
-#         """
-#         invalid_user_data = {"openid": "invalid_user", "index": 2, "type": 0}
-#         response = self.client.post(self.change_type_url, invalid_user_data, format='json')
-#         response_data = response.json()
-#         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
-#         self.assertEqual(response_data.get('code'), "401")
-#         self.assertEqual(response_data.get('message'), "User Unauthorized")
+    def test_change_wordbook_type_with_invalid_user(self):
+        """
+        测试使用不存在的用户更改单词本公开属性。
+        """
+        invalid_user_data = {"openid": "invalid_user", "index": 2, "type": 0}
+        response = self.client.post(self.change_type_url, invalid_user_data, format='json')
+        response_data = response.json()
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+        self.assertEqual(response_data.get('code'), "401")
+        self.assertEqual(response_data.get('message'), "User Unauthorized")
 
-#     def test_change_wordbook_type_with_nonexistent_wordbook(self):
-#         """
-#         测试更改不存在的单词本公开属性。
-#         """
-#         nonexistent_wordbook_data = {"openid": "3e5428-ff58yj5", "index": 999, "type": 0}
-#         response = self.client.post(self.change_type_url, nonexistent_wordbook_data, format='json')
-#         response_data = response.json()
-#         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
-#         self.assertEqual(response_data.get('code'), "404")
-#         self.assertEqual(response_data.get('message'), "Wordbook not found")
+    def test_change_wordbook_type_with_nonexistent_wordbook(self):
+        """
+        测试更改不存在的单词本公开属性。
+        """
+        nonexistent_wordbook_data = {"openid": "3e5428-ff58yj5", "index": 999, "type": 0}
+        response = self.client.post(self.change_type_url, nonexistent_wordbook_data, format='json')
+        response_data = response.json()
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+        self.assertEqual(response_data.get('code'), "404")
+        self.assertEqual(response_data.get('message'), "Wordbook not found")
 
 class WordbookRemoveAPITestCase(TestCase):
     def setUp(self):
         self.client = APIClient()
-        self.remove_wordbook_url = reverse('wb_remove')  # 请确保这里的'remove_wordbook'与您urls.py中的名称一致
+        self.remove_wordbook_url = reverse('wb_remove')  
 
     def test_remove_wordbook_with_valid_request(self):
         """
@@ -539,7 +539,7 @@ class WordbookRemoveAPITestCase(TestCase):
 class WordAddAPITestCase(TestCase):
     def setUp(self):
         self.client = APIClient()
-        self.add_word_url = reverse('word_add')  # 请确保这里的'add_word'与您urls.py中的名称一致
+        self.add_word_url = reverse('word_add')  
 
     def test_add_word_with_valid_request(self):
         """
@@ -588,7 +588,7 @@ class WordAddAPITestCase(TestCase):
 class WordRemoveAPITestCase(TestCase):
     def setUp(self):
         self.client = APIClient()
-        self.remove_word_url = reverse('remove_word')  # 请确保这里的'remove_word'与您urls.py中的名称一致
+        self.remove_word_url = reverse('remove_word')  
 
     def test_remove_word_with_valid_request(self):
         """
@@ -644,3 +644,231 @@ class WordRemoveAPITestCase(TestCase):
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
         self.assertEqual(response_data.get('code'), "404")
         self.assertEqual(response_data.get('message'), "Word doesn't exist")
+
+
+class FriendsListAPITestCase(TestCase):
+    def setUp(self):
+        self.client = APIClient()
+        self.friends_list_url = reverse('friends_list')  
+
+    def test_get_friends_list_with_valid_request(self):
+        """
+        测试使用有效请求获取关注的用户信息列表。
+        """
+        valid_data = {"openid": "3e5428-ff58yj5"}
+        response = self.client.post(self.friends_list_url, valid_data, format='json')
+        response_data = response.json()
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response_data.get('code'), 0)
+        self.assertIsInstance(response_data.get('data').get('result'), list)
+
+    def test_get_friends_list_with_wrong_method(self):
+        """
+        测试使用错误的请求方式获取关注的用户信息列表。
+        """
+        wrong_method_data = {"openid": "3e5428-ff58yj5"}
+        response = self.client.get(self.friends_list_url, wrong_method_data, format='json')
+        response_data = response.json()
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+        self.assertEqual(response_data.get('code'), "405")
+        self.assertEqual(response_data.get('message'), "Method not allowed")
+
+    def test_get_friends_list_with_invalid_user(self):
+        """
+        测试使用不存在的用户获取关注的用户信息列表。
+        """
+        invalid_user_data = {"openid": "invalid_user"}
+        response = self.client.post(self.friends_list_url, invalid_user_data, format='json')
+        response_data = response.json()
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+        self.assertEqual(response_data.get('code'), "401")
+        self.assertEqual(response_data.get('message'), "User Unauthorized")
+
+class FriendsHeadIconAPITestCase(TestCase):
+    def setUp(self):
+        self.client = APIClient()
+        self.headicon_url = reverse('friends_headicon')  
+
+    def test_get_headicon_with_valid_request(self):
+        """
+        测试使用有效请求通过uid获取用户头像。
+        """
+        valid_data = {"openid": "3e5428-ff58yj5", "uid": "10000001"}
+        response = self.client.post(self.headicon_url, valid_data, format='json')
+        response_data = response.json()
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response_data.get('code'), 0)
+
+    def test_get_headicon_with_wrong_method(self):
+        """
+        测试使用错误的请求方式获取用户头像。
+        """
+        wrong_method_data = {"openid": "3e5428-ff58yj5", "uid": "10000001"}
+        response = self.client.get(self.headicon_url, wrong_method_data, format='json')
+        response_data = response.json()
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+        self.assertEqual(response_data.get('code'), "405")
+        self.assertEqual(response_data.get('message'), "Method not allowed")
+
+    def test_get_headicon_with_invalid_user(self):
+        """
+        测试使用不存在的用户获取头像。
+        """
+        invalid_user_data = {"openid": "11", "uid": "10000001"}
+        response = self.client.post(self.headicon_url, invalid_user_data, format='json')
+        response_data = response.json()
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+        self.assertEqual(response_data.get('code'), "401")
+        self.assertEqual(response_data.get('message'), "User Unauthorized")
+
+class FriendsFollowAPITestCase(TestCase):
+    def setUp(self):
+        self.client = APIClient()
+        self.follow_url = reverse('friends_follow')  
+
+    def test_follow_with_valid_request(self):
+        """
+        测试使用有效请求通过uid关注用户。
+        """
+        valid_data = {"openid": "3e5428-ff58yj5", "uid": "10000001"}
+        response = self.client.post(self.follow_url, valid_data, format='json')
+        response_data = response.json()
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response_data.get('code'), 0)
+        self.assertEqual(response_data.get('message'), "successfully follow")
+
+    def test_follow_with_wrong_method(self):
+        """
+        测试使用错误的请求方式关注用户。
+        """
+        wrong_method_data = {"openid": "3e5428-ff58yj5", "uid": "10000001"}
+        response = self.client.get(self.follow_url, wrong_method_data, format='json')
+        response_data = response.json()
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+        self.assertEqual(response_data.get('code'), "405")
+        self.assertEqual(response_data.get('message'), "Method not allowed")
+
+    def test_follow_with_invalid_user(self):
+        """
+        测试使用不存在的用户进行关注。
+        """
+        invalid_user_data = {"openid": "3ef58yj5", "uid": "10000001"}
+        response = self.client.post(self.follow_url, invalid_user_data, format='json')
+        response_data = response.json()
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+        self.assertEqual(response_data.get('code'), "401")
+        self.assertEqual(response_data.get('message'), "User Unauthorized")
+
+class FriendsUnfollowAPITestCase(TestCase):
+    def setUp(self):
+        self.client = APIClient()
+        self.unfollow_url = reverse('friends_unfollow') 
+
+    def test_unfollow_with_valid_request(self):
+        """
+        测试使用有效请求通过uid取消关注用户。
+        """
+        valid_data = {"openid": "3e5428-ff58yj5", "uid": "10000001"}
+        response = self.client.post(self.unfollow_url, valid_data, format='json')
+        response_data = response.json()
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response_data.get('code'), 0)
+        self.assertEqual(response_data.get('message'), "successfully unfollow")
+
+    def test_unfollow_with_wrong_method(self):
+        """
+        测试使用错误的请求方式取消关注用户。
+        """
+        wrong_method_data = {"openid": "3e5428-ff58yj5", "uid": "10000001"}
+        response = self.client.get(self.unfollow_url, wrong_method_data, format='json')
+        response_data = response.json()
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+        self.assertEqual(response_data.get('code'), "405")
+        self.assertEqual(response_data.get('message'), "Method not allowed")
+
+    def test_unfollow_with_invalid_user(self):
+        """
+        测试使用不存在的用户进行取消关注。
+        """
+        invalid_user_data = {"openid": "3e5428 ", "uid": "10000001"}
+        response = self.client.post(self.unfollow_url, invalid_user_data, format='json')
+        response_data = response.json()
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+        self.assertEqual(response_data.get('code'), "401")
+        self.assertEqual(response_data.get('message'), "User Unauthorized")
+
+class FriendsUidSearchAPITestCase(TestCase):
+    def setUp(self):
+        self.client = APIClient()
+        self.uidsearch_url = reverse('friends_uidsearch')  
+
+    def test_uidsearch_with_valid_request(self):
+        """
+        测试使用有效请求通过uid搜索用户。
+        """
+        valid_data = {"openid": "3e5428-ff58yj5 ", "uid": "10000001"}
+        response = self.client.post(self.uidsearch_url, valid_data, format='json')
+        response_data = response.json()
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response_data.get('code'), 0)
+        self.assertIsInstance(response_data.get('data').get('result'), list)
+
+    def test_uidsearch_with_wrong_method(self):
+        """
+        测试使用错误的请求方式搜索用户。
+        """
+        wrong_method_data = {"openid": "3e5428-ff58yj5", "uid": "10000001"}
+        response = self.client.get(self.uidsearch_url, wrong_method_data, format='json')
+        response_data = response.json()
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+        self.assertEqual(response_data.get('code'), "405")
+        self.assertEqual(response_data.get('message'), "Method not allowed")
+
+    def test_uidsearch_with_invalid_user(self):
+        """
+        测试使用不存在的用户进行搜索。
+        """
+        invalid_user_data = {"openid": "ff", "uid": "10000001"}
+        response = self.client.post(self.uidsearch_url, invalid_user_data, format='json')
+        response_data = response.json()
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+        self.assertEqual(response_data.get('code'), "401")
+        self.assertEqual(response_data.get('message'), "User Unauthorized")
+
+class FriendsNameSearchAPITestCase(TestCase):
+    def setUp(self):
+        self.client = APIClient()
+        self.namesearch_url = reverse('friends_namesearch') 
+
+    def test_namesearch_with_valid_request(self):
+        """
+        测试使用有效请求通过昵称搜索用户。
+        """
+        valid_data = {"openid": "3e5428-ff58yj5", "name": "萝莉控"}
+        response = self.client.post(self.namesearch_url, valid_data, format='json')
+        response_data = response.json()
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response_data.get('code'), 0)
+        self.assertIsInstance(response_data.get('data').get('result'), list)
+
+    def test_namesearch_with_wrong_method(self):
+        """
+        测试使用错误的请求方式搜索用户。
+        """
+        wrong_method_data = {"openid": "3e5428-ff58yj5", "name": "萝莉控"}
+        response = self.client.get(self.namesearch_url, wrong_method_data, format='json')
+        response_data = response.json()
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+        self.assertEqual(response_data.get('code'), "405")
+        self.assertEqual(response_data.get('message'), "Method not allowed")
+
+    def test_namesearch_with_invalid_user(self):
+        """
+        测试使用不存在的用户进行搜索。
+        """
+        invalid_user_data = {"openid": "ss", "name": "萝莉控"}
+        response = self.client.post(self.namesearch_url, invalid_user_data, format='json')
+        response_data = response.json()
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+        self.assertEqual(response_data.get('code'), "401")
+        self.assertEqual(response_data.get('message'), "User Unauthorized")
