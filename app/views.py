@@ -1016,7 +1016,40 @@ def friends_unsubscribe(request):
             pass
     else:
         return JsonResponse({"code": "405", "message": "Method not allowed"}, status=405)
-    
+
+@csrf_exempt
+def friends_wbcover(request):
+    if request.method == "POST":
+        json_param = json.loads(request.body)
+        openid = json_param['openid']
+        userlist = models.user.objects.filter(open_id=openid)
+        if len(userlist) == 0:
+            return JsonResponse({"code": "401", "message": "User Unauthorized"}, status=401)
+        elif len(userlist) == 1:
+            user = userlist[0]
+            f_uid = int(json_param['uid'])
+            f_userlist = models.user.objects.filter(uid=f_uid)
+            if len(f_userlist) == 1:
+                f_wbid = json_param['id']
+                f_user = f_userlist[0]
+                f_wblist = f_user.wbinfo.filter(index=f_wbid)
+                if len(f_wblist) == 1:
+                    f_wb = f_wblist[0]
+                    image = f_wb.image
+                    return FileResponse(image, as_attachment=True, filename=f_wb.image_name, status=200)
+                elif len(f_wblist) == 0:
+                    return JsonResponse({"code": "404", "message": "Wordbook not found"}, status=404)
+                else:
+                    pass
+            elif len(f_userlist) == 0:
+                return JsonResponse({"code": "404", "message": "User not found"}, status=404)
+            else:
+                pass
+        else:
+            pass
+    else:
+        return JsonResponse({"code": "405", "message": "Method not allowed"}, status=405)
+
 @csrf_exempt
 def test_subscribeall(request):
     json_param = json.loads(request.body)
