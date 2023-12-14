@@ -554,7 +554,7 @@ def wb_image_set(request):
                 user_wb = wblist[0]
 
                 if user_wb.image_name != "../../images/dictimage/dictimage3.png":
-                    os.remove(os.path.join(settings.MEDIA_ROOT, "wb", user_wb.image.name))
+                    os.remove(os.path.join(settings.MEDIA_ROOT, user_wb.image.name))
                 user_wb.image_name = image_name
                 user_wb.image = new_image
                 user_wb.save()
