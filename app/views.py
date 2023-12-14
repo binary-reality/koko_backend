@@ -549,12 +549,13 @@ def wb_image_set(request):
                 name = request.POST.get("name")
                 name_list = name.split(".")
                 new_image = request.FILES.get("image")
-                image_name = "wb" + str(wbindex) + "." + name_list[1]
+                image_name = "wb" + str(wbindex) + "_" + openid + "." + name_list[1]
 
                 user_wb = wblist[0]
 
+                if user_wb.image_name != "../../images/dictimage/dictimage3.png":
+                    os.remove(os.path.join(settings.MEDIA_ROOT, "wb", user_wb.image.name))
                 user_wb.image_name = image_name
-                os.remove(os.path.join(settings.MEDIA_ROOT, "wb", user_wb.image.name))
                 user_wb.image = new_image
                 user_wb.save()
                 return JsonResponse({"code": 0, "message": "Wordbook image successfully changed!"}, status=200)
