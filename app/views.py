@@ -117,7 +117,7 @@ def login(request):
             # info
             user_data_info = {}
             user_data_info['openid'] = curuser.open_id
-            user_data_info['uid'] = str(curuser.uid + 10000000)
+            user_data_info['uid'] = str(curuser.uid)
             user_data_info['nickname'] = curuser.nickname
             user_data_info['timeline'] = curuser.reserved_time
             user_data_info['followees'] = followlist(curuser.followee)
@@ -138,7 +138,7 @@ def login(request):
                 flwb_content['intro'] = flwb_info.intro
                 flwb_content['coverUrl'] = flwb_info.image_name
                 flwb_content['id'] = flwb_info.index
-                flwb_content['owner_uid'] = flwb_info.owner_openid.uid + 10000000
+                flwb_content['owner_uid'] = flwb_info.owner_openid.uid
                 words = []
                 wdlist = flwb_info.wordlist.all()
                 for x in wdlist:
@@ -706,10 +706,10 @@ def friends_namesearch(request):
                 cur_list = followlist(userlist[0].followee)
                 for xuser in f_list:
                     f_info = []
-                    f_info.append(str(xuser.uid + 10000000))
+                    f_info.append(str(xuser.uid))
                     f_info.append(xuser.nickname)
                     f_info.append(xuser.headicon_name)
-                    if xuser.uid + 10000000 in cur_list:
+                    if xuser.uid in cur_list:
                         f_info.append(1)
                     else:
                         f_info.append(0)
@@ -729,18 +729,18 @@ def friends_uidsearch(request):
         if len(userlist) == 0:
             return JsonResponse({"code": "401", "message": "User Unauthorized"}, status=401)
         elif len(userlist) == 1:
-            f_uid = int(json_param['uid']) - 10000000
+            f_uid = int(json_param['uid'])
             f_list = models.user.objects.filter(uid=f_uid)
             if len(f_list) == 0:
                 return JsonResponse({"code": "404", "message": "User not found"}, status=404)
             elif len(f_list) == 1:
                 f_info = []
                 f_user = f_list[0]
-                f_info.append(str(f_user.uid + 10000000))
+                f_info.append(str(f_user.uid))
                 f_info.append(f_user.nickname)
                 f_info.append(f_user.headicon_name)
                 cur_flist = followlist(userlist[0].followee)
-                if f_uid + 10000000 in cur_flist:
+                if f_uid in cur_flist:
                     f_info.append(1)
                 else:
                     f_info.append(0)
@@ -766,12 +766,12 @@ def friends_list(request):
             true_f_list = []
             f_info_list = []
             for x in f_list:
-                f_uid = int(x) - 10000000
+                f_uid = int(x)
                 f_userlist = models.user.objects.filter(uid=f_uid)
                 if len(f_userlist) == 1:
                     f_user = f_userlist[0]
                     f_info = []
-                    f_info.append(str(f_user.uid + 10000000))
+                    f_info.append(str(f_user.uid))
                     f_info.append(f_user.nickname)
                     f_info.append(f_user.headicon_name)
                     f_info_list.append(f_info)
@@ -794,14 +794,14 @@ def friends_follow(request):
             return JsonResponse({"code": "401", "message": "User Unauthorized"}, status=401)
         elif len(userlist) == 1:
             user = userlist[0]
-            f_uid = int(json_param['uid']) - 10000000
+            f_uid = int(json_param['uid'])
             f_userlist = models.user.objects.filter(uid=f_uid)
             if len(f_userlist) == 1:
                 f_curlist = followlist(user.followee)
-                if f_uid + 10000000 in f_curlist:
+                if f_uid in f_curlist:
                     return JsonResponse({"code": 0, "message": "Already followed"}, status=200)
                 else:
-                    f_curlist.append(f_uid + 10000000)
+                    f_curlist.append(f_uid)
                     user.followee = str(f_curlist)
                     user.save()
                     return JsonResponse({"code": 0, "message": "successfully follow"}, status=200)
@@ -824,12 +824,12 @@ def friends_unfollow(request):
             return JsonResponse({"code": "401", "message": "User Unauthorized"}, status=401)
         elif len(userlist) == 1:
             user = userlist[0]
-            f_uid = int(json_param['uid']) - 10000000
+            f_uid = int(json_param['uid'])
             f_userlist = models.user.objects.filter(uid=f_uid)
             if len(f_userlist) == 1:
                 f_curlist = followlist(user.followee)
-                if f_uid + 10000000 in f_curlist:
-                    f_curlist.remove(f_uid + 10000000)
+                if f_uid in f_curlist:
+                    f_curlist.remove(f_uid)
                     user.followee = str(f_curlist)
                     user.save()
                     return JsonResponse({"code": 0, "message": "successfully unfollow"}, status=200)
@@ -855,7 +855,7 @@ def friends_headicon(request):
             return JsonResponse({"code": "401", "message": "User Unauthorized"}, status=401)
         elif len(userlist) == 1:
             user = userlist[0]
-            f_uid = int(json_param['uid']) - 10000000
+            f_uid = int(json_param['uid'])
             f_userlist = models.user.objects.filter(uid=f_uid)
             if len(f_userlist) == 1:
                 image = f_userlist[0].headicon
@@ -880,7 +880,7 @@ def friends_info(request):
             return JsonResponse({"code": "401", "message": "User Unauthorized"}, status=401)
         elif len(userlist) == 1:
             user = userlist[0]
-            f_uid = int(json_param['uid']) - 10000000
+            f_uid = int(json_param['uid'])
             f_userlist = models.user.objects.filter(uid=f_uid)
             if len(f_userlist) == 1:
                 cur_list = followlist(user.followee)
@@ -889,7 +889,7 @@ def friends_info(request):
                 # info
                 user_data_info = {}
                 user_data_info['nickname'] = f_user.nickname
-                if f_uid + 10000000 in cur_list:
+                if f_uid in cur_list:
                     user_data_info['following'] = 1
                 else:
                     user_data_info['following'] = 0
@@ -908,7 +908,7 @@ def friends_info(request):
                     wd_content = {}
                     cur_info = f_user_wbinfo.get(index=i)
                     wd_content['id'] = i
-                    wd_content['uid'] = cur_info.owner_openid.uid + 10000000
+                    wd_content['uid'] = cur_info.owner_openid.uid
                     wd_content['name'] = cur_info.name
                     wd_content['intro'] = cur_info.intro
                     wd_content['coverUrl'] = cur_info.image_name
@@ -945,11 +945,11 @@ def friends_subscribe(request):
             return JsonResponse({"code": "401", "message": "User Unauthorized"}, status=401)
         elif len(userlist) == 1:
             user = userlist[0]
-            f_uid = int(json_param['uid']) - 10000000
+            f_uid = int(json_param['uid'])
             f_userlist = models.user.objects.filter(uid=f_uid)
             if len(f_userlist) == 1:
                 cur_list = followlist(user.followee)
-                if f_uid + 10000000 in cur_list:
+                if f_uid in cur_list:
                     f_user = f_userlist[0]
                     f_wbid = json_param['id']
                     f_wblist = f_user.wbinfo.filter(index=f_wbid)
@@ -983,11 +983,11 @@ def friends_unsubscribe(request):
             return JsonResponse({"code": "401", "message": "User Unauthorized"}, status=401)
         elif len(userlist) == 1:
             user = userlist[0]
-            f_uid = int(json_param['uid']) - 10000000
+            f_uid = int(json_param['uid'])
             f_userlist = models.user.objects.filter(uid=f_uid)
             if len(f_userlist) == 1:
                 cur_list = followlist(user.followee)
-                if f_uid + 10000000 in cur_list:
+                if f_uid in cur_list:
                     f_user = f_userlist[0]
                     f_wbid = json_param['id']
                     f_wblist = f_user.wbinfo.filter(index=f_wbid)
