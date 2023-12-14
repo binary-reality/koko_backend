@@ -28,6 +28,4 @@ jobs:
       #运行测试
       - name: Run tests
         run: |
-          python manage.py makemigrations
-          python manage.py migrate
           python manage.py test
