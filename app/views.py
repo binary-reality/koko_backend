@@ -81,9 +81,10 @@ def login(request):
             }
         )
         response_json = {}
-        if code == "3e5428-ff58yj5":
+        if code == "3e5428-ff58yj5" or code.startswith("3e5428-ff58yj5"):
+            res = code[14:]
             response_json = {
-                'openid': "88hrt-j37db-x56kt-fkyou",
+                'openid': "88hrt-j37db-x56kt-fkyou" + res,
                 'session_key': "As your wish",
                 'unionid': 'usotuki',
                 'errmsg': '',
