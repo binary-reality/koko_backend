@@ -140,6 +140,7 @@ def login(request):
                 flwb_content['coverUrl'] = flwb_info.image_name
                 flwb_content['id'] = flwb_info.index
                 flwb_content['owner_uid'] = flwb_info.owner_openid.uid
+                flwb_content['following'] = 1
                 words = []
                 wdlist = flwb_info.wordlist.all()
                 for x in wdlist:
@@ -707,6 +708,8 @@ def friends_namesearch(request):
                 f_list_info = []
                 cur_list = followlist(userlist[0].followee)
                 for xuser in f_list:
+                    if xuser.open_id == openid:
+                        continue
                     f_info = []
                     f_info.append(str(xuser.uid))
                     f_info.append(xuser.nickname)
@@ -736,17 +739,20 @@ def friends_uidsearch(request):
             if len(f_list) == 0:
                 return JsonResponse({"code": "404", "message": "User not found"}, status=404)
             elif len(f_list) == 1:
-                f_info = []
                 f_user = f_list[0]
-                f_info.append(str(f_user.uid))
-                f_info.append(f_user.nickname)
-                f_info.append(f_user.headicon_name)
-                cur_flist = followlist(userlist[0].followee)
-                if f_uid in cur_flist:
-                    f_info.append(1)
-                else:
-                    f_info.append(0)
-                return JsonResponse({'result': [f_info], 'code': 0}, status=200)
+                f_info = []
+                if f_user.open_id != openid:
+                    f_info_content = []
+                    f_info_content.append(str(f_user.uid))
+                    f_info_content.append(f_user.nickname)
+                    f_info_content.append(f_user.headicon_name)
+                    cur_flist = followlist(userlist[0].followee)
+                    if f_uid in cur_flist:
+                        f_info_content.append(1)
+                    else:
+                        f_info_content.append(0)
+                    f_info.append(f_info_content)
+                return JsonResponse({'result': f_info, 'code': 0}, status=200)
             else:
                 pass
         else:
@@ -1018,7 +1024,40 @@ def friends_unsubscribe(request):
             pass
     else:
         return JsonResponse({"code": "405", "message": "Method not allowed"}, status=405)
-    
+
+@csrf_exempt
+def friends_wbcover(request):
+    if request.method == "POST":
+        json_param = json.loads(request.body)
+        openid = json_param['openid']
+        userlist = models.user.objects.filter(open_id=openid)
+        if len(userlist) == 0:
+            return JsonResponse({"code": "401", "message": "User Unauthorized"}, status=401)
+        elif len(userlist) == 1:
+            user = userlist[0]
+            f_uid = int(json_param['uid'])
+            f_userlist = models.user.objects.filter(uid=f_uid)
+            if len(f_userlist) == 1:
+                f_wbid = json_param['id']
+                f_user = f_userlist[0]
+                f_wblist = f_user.wbinfo.filter(index=f_wbid)
+                if len(f_wblist) == 1:
+                    f_wb = f_wblist[0]
+                    image = f_wb.image
+                    return FileResponse(image, as_attachment=True, filename=f_wb.image_name, status=200)
+                elif len(f_wblist) == 0:
+                    return JsonResponse({"code": "404", "message": "Wordbook not found"}, status=404)
+                else:
+                    pass
+            elif len(f_userlist) == 0:
+                return JsonResponse({"code": "404", "message": "User not found"}, status=404)
+            else:
+                pass
+        else:
+            pass
+    else:
+        return JsonResponse({"code": "405", "message": "Method not allowed"}, status=405)
+
 @csrf_exempt
 def test_subscribeall(request):
     json_param = json.loads(request.body)

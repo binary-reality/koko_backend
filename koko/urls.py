@@ -53,6 +53,7 @@ urlpatterns = [
     path("friends/info/", views.friends_info, name='friends_info'),
     path("friends/subscribe/", views.friends_subscribe, name='frineds_subscribe'),
     path("friends/unsubscribe/", views.friends_unsubscribe, name='friends_unsubsrcibe'),
+    path("friends/wbcover/", views.friends_wbcover, name='friends_wbcover'),
 
     path("test/subscribeall/", views.test_subscribeall),         # deleted, no use, only test
 ]
