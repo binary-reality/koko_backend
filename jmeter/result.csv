@@ -1,0 +1,495 @@
+1.70E+12,508,login,200,OK,login 1-1,text,TRUE,,908,217,51,198,http://43.138.68.47:8000/login/,508,0,11
+1.70E+12,635,login,200,OK,login 1-2,text,TRUE,,908,217,65,254,http://43.138.68.47:8000/login/,635,0,14
+1.70E+12,645,login,200,OK,login 1-3,text,TRUE,,908,217,67,262,http://43.138.68.47:8000/login/,645,0,17
+1.70E+12,856,login,200,OK,login 1-6,text,TRUE,,908,217,91,358,http://43.138.68.47:8000/login/,856,0,12
+1.70E+12,895,login,200,OK,login 1-4,text,TRUE,,908,217,94,370,http://43.138.68.47:8000/login/,895,0,14
+1.70E+12,1067,login,200,OK,login 1-28,text,TRUE,,908,217,100,400,http://43.138.68.47:8000/login/,1067,0,62
+1.70E+12,1088,login,200,OK,login 1-34,text,TRUE,,908,217,100,400,http://43.138.68.47:8000/login/,1087,0,24
+1.70E+12,1192,login,200,OK,login 1-26,text,TRUE,,908,217,100,400,http://43.138.68.47:8000/login/,1192,0,75
+1.70E+12,1230,login,200,OK,login 1-25,text,TRUE,,908,217,100,400,http://43.138.68.47:8000/login/,1230,0,23
+1.70E+12,958,login,200,OK,login 1-53,text,TRUE,,908,217,100,400,http://43.138.68.47:8000/login/,958,0,33
+1.70E+12,1314,login,200,OK,login 1-20,text,TRUE,,907,217,100,400,http://43.138.68.47:8000/login/,1314,0,22
+1.70E+12,1133,login,200,OK,login 1-43,text,TRUE,,908,217,100,400,http://43.138.68.47:8000/login/,1133,0,16
+1.70E+12,1097,login,200,OK,login 1-55,text,TRUE,,908,217,100,400,http://43.138.68.47:8000/login/,1097,0,20
+1.70E+12,926,login,200,OK,login 1-75,text,TRUE,,908,217,100,400,http://43.138.68.47:8000/login/,926,0,12
+1.70E+12,1322,login,200,OK,login 1-79,text,TRUE,,908,217,100,400,http://43.138.68.47:8000/login/,1322,0,12
+1.70E+12,1270,login,200,OK,login 1-88,text,TRUE,,906,217,100,400,http://43.138.68.47:8000/login/,1270,0,15
+1.70E+12,1836,login,200,OK,login 1-95,text,TRUE,,907,217,100,400,http://43.138.68.47:8000/login/,1836,0,15
+1.70E+12,2887,login,200,OK,login 1-5,text,TRUE,,908,217,100,400,http://43.138.68.47:8000/login/,2887,0,17
+1.70E+12,2919,login,200,OK,login 1-19,text,TRUE,,908,217,100,400,http://43.138.68.47:8000/login/,2919,0,13
+1.70E+12,2752,login,200,OK,login 1-64,text,TRUE,,908,217,100,400,http://43.138.68.47:8000/login/,2752,0,17
+1.70E+12,4083,login,200,OK,login 1-9,text,TRUE,,908,217,100,400,http://43.138.68.47:8000/login/,4083,0,18
+1.70E+12,3888,login,200,OK,login 1-78,text,TRUE,,908,217,100,400,http://43.138.68.47:8000/login/,3888,0,16
+1.70E+12,4681,login,200,OK,login 1-52,text,TRUE,,907,217,100,400,http://43.138.68.47:8000/login/,4681,0,28
+1.70E+12,4786,login,200,OK,login 1-61,text,TRUE,,907,217,100,400,http://43.138.68.47:8000/login/,4786,0,16
+1.70E+12,5738,login,200,OK,login 1-23,text,TRUE,,908,217,100,400,http://43.138.68.47:8000/login/,5738,0,16
+1.70E+12,6131,login,200,OK,login 1-35,text,TRUE,,908,217,100,400,http://43.138.68.47:8000/login/,6131,0,20
+1.70E+12,9178,login,200,OK,login 1-8,text,TRUE,,908,217,100,396,http://43.138.68.47:8000/login/,9178,0,23
+1.70E+12,7154,loginIcon,200,OK,login 1-88,bin,TRUE,,499789,248,100,396,http://43.138.68.47:8000/login/headicon/,1055,0,0
+1.70E+12,8137,loginIcon,200,OK,login 1-20,bin,TRUE,,499789,248,100,394,http://43.138.68.47:8000/login/headicon/,1117,0,0
+1.70E+12,10141,login,200,OK,login 1-41,text,TRUE,,908,217,100,394,http://43.138.68.47:8000/login/,10141,0,15
+1.70E+12,9632,login,200,OK,login 1-99,text,TRUE,,907,217,100,394,http://43.138.68.47:8000/login/,9632,0,14
+1.70E+12,2522,login,200,OK,login 1-20,text,TRUE,,908,217,100,392,http://43.138.68.47:8000/login/,2522,0,0
+1.70E+12,14370,login,502,Bad Gateway,login 1-7,text,FALSE,,314,217,100,386,http://43.138.68.47:8000/login/,14370,0,14
+1.70E+12,16313,login,200,OK,login 1-94,text,TRUE,,907,217,100,372,http://43.138.68.47:8000/login/,16313,0,12
+1.70E+12,17156,login,200,OK,login 1-96,text,TRUE,,907,217,100,370,http://43.138.68.47:8000/login/,17156,0,12
+1.70E+12,8815,login,200,OK,login 1-88,text,TRUE,,908,217,100,370,http://43.138.68.47:8000/login/,8815,0,0
+1.70E+12,18404,login,200,OK,login 1-38,text,TRUE,,907,217,100,370,http://43.138.68.47:8000/login/,18404,0,18
+1.70E+12,18584,login,200,OK,login 1-37,text,TRUE,,908,217,100,370,http://43.138.68.47:8000/login/,18584,0,15
+1.70E+12,18400,login,200,OK,login 1-77,text,TRUE,,908,217,100,369,http://43.138.68.47:8000/login/,18400,0,15
+1.70E+12,18825,login,200,OK,login 1-46,text,TRUE,,908,217,100,369,http://43.138.68.47:8000/login/,18825,0,11
+1.70E+12,19008,login,200,OK,login 1-48,text,TRUE,,908,217,100,369,http://43.138.68.47:8000/login/,19008,0,22
+1.70E+12,19022,loginIcon,200,OK,login 1-28,bin,TRUE,,499789,248,100,368,http://43.138.68.47:8000/login/headicon/,1941,0,0
+1.70E+12,19570,loginIcon,200,OK,login 1-55,bin,TRUE,,499789,248,100,365,http://43.138.68.47:8000/login/headicon/,911,0,0
+1.70E+12,1313,login,200,OK,login 1-28,text,TRUE,,908,217,100,363,http://43.138.68.47:8000/login/,1313,0,0
+1.70E+12,1862,login,200,OK,login 1-55,text,TRUE,,908,217,100,353,http://43.138.68.47:8000/login/,1862,0,0
+1.70E+12,23078,login,200,OK,login 1-22,text,TRUE,,908,217,100,353,http://43.138.68.47:8000/login/,23078,0,18
+1.70E+12,23138,login,200,OK,login 1-21,text,TRUE,,908,217,100,353,http://43.138.68.47:8000/login/,23138,0,11
+1.70E+12,13102,loginIcon,200,OK,login 1-99,bin,TRUE,,499789,248,100,350,http://43.138.68.47:8000/login/headicon/,3086,0,0
+1.70E+12,23439,login,200,OK,login 1-49,text,TRUE,,908,217,100,349,http://43.138.68.47:8000/login/,23439,0,17
+1.70E+12,726,login,200,OK,login 1-99,text,TRUE,,908,217,100,342,http://43.138.68.47:8000/login/,726,0,0
+1.70E+12,20212,loginIcon,200,OK,login 1-35,bin,TRUE,,499789,248,100,335,http://43.138.68.47:8000/login/headicon/,1566,0,0
+1.70E+12,25410,loginIcon,200,OK,login 1-53,bin,TRUE,,499789,248,100,335,http://43.138.68.47:8000/login/headicon/,4297,0,0
+1.70E+12,209,login,200,OK,login 1-35,text,TRUE,,908,217,100,334,http://43.138.68.47:8000/login/,209,0,0
+1.70E+12,208,login,200,OK,login 1-53,text,TRUE,,908,217,100,334,http://43.138.68.47:8000/login/,208,0,0
+1.70E+12,27998,login,200,OK,login 1-10,text,TRUE,,908,217,100,334,http://43.138.68.47:8000/login/,27998,0,9
+1.70E+12,28388,login,200,OK,login 1-17,text,TRUE,,908,217,100,334,http://43.138.68.47:8000/login/,28388,0,14
+1.70E+12,28577,login,200,OK,login 1-18,text,TRUE,,908,217,100,334,http://43.138.68.47:8000/login/,28577,0,14
+1.70E+12,28469,login,200,OK,login 1-63,text,TRUE,,908,217,100,334,http://43.138.68.47:8000/login/,28469,0,12
+1.70E+12,29765,login,200,OK,login 1-24,text,TRUE,,908,217,100,334,http://43.138.68.47:8000/login/,29765,0,15
+1.70E+12,29919,login,502,Bad Gateway,login 1-11,text,FALSE,,314,217,100,334,http://43.138.68.47:8000/login/,29919,0,17
+1.70E+12,29934,login,200,OK,login 1-29,text,TRUE,,908,217,100,334,http://43.138.68.47:8000/login/,29934,0,50
+1.70E+12,29550,login,200,OK,login 1-98,text,TRUE,,907,217,100,332,http://43.138.68.47:8000/login/,29550,0,18
+1.70E+12,30671,login,200,OK,login 1-42,text,TRUE,,908,217,100,332,http://43.138.68.47:8000/login/,30671,0,13
+1.70E+12,31681,login,200,OK,login 1-12,text,TRUE,,908,217,100,327,http://43.138.68.47:8000/login/,31681,0,11
+1.70E+12,31008,login,200,OK,login 1-93,text,TRUE,,907,217,100,327,http://43.138.68.47:8000/login/,31008,0,14
+1.70E+12,33001,login,200,OK,login 1-16,text,TRUE,,908,217,100,324,http://43.138.68.47:8000/login/,33001,0,14
+1.70E+12,34438,login,200,OK,login 1-14,text,TRUE,,908,217,100,321,http://43.138.68.47:8000/login/,34438,0,18
+1.70E+12,34066,login,200,OK,login 1-74,text,TRUE,,908,217,100,321,http://43.138.68.47:8000/login/,34066,0,12
+1.70E+12,34108,login,200,OK,login 1-91,text,TRUE,,908,217,100,320,http://43.138.68.47:8000/login/,34108,0,37
+1.70E+12,34601,login,200,OK,login 1-89,text,TRUE,,908,217,100,319,http://43.138.68.47:8000/login/,34601,0,25
+1.70E+12,35493,login,200,OK,login 1-15,text,TRUE,,908,217,100,319,http://43.138.68.47:8000/login/,35493,0,16
+1.70E+12,35521,login,200,OK,login 1-86,text,TRUE,,907,217,100,317,http://43.138.68.47:8000/login/,35521,0,15
+1.70E+12,35605,login,200,OK,login 1-87,text,TRUE,,908,217,100,316,http://43.138.68.47:8000/login/,35605,0,13
+1.70E+12,35105,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-25,text,FALSE,,1789,0,100,315,http://43.138.68.47:8000/login/headicon/,3947,0,0
+1.70E+12,24410,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-20,text,FALSE,,1878,0,100,315,http://43.138.68.47:8000/login/headicon/,4015,0,0
+1.70E+12,36135,login,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-45,text,FALSE,,2699,0,100,315,http://43.138.68.47:8000/login/,0,0,17
+1.70E+12,36069,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-1,text,FALSE,,1789,0,100,315,http://43.138.68.47:8000/login/headicon/,22578,0,0
+1.70E+12,31189,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-61,text,FALSE,,1789,0,100,315,http://43.138.68.47:8000/login/headicon/,2976,0,0
+1.70E+12,7487,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-63,text,FALSE,,1789,0,100,315,http://43.138.68.47:8000/login/headicon/,580,0,0
+1.70E+12,36186,login,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-40,text,FALSE,,2699,0,94,309,http://43.138.68.47:8000/login/,0,0,16
+1.70E+12,35985,login,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-60,text,FALSE,,2699,0,94,309,http://43.138.68.47:8000/login/,0,0,13
+1.70E+12,6336,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-29,text,FALSE,,1789,0,93,308,http://43.138.68.47:8000/login/headicon/,2113,0,0
+1.70E+12,18477,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-96,text,FALSE,,1789,0,91,306,http://43.138.68.47:8000/login/headicon/,874,0,0
+1.70E+12,32415,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-9,text,FALSE,,1789,0,90,305,http://43.138.68.47:8000/login/headicon/,3669,0,0
+1.70E+12,35868,login,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-72,text,FALSE,,2699,0,89,304,http://43.138.68.47:8000/login/,0,0,13
+1.70E+12,12141,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-99,text,FALSE,,1878,0,89,304,http://43.138.68.47:8000/login/headicon/,126,0,0
+1.70E+12,35674,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-6,text,FALSE,,1789,0,87,302,http://43.138.68.47:8000/login/headicon/,30009,0,0
+1.70E+12,17803,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-38,text,FALSE,,1789,0,86,301,http://43.138.68.47:8000/login/headicon/,1726,0,0
+1.70E+12,35750,login,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-84,text,FALSE,,2699,0,85,300,http://43.138.68.47:8000/login/,0,0,13
+1.70E+12,36034,login,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-56,text,FALSE,,2699,0,84,299,http://43.138.68.47:8000/login/,0,0,16
+1.70E+12,34479,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-79,text,FALSE,,1789,0,83,298,http://43.138.68.47:8000/login/headicon/,3306,0,0
+1.70E+12,33805,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-95,text,FALSE,,1789,0,82,297,http://43.138.68.47:8000/login/headicon/,14861,0,0
+1.70E+12,6585,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-24,text,FALSE,,1878,0,81,296,http://43.138.68.47:8000/login/headicon/,584,0,0
+1.70E+12,35139,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-26,text,FALSE,,2699,0,80,295,http://43.138.68.47:8000/login/headicon/,0,0,0
+1.70E+12,35892,login,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-70,text,FALSE,,2699,0,79,294,http://43.138.68.47:8000/login/,0,0,14
+1.70E+12,35902,login,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-69,text,FALSE,,2699,0,78,293,http://43.138.68.47:8000/login/,0,0,18
+1.70E+12,35882,login,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-71,text,FALSE,,2699,0,78,293,http://43.138.68.47:8000/login/,0,0,16
+1.70E+12,34914,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-75,text,FALSE,,1789,0,76,291,http://43.138.68.47:8000/login/headicon/,4637,0,0
+1.70E+12,7830,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-18,text,FALSE,,1789,0,75,290,http://43.138.68.47:8000/login/headicon/,484,0,0
+1.70E+12,36269,login,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-32,text,FALSE,,2699,0,74,289,http://43.138.68.47:8000/login/,0,0,21
+1.70E+12,115,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-87,text,FALSE,,2699,0,73,288,http://43.138.68.47:8000/login/headicon/,0,0,0
+1.70E+12,35692,login,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-90,text,FALSE,,2699,0,72,287,http://43.138.68.47:8000/login/,0,0,15
+1.70E+12,190,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-86,text,FALSE,,2699,0,71,286,http://43.138.68.47:8000/login/headicon/,0,0,0
+1.70E+12,35028,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-43,text,FALSE,,2699,0,70,285,http://43.138.68.47:8000/login/headicon/,0,0,0
+1.70E+12,26037,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-41,text,FALSE,,1878,0,69,284,http://43.138.68.47:8000/login/headicon/,4403,0,0
+1.70E+12,36121,login,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-47,text,FALSE,,2699,0,68,283,http://43.138.68.47:8000/login/,0,0,19
+1.70E+12,9484,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-53,text,FALSE,,1878,0,67,282,http://43.138.68.47:8000/login/headicon/,59,0,0
+1.70E+12,36230,login,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-36,text,FALSE,,2699,0,66,281,http://43.138.68.47:8000/login/,0,0,22
+1.70E+12,18473,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-88,text,FALSE,,1789,0,65,280,http://43.138.68.47:8000/login/headicon/,5266,0,0
+1.70E+12,36083,login,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-51,text,FALSE,,2699,0,64,279,http://43.138.68.47:8000/login/,0,0,34
+1.70E+12,13514,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-55,text,FALSE,,1789,0,63,278,http://43.138.68.47:8000/login/headicon/,391,0,0
+1.70E+12,36030,login,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-57,text,FALSE,,2699,0,62,277,http://43.138.68.47:8000/login/,0,0,10
+1.70E+12,17642,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-37,text,FALSE,,1878,0,61,276,http://43.138.68.47:8000/login/headicon/,1965,0,0
+1.70E+12,35766,login,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-83,text,FALSE,,2699,0,60,275,http://43.138.68.47:8000/login/,0,0,16
+1.70E+12,35651,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-4,text,FALSE,,2699,0,59,274,http://43.138.68.47:8000/login/headicon/,0,0,0
+1.70E+12,13298,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-22,text,FALSE,,1789,0,58,273,http://43.138.68.47:8000/login/headicon/,563,0,0
+1.70E+12,35873,login,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-73,text,FALSE,,2699,0,57,272,http://43.138.68.47:8000/login/,0,0,13
+1.70E+12,3437,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-16,text,FALSE,,2699,0,56,271,http://43.138.68.47:8000/login/headicon/,0,0,0
+1.70E+12,31929,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-78,text,FALSE,,1789,0,56,271,http://43.138.68.47:8000/login/headicon/,2228,0,0
+1.70E+12,36016,login,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-58,text,FALSE,,2699,0,54,269,http://43.138.68.47:8000/login/,0,0,16
+1.70E+12,35790,login,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-81,text,FALSE,,2699,0,53,268,http://43.138.68.47:8000/login/,0,0,38
+1.70E+12,1790,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-74,text,FALSE,,2699,0,52,267,http://43.138.68.47:8000/login/headicon/,0,0,0
+1.70E+12,30630,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-23,text,FALSE,,1789,0,51,266,http://43.138.68.47:8000/login/headicon/,4723,0,0
+1.70E+12,35170,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-34,text,FALSE,,2699,0,50,265,http://43.138.68.47:8000/login/headicon/,0,0,0
+1.70E+12,36010,login,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-59,text,FALSE,,2699,0,49,264,http://43.138.68.47:8000/login/,0,0,12
+1.70E+12,35682,login,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-92,text,FALSE,,2699,0,49,264,http://43.138.68.47:8000/login/,0,0,32
+1.70E+12,9694,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-35,text,FALSE,,1789,0,47,262,http://43.138.68.47:8000/login/headicon/,509,0,0
+1.70E+12,35980,login,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-62,text,FALSE,,2699,0,46,261,http://43.138.68.47:8000/login/,0,0,14
+1.70E+12,22160,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-7,text,FALSE,,1789,0,46,261,http://43.138.68.47:8000/login/headicon/,4273,0,0
+1.70E+12,6573,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-11,text,FALSE,,1789,0,44,259,http://43.138.68.47:8000/login/headicon/,417,0,0
+1.70E+12,4800,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-12,text,FALSE,,2699,0,43,258,http://43.138.68.47:8000/login/headicon/,0,0,0
+1.70E+12,35949,login,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-65,text,FALSE,,2699,0,42,257,http://43.138.68.47:8000/login/,0,0,15
+1.70E+12,35783,login,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-82,text,FALSE,,2699,0,41,256,http://43.138.68.47:8000/login/,0,0,26
+1.70E+12,5511,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-42,text,FALSE,,1878,0,40,255,http://43.138.68.47:8000/login/headicon/,615,0,0
+1.70E+12,35606,login,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-100,text,FALSE,,2699,0,39,254,http://43.138.68.47:8000/login/,0,0,14
+1.70E+12,8046,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-17,text,FALSE,,1878,0,38,253,http://43.138.68.47:8000/login/headicon/,374,0,0
+1.70E+12,33652,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-5,text,FALSE,,1878,0,37,252,http://43.138.68.47:8000/login/headicon/,15719,0,0
+1.70E+12,19351,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-94,text,FALSE,,1789,0,37,252,http://43.138.68.47:8000/login/headicon/,3281,0,0
+1.70E+12,35927,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-3,text,FALSE,,2699,0,35,250,http://43.138.68.47:8000/login/headicon/,0,0,0
+1.70E+12,36302,login,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-30,text,FALSE,,2699,0,34,249,http://43.138.68.47:8000/login/,0,0,40
+1.70E+12,14921,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-28,text,FALSE,,1878,0,34,249,http://43.138.68.47:8000/login/headicon/,622,0,0
+1.70E+12,35925,login,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-68,text,FALSE,,2699,0,32,247,http://43.138.68.47:8000/login/,0,0,13
+1.70E+12,31405,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-52,text,FALSE,,1789,0,31,246,http://43.138.68.47:8000/login/headicon/,3666,0,0
+1.70E+12,8508,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-10,text,FALSE,,1789,0,30,245,http://43.138.68.47:8000/login/headicon/,180,0,0
+1.70E+12,35846,login,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-76,text,FALSE,,2699,0,29,244,http://43.138.68.47:8000/login/,0,0,13
+1.70E+12,2029,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-14,text,FALSE,,1789,0,29,244,http://43.138.68.47:8000/login/headicon/,1647,0,0
+1.70E+12,36477,login,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-13,text,FALSE,,2699,0,29,244,http://43.138.68.47:8000/login/,0,0,14
+1.70E+12,35806,login,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-80,text,FALSE,,2699,0,26,241,http://43.138.68.47:8000/login/,0,0,45
+1.70E+12,27344,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-8,text,FALSE,,1789,0,25,240,http://43.138.68.47:8000/login/headicon/,8181,0,0
+1.70E+12,36298,login,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-31,text,FALSE,,2699,0,25,240,http://43.138.68.47:8000/login/,0,0,34
+1.70E+12,36277,login,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-33,text,FALSE,,2699,0,23,238,http://43.138.68.47:8000/login/,0,0,21
+1.70E+12,36218,login,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-39,text,FALSE,,2699,0,22,237,http://43.138.68.47:8000/login/,0,0,15
+1.70E+12,33216,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-64,text,FALSE,,1789,0,22,237,http://43.138.68.47:8000/login/headicon/,4038,0,0
+1.70E+12,6080,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-98,text,FALSE,,1789,0,20,235,http://43.138.68.47:8000/login/headicon/,1148,0,0
+1.70E+12,13258,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-21,text,FALSE,,1789,0,19,234,http://43.138.68.47:8000/login/headicon/,471,0,0
+1.70E+12,966,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-15,text,FALSE,,1789,0,18,233,http://43.138.68.47:8000/login/headicon/,963,0,0
+1.70E+12,36110,login,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-50,text,FALSE,,2699,0,17,232,http://43.138.68.47:8000/login/,0,0,39
+1.70E+12,12686,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-49,text,FALSE,,1789,0,16,231,http://43.138.68.47:8000/login/headicon/,177,0,0
+1.70E+12,17324,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-46,text,FALSE,,1789,0,15,230,http://43.138.68.47:8000/login/headicon/,2166,0,0
+1.70E+12,1122,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-89,text,FALSE,,1789,0,14,229,http://43.138.68.47:8000/login/headicon/,1044,0,0
+1.70E+12,33500,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-19,text,FALSE,,1789,0,13,228,http://43.138.68.47:8000/login/headicon/,1353,0,0
+1.70E+12,1597,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-91,text,FALSE,,2699,0,12,227,http://43.138.68.47:8000/login/headicon/,0,0,0
+1.70E+12,35761,login,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-85,text,FALSE,,2699,0,11,226,http://43.138.68.47:8000/login/,0,0,19
+1.70E+12,35645,login,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-97,text,FALSE,,2699,0,10,225,http://43.138.68.47:8000/login/,0,0,14
+1.70E+12,36071,login,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-54,text,FALSE,,2699,0,9,224,http://43.138.68.47:8000/login/,0,0,22
+1.70E+12,35957,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-2,text,FALSE,,1789,0,8,223,http://43.138.68.47:8000/login/headicon/,28470,0,0
+1.70E+12,36344,login,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-27,text,FALSE,,2699,0,7,222,http://43.138.68.47:8000/login/,0,0,64
+1.70E+12,17125,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-48,text,FALSE,,1878,0,7,222,http://43.138.68.47:8000/login/headicon/,2088,0,0
+1.70E+12,35954,login,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-66,text,FALSE,,2699,0,5,220,http://43.138.68.47:8000/login/,0,0,15
+1.70E+12,17445,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-77,text,FALSE,,1878,0,4,219,http://43.138.68.47:8000/login/headicon/,3466,0,0
+1.70E+12,36172,login,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-44,text,FALSE,,2699,0,3,218,http://43.138.68.47:8000/login/,0,0,25
+1.70E+12,4677,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-93,text,FALSE,,1789,0,2,217,http://43.138.68.47:8000/login/headicon/,698,0,0
+1.70E+12,35950,login,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-67,text,FALSE,,2699,0,1,216,http://43.138.68.47:8000/login/,0,0,12
+1.70296E+12,627,login,200,OK,login 1-1,text,TRUE,,908,217,62,246,http://43.138.68.47:8000/login/,627,0,17
+1.70296E+12,650,login,200,OK,login 1-3,text,TRUE,,908,217,67,266,http://43.138.68.47:8000/login/,650,0,23
+1.70296E+12,726,login,200,OK,login 1-2,text,TRUE,,908,217,73,290,http://43.138.68.47:8000/login/,726,0,14
+1.70296E+12,695,login,200,OK,login 1-5,text,TRUE,,908,217,73,290,http://43.138.68.47:8000/login/,695,0,11
+1.70296E+12,823,login,200,OK,login 1-4,text,TRUE,,908,217,85,337,http://43.138.68.47:8000/login/,823,0,21
+1.70296E+12,1017,login,200,OK,login 1-6,text,TRUE,,908,217,100,400,http://43.138.68.47:8000/login/,1017,0,16
+1.70296E+12,1209,login,200,OK,login 1-17,text,TRUE,,908,217,100,400,http://43.138.68.47:8000/login/,1209,0,14
+1.70296E+12,1169,login,200,OK,login 1-25,text,TRUE,,908,217,100,400,http://43.138.68.47:8000/login/,1169,0,18
+1.70296E+12,1058,login,200,OK,login 1-37,text,TRUE,,908,217,100,400,http://43.138.68.47:8000/login/,1058,0,16
+1.70296E+12,1150,login,200,OK,login 1-65,text,TRUE,,908,217,100,400,http://43.138.68.47:8000/login/,1150,0,12
+1.70296E+12,1514,login,200,OK,login 1-39,text,TRUE,,908,217,100,400,http://43.138.68.47:8000/login/,1514,0,19
+1.70296E+12,1284,login,200,OK,login 1-63,text,TRUE,,908,217,100,400,http://43.138.68.47:8000/login/,1284,0,14
+1.70296E+12,1428,login,200,OK,login 1-49,text,TRUE,,908,217,100,400,http://43.138.68.47:8000/login/,1428,0,16
+1.70296E+12,1405,login,200,OK,login 1-68,text,TRUE,,908,217,100,400,http://43.138.68.47:8000/login/,1405,0,47
+1.70296E+12,1472,login,200,OK,login 1-67,text,TRUE,,908,217,100,400,http://43.138.68.47:8000/login/,1472,0,14
+1.70296E+12,1282,login,200,OK,login 1-91,text,TRUE,,908,217,100,400,http://43.138.68.47:8000/login/,1282,0,17
+1.70296E+12,1309,login,200,OK,login 1-95,text,TRUE,,907,217,100,400,http://43.138.68.47:8000/login/,1309,0,53
+1.70296E+12,1423,login,200,OK,login 1-85,text,TRUE,,907,217,100,400,http://43.138.68.47:8000/login/,1423,0,9
+1.70296E+12,2709,login,200,OK,login 1-45,text,TRUE,,908,217,100,400,http://43.138.68.47:8000/login/,2709,0,25
+1.70296E+12,2706,login,200,OK,login 1-51,text,TRUE,,908,217,100,400,http://43.138.68.47:8000/login/,2706,0,13
+1.70296E+12,2714,login,200,OK,login 1-94,text,TRUE,,907,217,100,400,http://43.138.68.47:8000/login/,2714,0,55
+1.70296E+12,3910,login,200,OK,login 1-80,text,TRUE,,908,217,100,400,http://43.138.68.47:8000/login/,3910,0,1050
+1.70296E+12,4561,login,200,OK,login 1-47,text,TRUE,,908,217,100,400,http://43.138.68.47:8000/login/,4560,0,19
+1.70296E+12,4214,login,200,OK,login 1-96,text,TRUE,,907,217,100,400,http://43.138.68.47:8000/login/,4214,0,1031
+1.70296E+12,5035,login,200,OK,login 1-74,text,TRUE,,908,217,100,400,http://43.138.68.47:8000/login/,5035,0,26
+1.70296E+12,5834,login,200,OK,login 1-46,text,TRUE,,908,217,100,400,http://43.138.68.47:8000/login/,5834,0,15
+1.70296E+12,5594,login,200,OK,login 1-79,text,TRUE,,908,217,100,400,http://43.138.68.47:8000/login/,5594,0,1054
+1.70296E+12,6321,login,200,OK,login 1-54,text,TRUE,,908,217,100,400,http://43.138.68.47:8000/login/,6321,0,15
+1.70296E+12,8769,login,200,OK,login 1-42,text,TRUE,,908,217,100,398,http://43.138.68.47:8000/login/,8769,0,17
+1.70296E+12,8782,loginIcon,200,OK,login 1-37,bin,TRUE,,499789,248,100,395,http://43.138.68.47:8000/login/headicon/,830,0,0
+1.70296E+12,9902,login,200,OK,login 1-41,text,TRUE,,908,217,100,395,http://43.138.68.47:8000/login/,9902,0,25
+1.70296E+12,9869,login,200,OK,login 1-59,text,TRUE,,908,217,100,393,http://43.138.68.47:8000/login/,9869,0,22
+1.70296E+12,9751,login,200,OK,login 1-82,text,TRUE,,908,217,100,393,http://43.138.68.47:8000/login/,9751,0,10
+1.70296E+12,2192,login,200,OK,login 1-37,text,TRUE,,908,217,100,387,http://43.138.68.47:8000/login/,2192,0,0
+1.70296E+12,11741,login,200,OK,login 1-73,text,TRUE,,908,217,100,387,http://43.138.68.47:8000/login/,11741,0,1083
+1.70296E+12,12868,login,200,OK,login 1-69,text,TRUE,,908,217,100,385,http://43.138.68.47:8000/login/,12868,0,1123
+1.70296E+12,14677,login,502,Bad Gateway,login 1-23,text,FALSE,,314,217,100,380,http://43.138.68.47:8000/login/,14677,0,12
+1.70296E+12,15153,login,200,OK,login 1-66,text,TRUE,,908,217,100,376,http://43.138.68.47:8000/login/,15153,0,15
+1.70296E+12,15672,login,200,OK,login 1-28,text,TRUE,,908,217,100,376,http://43.138.68.47:8000/login/,15672,0,14
+1.70296E+12,17261,login,200,OK,login 1-12,text,TRUE,,908,217,100,372,http://43.138.68.47:8000/login/,17261,0,15
+1.70296E+12,16080,loginIcon,200,OK,login 1-25,bin,TRUE,,499789,248,100,372,http://43.138.68.47:8000/login/headicon/,640,0,0
+1.70296E+12,17688,login,200,OK,login 1-7,text,TRUE,,908,217,100,372,http://43.138.68.47:8000/login/,17688,0,12
+1.70296E+12,17921,login,200,OK,login 1-13,text,TRUE,,908,217,100,372,http://43.138.68.47:8000/login/,17921,0,15
+1.70296E+12,18920,login,200,OK,login 1-55,text,TRUE,,908,217,100,371,http://43.138.68.47:8000/login/,18920,0,11
+1.70296E+12,5168,login,200,OK,login 1-25,text,TRUE,,908,217,100,364,http://43.138.68.47:8000/login/,5168,0,0
+1.70296E+12,24104,login,200,OK,login 1-8,text,TRUE,,908,217,100,360,http://43.138.68.47:8000/login/,24104,0,14
+1.70296E+12,23529,login,200,OK,login 1-75,text,TRUE,,908,217,100,359,http://43.138.68.47:8000/login/,23529,0,19
+1.70296E+12,18219,loginIcon,200,OK,login 1-46,bin,TRUE,,499789,248,100,358,http://43.138.68.47:8000/login/headicon/,992,0,0
+1.70296E+12,22467,loginIcon,200,OK,login 1-91,bin,TRUE,,499789,248,100,357,http://43.138.68.47:8000/login/headicon/,599,0,0
+1.70296E+12,1099,login,200,OK,login 1-91,text,TRUE,,908,217,100,349,http://43.138.68.47:8000/login/,1099,0,0
+1.70296E+12,1816,login,200,OK,login 1-46,text,TRUE,,908,217,100,348,http://43.138.68.47:8000/login/,1816,0,0
+1.70296E+12,14153,loginIcon,200,OK,login 1-37,bin,TRUE,,499789,248,100,347,http://43.138.68.47:8000/login/headicon/,1094,0,0
+1.70296E+12,947,login,200,OK,login 1-37,text,TRUE,,908,217,100,344,http://43.138.68.47:8000/login/,947,0,0
+1.70296E+12,27776,login,502,Bad Gateway,login 1-24,text,FALSE,,314,217,100,343,http://43.138.68.47:8000/login/,27776,0,15
+1.70296E+12,28357,login,200,OK,login 1-27,text,TRUE,,908,217,100,342,http://43.138.68.47:8000/login/,28357,0,21
+1.70296E+12,28362,login,200,OK,login 1-26,text,TRUE,,908,217,100,342,http://43.138.68.47:8000/login/,28362,0,12
+1.70296E+12,29323,login,200,OK,login 1-18,text,TRUE,,908,217,100,340,http://43.138.68.47:8000/login/,29323,0,14
+1.70296E+12,29833,login,200,OK,login 1-58,text,TRUE,,908,217,100,337,http://43.138.68.47:8000/login/,29833,0,15
+1.70296E+12,29872,login,200,OK,login 1-57,text,TRUE,,908,217,100,337,http://43.138.68.47:8000/login/,29872,0,14
+1.70296E+12,29957,login,200,OK,login 1-72,text,TRUE,,908,217,100,334,http://43.138.68.47:8000/login/,29957,0,20
+1.70296E+12,30403,login,200,OK,login 1-70,text,TRUE,,908,217,100,327,http://43.138.68.47:8000/login/,30403,0,41
+1.70296E+12,32062,login,200,OK,login 1-34,text,TRUE,,908,217,100,321,http://43.138.68.47:8000/login/,32062,0,29
+1.70296E+12,32324,login,200,OK,login 1-36,text,TRUE,,908,217,100,321,http://43.138.68.47:8000/login/,32324,0,13
+1.70296E+12,32500,login,200,OK,login 1-19,text,TRUE,,908,217,100,321,http://43.138.68.47:8000/login/,32500,0,16
+1.70296E+12,32470,login,200,OK,login 1-92,text,TRUE,,907,217,100,321,http://43.138.68.47:8000/login/,32470,0,29
+1.70296E+12,32959,login,200,OK,login 1-48,text,TRUE,,908,217,100,321,http://43.138.68.47:8000/login/,32959,0,13
+1.70296E+12,33465,login,200,OK,login 1-20,text,TRUE,,908,217,100,321,http://43.138.68.47:8000/login/,33465,0,10
+1.70296E+12,33109,login,200,OK,login 1-93,text,TRUE,,907,217,100,321,http://43.138.68.47:8000/login/,33109,0,26
+1.70296E+12,33391,login,200,OK,login 1-99,text,TRUE,,908,217,100,321,http://43.138.68.47:8000/login/,33391,0,23
+1.70296E+12,33903,login,200,OK,login 1-97,text,TRUE,,908,217,100,321,http://43.138.68.47:8000/login/,33903,0,40
+1.70296E+12,34021,login,200,OK,login 1-100,text,TRUE,,907,217,100,321,http://43.138.68.47:8000/login/,34021,0,20
+1.70296E+12,35555,login,200,OK,login 1-35,text,TRUE,,908,217,100,321,http://43.138.68.47:8000/login/,35555,0,22
+1.70296E+12,39559,login,200,OK,login 1-29,text,TRUE,,908,217,100,313,http://43.138.68.47:8000/login/,39559,0,13
+1.70296E+12,39564,login,200,OK,login 1-38,text,TRUE,,908,217,100,313,http://43.138.68.47:8000/login/,39564,0,13
+1.70296E+12,39308,login,200,OK,login 1-87,text,TRUE,,907,217,100,311,http://43.138.68.47:8000/login/,39308,0,13
+1.70296E+12,40445,login,200,OK,login 1-88,text,TRUE,,908,217,100,293,http://43.138.68.47:8000/login/,40445,0,13
+1.70296E+12,16590,loginIcon,200,OK,login 1-91,bin,TRUE,,499789,248,100,292,http://43.138.68.47:8000/login/headicon/,636,0,0
+1.70296E+12,16471,loginIcon,200,OK,login 1-46,bin,TRUE,,499789,248,100,291,http://43.138.68.47:8000/login/headicon/,500,0,0
+1.70296E+12,39933,loginIcon,200,OK,login 1-94,bin,TRUE,,499789,248,100,289,http://43.138.68.47:8000/login/headicon/,1921,0,0
+1.70296E+12,1335,login,200,OK,login 1-91,text,TRUE,,908,217,100,289,http://43.138.68.47:8000/login/,1335,0,0
+1.70296E+12,43421,login,200,OK,login 1-71,text,TRUE,,908,217,100,288,http://43.138.68.47:8000/login/,43421,0,30
+1.70296E+12,44089,login,200,OK,login 1-14,text,TRUE,,908,217,100,288,http://43.138.68.47:8000/login/,44089,0,14
+1.70296E+12,42919,loginIcon,200,OK,login 1-17,bin,TRUE,,499789,248,100,288,http://43.138.68.47:8000/login/headicon/,533,0,0
+1.70296E+12,1729,login,200,OK,login 1-94,text,TRUE,,908,217,100,288,http://43.138.68.47:8000/login/,1729,0,0
+1.70296E+12,2526,login,200,OK,login 1-46,text,TRUE,,908,217,100,288,http://43.138.68.47:8000/login/,2526,0,0
+1.70296E+12,44802,login,502,Bad Gateway,login 1-61,text,FALSE,,314,217,100,287,http://43.138.68.47:8000/login/,44802,0,12
+1.70296E+12,1779,login,200,OK,login 1-17,text,TRUE,,908,217,100,284,http://43.138.68.47:8000/login/,1779,0,0
+1.70296E+12,46514,login,200,OK,login 1-21,text,TRUE,,908,217,100,284,http://43.138.68.47:8000/login/,46514,0,13
+1.70296E+12,46719,login,200,OK,login 1-98,text,TRUE,,907,217,100,281,http://43.138.68.47:8000/login/,46719,0,24
+1.70296E+12,50106,loginIcon,200,OK,login 1-51,bin,TRUE,,499789,248,100,268,http://43.138.68.47:8000/login/headicon/,2056,0,0
+1.70296E+12,745,login,200,OK,login 1-51,text,TRUE,,908,217,100,266,http://43.138.68.47:8000/login/,745,0,0
+1.70296E+12,54753,login,200,OK,login 1-52,text,TRUE,,908,217,100,264,http://43.138.68.47:8000/login/,54753,0,17
+1.70296E+12,10992,loginIcon,200,OK,login 1-46,bin,TRUE,,499789,248,100,260,http://43.138.68.47:8000/login/headicon/,788,0,0
+1.70296E+12,55708,login,200,OK,login 1-64,text,TRUE,,908,217,100,260,http://43.138.68.47:8000/login/,55708,0,18
+1.70296E+12,713,login,200,OK,login 1-46,text,TRUE,,908,217,100,259,http://43.138.68.47:8000/login/,713,0,0
+1.70296E+12,58281,login,200,OK,login 1-62,text,TRUE,,908,217,100,259,http://43.138.68.47:8000/login/,58281,0,11
+1.70296E+12,58349,login,200,OK,login 1-60,text,TRUE,,908,217,100,259,http://43.138.68.47:8000/login/,58349,0,14
+1.70296E+12,58598,login,200,OK,login 1-50,text,TRUE,,908,217,100,259,http://43.138.68.47:8000/login/,58598,0,11
+1.70296E+12,26760,loginIcon,200,OK,login 1-48,bin,TRUE,,499789,248,100,253,http://43.138.68.47:8000/login/headicon/,2594,0,0
+1.70296E+12,433,login,200,OK,login 1-48,text,TRUE,,908,217,100,249,http://43.138.68.47:8000/login/,433,0,0
+1.70296E+12,61044,login,504,Gateway Time-out,login 1-53,text,FALSE,,329,217,100,246,http://43.138.68.47:8000/login/,61044,0,16
+1.70296E+12,27227,loginIcon,200,OK,login 1-99,bin,TRUE,,499789,248,100,246,http://43.138.68.47:8000/login/headicon/,4575,0,0
+1.70296E+12,61312,login,504,Gateway Time-out,login 1-44,text,FALSE,,329,217,100,246,http://43.138.68.47:8000/login/,61312,0,32
+1.70296E+12,61322,login,504,Gateway Time-out,login 1-43,text,FALSE,,329,217,100,246,http://43.138.68.47:8000/login/,61322,0,39
+1.70296E+12,61298,login,504,Gateway Time-out,login 1-56,text,FALSE,,329,217,100,246,http://43.138.68.47:8000/login/,61298,0,14
+1.70296E+12,603,login,200,OK,login 1-99,text,TRUE,,908,217,100,246,http://43.138.68.47:8000/login/,603,0,25
+1.70296E+12,61512,login,504,Gateway Time-out,login 1-81,text,FALSE,,329,217,100,246,http://43.138.68.47:8000/login/,61512,0,18
+1.70296E+12,62003,loginIcon,200,OK,login 1-3,bin,TRUE,,499789,248,100,245,http://43.138.68.47:8000/login/headicon/,31759,0,0
+1.70296E+12,60015,loginIcon,504,Gateway Time-out,login 1-45,text,FALSE,,329,248,100,243,http://43.138.68.47:8000/login/headicon/,60015,0,0
+1.70296E+12,598,login,200,OK,login 1-45,text,TRUE,,908,217,100,242,http://43.138.68.47:8000/login/,598,0,16
+1.70296E+12,1513,login,200,OK,login 1-3,text,TRUE,,908,217,100,241,http://43.138.68.47:8000/login/,1513,0,1081
+1.70296E+12,60427,loginIcon,200,OK,login 1-96,bin,TRUE,,499789,248,100,239,http://43.138.68.47:8000/login/headicon/,8253,0,0
+1.70296E+12,675,login,200,OK,login 1-96,text,TRUE,,908,217,100,239,http://43.138.68.47:8000/login/,675,0,16
+1.70296E+12,69653,login,200,OK,login 1-11,text,TRUE,,908,217,100,239,http://43.138.68.47:8000/login/,69653,0,15
+1.70296E+12,69700,login,200,OK,login 1-9,text,TRUE,,908,217,100,239,http://43.138.68.47:8000/login/,69700,0,15
+1.70296E+12,69687,login,200,OK,login 1-16,text,TRUE,,908,217,100,239,http://43.138.68.47:8000/login/,69687,0,13
+1.70296E+12,68628,loginIcon,200,OK,login 1-39,bin,TRUE,,499789,248,100,236,http://43.138.68.47:8000/login/headicon/,9019,0,0
+1.70296E+12,1236,login,200,OK,login 1-39,text,TRUE,,908,217,100,234,http://43.138.68.47:8000/login/,1236,0,30
+1.70296E+12,30238,loginIcon,200,OK,login 1-91,bin,TRUE,,499789,248,100,233,http://43.138.68.47:8000/login/headicon/,1290,0,0
+1.70296E+12,502,login,200,OK,login 1-91,text,TRUE,,908,217,100,233,http://43.138.68.47:8000/login/,502,0,54
+1.70296E+12,75531,login,504,Gateway Time-out,login 1-15,text,FALSE,,329,217,100,233,http://43.138.68.47:8000/login/,75531,0,9
+1.70296E+12,75587,login,504,Gateway Time-out,login 1-10,text,FALSE,,329,217,100,233,http://43.138.68.47:8000/login/,75587,0,13
+1.70296E+12,18844,loginIcon,200,OK,login 1-46,bin,TRUE,,499789,248,100,233,http://43.138.68.47:8000/login/headicon/,67,0,0
+1.70296E+12,1007,login,200,OK,login 1-46,text,TRUE,,908,217,100,230,http://43.138.68.47:8000/login/,1007,0,18
+1.70296E+12,20460,loginIcon,200,OK,login 1-60,bin,TRUE,,499789,248,100,230,http://43.138.68.47:8000/login/headicon/,148,0,0
+1.70296E+12,64138,loginIcon,200,OK,login 1-28,bin,TRUE,,499789,248,100,230,http://43.138.68.47:8000/login/headicon/,2268,0,0
+1.70296E+12,1223,login,200,OK,login 1-28,text,TRUE,,908,217,100,230,http://43.138.68.47:8000/login/,1223,0,1019
+1.70296E+12,2682,login,200,OK,login 1-60,text,TRUE,,908,217,100,230,http://43.138.68.47:8000/login/,2682,0,2021
+1.70296E+12,62976,loginIcon,200,OK,login 1-25,bin,TRUE,,499789,248,100,230,http://43.138.68.47:8000/login/headicon/,1390,0,0
+1.70296E+12,86301,login,200,OK,login 1-31,text,TRUE,,908,217,100,228,http://43.138.68.47:8000/login/,86301,0,12
+1.70296E+12,85624,loginIcon,Non HTTP response code: org.apache.http.ConnectionClosedException,"Non HTTP response message: Premature end of Content-Length delimited message body (expected: 499,452; received: 475,862)",login 1-6,text,FALSE,,1344,0,100,228,http://43.138.68.47:8000/login/headicon/,4800,0,0
+1.70296E+12,86593,login,200,OK,login 1-22,text,TRUE,,908,217,100,228,http://43.138.68.47:8000/login/,86593,0,13
+1.70296E+12,84830,loginIcon,Non HTTP response code: org.apache.http.ConnectionClosedException,"Non HTTP response message: Premature end of Content-Length delimited message body (expected: 499,452; received: 168,866)",login 1-68,text,FALSE,,1344,0,100,228,http://43.138.68.47:8000/login/headicon/,10830,0,0
+1.70296E+12,86816,login,200,OK,login 1-32,text,TRUE,,908,217,100,228,http://43.138.68.47:8000/login/,86816,0,14
+1.70296E+12,310,login,200,OK,login 1-68,text,TRUE,,908,217,100,228,http://43.138.68.47:8000/login/,310,0,86
+1.70296E+12,762,login,200,OK,login 1-6,text,TRUE,,908,217,100,227,http://43.138.68.47:8000/login/,762,0,52
+1.70296E+12,2247,login,200,OK,login 1-25,text,TRUE,,908,217,100,226,http://43.138.68.47:8000/login/,2247,0,2032
+1.70296E+12,77105,loginIcon,200,OK,login 1-69,bin,TRUE,,499789,248,100,225,http://43.138.68.47:8000/login/headicon/,1515,0,0
+1.70296E+12,240,login,200,OK,login 1-69,text,TRUE,,908,217,100,225,http://43.138.68.47:8000/login/,240,0,19
+1.70296E+12,90905,loginIcon,200,OK,login 1-1,bin,TRUE,,499789,248,100,225,http://43.138.68.47:8000/login/headicon/,59130,0,0
+1.70296E+12,273,login,200,OK,login 1-1,text,TRUE,,908,217,100,225,http://43.138.68.47:8000/login/,273,0,16
+1.70296E+12,91433,login,504,Gateway Time-out,login 1-40,text,FALSE,,329,217,100,225,http://43.138.68.47:8000/login/,91433,0,15
+1.70296E+12,91750,login,504,Gateway Time-out,login 1-33,text,FALSE,,329,217,100,225,http://43.138.68.47:8000/login/,91750,0,13
+1.70296E+12,91719,login,504,Gateway Time-out,login 1-84,text,FALSE,,329,217,100,222,http://43.138.68.47:8000/login/,91719,0,10
+1.70296E+12,91719,loginIcon,504,Gateway Time-out,login 1-4,text,FALSE,,329,248,100,222,http://43.138.68.47:8000/login/headicon/,91719,0,0
+1.70296E+12,92490,login,504,Gateway Time-out,login 1-30,text,FALSE,,329,217,100,222,http://43.138.68.47:8000/login/,92490,0,14
+1.70296E+12,92040,login,504,Gateway Time-out,login 1-78,text,FALSE,,329,217,100,222,http://43.138.68.47:8000/login/,92040,0,18
+1.70296E+12,91984,login,504,Gateway Time-out,login 1-83,text,FALSE,,329,217,100,222,http://43.138.68.47:8000/login/,91984,0,17
+1.70296E+12,92521,login,504,Gateway Time-out,login 1-76,text,FALSE,,329,217,100,218,http://43.138.68.47:8000/login/,92521,0,20
+1.70296E+12,92511,login,504,Gateway Time-out,login 1-77,text,FALSE,,329,217,100,218,http://43.138.68.47:8000/login/,92511,0,13
+1.70296E+12,54924,loginIcon,200,OK,login 1-38,bin,TRUE,,499789,248,100,212,http://43.138.68.47:8000/login/headicon/,1286,0,0
+1.70296E+12,93159,loginIcon,200,OK,login 1-67,bin,TRUE,,499789,248,100,211,http://43.138.68.47:8000/login/headicon/,8396,0,0
+1.70296E+12,478,login,200,OK,login 1-38,text,TRUE,,908,217,100,211,http://43.138.68.47:8000/login/,478,0,42
+1.70296E+12,257,login,200,OK,login 1-67,text,TRUE,,908,217,100,211,http://43.138.68.47:8000/login/,257,0,18
+1.70296E+12,3274,login,200,OK,login 1-4,text,TRUE,,908,217,100,211,http://43.138.68.47:8000/login/,3274,0,3034
+1.70296E+12,33815,loginIcon,200,OK,login 1-99,bin,TRUE,,499789,248,100,211,http://43.138.68.47:8000/login/headicon/,207,0,0
+1.70296E+12,336,login,200,OK,login 1-99,text,TRUE,,908,217,100,211,http://43.138.68.47:8000/login/,336,0,0
+1.70296E+12,67329,loginIcon,200,OK,login 1-18,bin,TRUE,,499789,248,100,210,http://43.138.68.47:8000/login/headicon/,178,0,0
+1.70296E+12,488,login,200,OK,login 1-18,text,TRUE,,908,217,100,207,http://43.138.68.47:8000/login/,488,0,31
+1.70296E+12,68874,loginIcon,Non HTTP response code: org.apache.http.ConnectionClosedException,"Non HTTP response message: Premature end of Content-Length delimited message body (expected: 499,452; received: 76,958)",login 1-57,text,FALSE,,1343,0,100,204,http://43.138.68.47:8000/login/headicon/,509,0,0
+1.70296E+12,38971,loginIcon,200,OK,login 1-48,bin,TRUE,,499789,248,100,204,http://43.138.68.47:8000/login/headicon/,364,0,17
+1.70296E+12,524,login,200,OK,login 1-57,text,TRUE,,908,217,100,204,http://43.138.68.47:8000/login/,524,0,15
+1.70296E+12,256,login,200,OK,login 1-48,text,TRUE,,908,217,100,204,http://43.138.68.47:8000/login/,256,0,0
+1.70296E+12,101228,loginIcon,Non HTTP response code: org.apache.http.ConnectionClosedException,"Non HTTP response message: Premature end of Content-Length delimited message body (expected: 499,452; received: 96,262)",login 1-2,text,FALSE,,1343,0,100,203,http://43.138.68.47:8000/login/headicon/,29301,0,0
+1.70296E+12,1301,login,200,OK,login 1-2,text,TRUE,,908,217,100,203,http://43.138.68.47:8000/login/,1301,0,1057
+1.70296E+12,51043,loginIcon,200,OK,login 1-51,bin,TRUE,,499789,248,100,203,http://43.138.68.47:8000/login/headicon/,117,0,0
+1.70296E+12,259,login,200,OK,login 1-51,text,TRUE,,908,217,100,203,http://43.138.68.47:8000/login/,258,0,18
+1.70296E+12,106245,login,504,Gateway Time-out,login 1-86,text,FALSE,,329,217,100,203,http://43.138.68.47:8000/login/,106245,0,13
+1.70296E+12,106204,login,504,Gateway Time-out,login 1-89,text,FALSE,,329,217,100,203,http://43.138.68.47:8000/login/,106204,0,16
+1.70296E+12,106206,login,504,Gateway Time-out,login 1-90,text,FALSE,,329,217,100,203,http://43.138.68.47:8000/login/,106206,0,19
+1.70296E+12,14543,loginIcon,200,OK,login 1-38,bin,TRUE,,499789,248,100,200,http://43.138.68.47:8000/login/headicon/,776,0,0
+1.70296E+12,684,login,200,OK,login 1-38,text,TRUE,,908,217,100,200,http://43.138.68.47:8000/login/,684,0,0
+1.70296E+12,81474,loginIcon,200,OK,login 1-36,bin,TRUE,,499789,248,100,200,http://43.138.68.47:8000/login/headicon/,5472,0,0
+1.70296E+12,66510,loginIcon,Non HTTP response code: org.apache.http.ConnectionClosedException,"Non HTTP response message: Premature end of Content-Length delimited message body (expected: 499,452; received: 81,962)",login 1-98,text,FALSE,,1343,0,100,200,http://43.138.68.47:8000/login/headicon/,1536,0,0
+1.70296E+12,226,login,200,OK,login 1-36,text,TRUE,,908,217,100,200,http://43.138.68.47:8000/login/,226,0,12
+1.70296E+12,691,login,200,OK,login 1-98,text,TRUE,,908,217,100,200,http://43.138.68.47:8000/login/,691,0,17
+1.70296E+12,16176,loginIcon,200,OK,login 1-48,bin,TRUE,,499789,248,100,200,http://43.138.68.47:8000/login/headicon/,124,0,0
+1.70296E+12,229,login,200,OK,login 1-48,text,TRUE,,908,217,100,200,http://43.138.68.47:8000/login/,229,0,0
+1.70296E+12,72669,loginIcon,200,OK,login 1-61,bin,TRUE,,499789,248,100,200,http://43.138.68.47:8000/login/headicon/,4356,0,0
+1.70296E+12,101662,loginIcon,200,OK,login 1-12,bin,TRUE,,499789,248,100,200,http://43.138.68.47:8000/login/headicon/,1383,0,0
+1.70296E+12,1258,login,200,OK,login 1-61,text,TRUE,,908,217,100,200,http://43.138.68.47:8000/login/,1258,0,1020
+1.70296E+12,99909,loginIcon,200,OK,login 1-55,bin,TRUE,,499789,248,100,200,http://43.138.68.47:8000/login/headicon/,2377,0,0
+1.70296E+12,487,login,200,OK,login 1-12,text,TRUE,,908,217,100,200,http://43.138.68.47:8000/login/,487,0,13
+1.70296E+12,445,login,200,OK,login 1-55,text,TRUE,,908,217,100,200,http://43.138.68.47:8000/login/,445,0,19
+1.70296E+12,116522,loginIcon,200,OK,login 1-47,bin,TRUE,,499789,248,100,200,http://43.138.68.47:8000/login/headicon/,2350,0,0
+1.70296E+12,246,login,200,OK,login 1-47,text,TRUE,,908,217,100,200,http://43.138.68.47:8000/login/,246,0,24
+1.70296E+12,120101,loginIcon,200,OK,login 1-65,bin,TRUE,,499789,248,100,200,http://43.138.68.47:8000/login/headicon/,11453,0,0
+1.70296E+12,282,login,200,OK,login 1-65,text,TRUE,,908,217,100,200,http://43.138.68.47:8000/login/,282,0,18
+1.70296E+12,101511,loginIcon,200,OK,login 1-8,bin,TRUE,,499789,248,100,200,http://43.138.68.47:8000/login/headicon/,905,0,0
+1.70296E+12,38534,loginIcon,200,OK,login 1-68,bin,TRUE,,499789,248,100,200,http://43.138.68.47:8000/login/headicon/,17,0,0
+1.70296E+12,297,login,200,OK,login 1-8,text,TRUE,,908,217,100,200,http://43.138.68.47:8000/login/,297,0,31
+1.70296E+12,22735,loginIcon,200,OK,login 1-2,bin,TRUE,,499789,248,100,200,http://43.138.68.47:8000/login/headicon/,27,0,0
+1.70296E+12,449,login,200,OK,login 1-68,text,TRUE,,908,217,100,200,http://43.138.68.47:8000/login/,449,0,0
+1.70296E+12,484,login,200,OK,login 1-2,text,TRUE,,908,217,100,200,http://43.138.68.47:8000/login/,484,0,0
+1.70296E+12,65074,loginIcon,Non HTTP response code: org.apache.http.ConnectionClosedException,"Non HTTP response message: Premature end of Content-Length delimited message body (expected: 499,452; received: 86,966)",login 1-81,text,FALSE,,1343,0,100,200,http://43.138.68.47:8000/login/headicon/,208,0,14
+1.70296E+12,272,login,200,OK,login 1-81,text,TRUE,,908,217,100,200,http://43.138.68.47:8000/login/,272,0,31
+1.70296E+12,41353,loginIcon,200,OK,login 1-32,bin,TRUE,,499789,248,100,200,http://43.138.68.47:8000/login/headicon/,38,0,18
+1.70296E+12,204,login,200,OK,login 1-32,text,TRUE,,908,217,100,200,http://43.138.68.47:8000/login/,204,0,0
+1.70296E+12,38428,loginIcon,200,OK,login 1-69,bin,TRUE,,499789,248,100,200,http://43.138.68.47:8000/login/headicon/,30,0,0
+1.70296E+12,33213,loginIcon,200,OK,login 1-99,bin,TRUE,,499789,248,100,200,http://43.138.68.47:8000/login/headicon/,90,0,0
+1.70296E+12,496,login,200,OK,login 1-69,text,TRUE,,908,217,100,200,http://43.138.68.47:8000/login/,496,0,0
+1.70296E+12,1247,login,200,OK,login 1-99,text,TRUE,,908,217,100,200,http://43.138.68.47:8000/login/,1247,0,1026
+1.70296E+12,96334,loginIcon,Non HTTP response code: org.apache.http.ConnectionClosedException,"Non HTTP response message: Premature end of Content-Length delimited message body (expected: 499,452; received: 157,362)",login 1-35,text,FALSE,,1344,0,100,200,http://43.138.68.47:8000/login/headicon/,2200,0,0
+1.70296E+12,246,login,200,OK,login 1-35,text,TRUE,,908,217,100,200,http://43.138.68.47:8000/login/,246,0,22
+1.70296E+12,17628,loginIcon,200,OK,login 1-98,bin,TRUE,,499789,248,100,200,http://43.138.68.47:8000/login/headicon/,887,0,0
+1.70296E+12,25494,loginIcon,200,OK,login 1-89,bin,TRUE,,499789,248,100,200,http://43.138.68.47:8000/login/headicon/,69,0,46
+1.70296E+12,260,login,200,OK,login 1-98,text,TRUE,,908,217,100,200,http://43.138.68.47:8000/login/,260,0,0
+1.70296E+12,221,login,200,OK,login 1-89,text,TRUE,,908,217,100,200,http://43.138.68.47:8000/login/,221,0,0
+1.70296E+12,4169,loginIcon,200,OK,login 1-69,bin,TRUE,,499789,248,100,200,http://43.138.68.47:8000/login/headicon/,26,0,0
+1.70296E+12,229,login,200,OK,login 1-69,text,TRUE,,908,217,100,200,http://43.138.68.47:8000/login/,229,0,0
+1.70296E+12,91391,loginIcon,200,OK,login 1-94,bin,TRUE,,499789,248,100,200,http://43.138.68.47:8000/login/headicon/,939,0,0
+1.70296E+12,106682,loginIcon,Non HTTP response code: org.apache.http.ConnectionClosedException,"Non HTTP response message: Premature end of Content-Length delimited message body (expected: 499,452; received: 210,263)",login 1-70,text,FALSE,,1344,0,100,200,http://43.138.68.47:8000/login/headicon/,123,0,0
+1.70296E+12,245,login,200,OK,login 1-70,text,TRUE,,908,217,100,200,http://43.138.68.47:8000/login/,245,0,14
+1.70296E+12,103352,loginIcon,200,OK,login 1-100,bin,TRUE,,499789,248,100,200,http://43.138.68.47:8000/login/headicon/,2544,0,0
+1.70296E+12,4786,loginIcon,200,OK,login 1-69,bin,TRUE,,499789,248,100,200,http://43.138.68.47:8000/login/headicon/,34,0,0
+1.70296E+12,240,login,200,OK,login 1-69,text,TRUE,,908,217,100,200,http://43.138.68.47:8000/login/,240,0,0
+1.70296E+12,104452,loginIcon,Non HTTP response code: org.apache.http.ConnectionClosedException,"Non HTTP response message: Premature end of Content-Length delimited message body (expected: 499,452; received: 93,342)",login 1-97,text,FALSE,,1343,0,100,200,http://43.138.68.47:8000/login/headicon/,3853,0,0
+1.70296E+12,3320,login,200,OK,login 1-94,text,TRUE,,908,217,100,200,http://43.138.68.47:8000/login/,3320,0,57
+1.70296E+12,978,login,200,OK,login 1-97,text,TRUE,,908,217,100,200,http://43.138.68.47:8000/login/,978,0,15
+1.70296E+12,2272,login,200,OK,login 1-100,text,TRUE,,908,217,100,200,http://43.138.68.47:8000/login/,2271,0,2033
+1.70296E+12,8715,loginIcon,200,OK,login 1-98,bin,TRUE,,499789,248,100,200,http://43.138.68.47:8000/login/headicon/,180,0,0
+1.70296E+12,228,login,200,OK,login 1-98,text,TRUE,,908,217,100,200,http://43.138.68.47:8000/login/,228,0,0
+1.70296E+12,92375,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-52,text,FALSE,,1789,0,100,200,http://43.138.68.47:8000/login/headicon/,122,0,0
+1.70296E+12,145368,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-85,text,FALSE,,1789,0,100,200,http://43.138.68.47:8000/login/headicon/,19607,0,0
+1.70296E+12,81362,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-96,text,FALSE,,1789,0,100,200,http://43.138.68.47:8000/login/headicon/,15,0,0
+1.70296E+12,61035,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-31,text,FALSE,,1789,0,100,200,http://43.138.68.47:8000/login/headicon/,11782,0,1023
+1.70296E+12,28110,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-12,text,FALSE,,1878,0,100,200,http://43.138.68.47:8000/login/headicon/,22,0,0
+1.70296E+12,42271,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-51,text,FALSE,,1789,0,100,200,http://43.138.68.47:8000/login/headicon/,19,0,0
+1.70296E+12,27820,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-55,text,FALSE,,1789,0,94,194,http://43.138.68.47:8000/login/headicon/,21,0,0
+1.70296E+12,106317,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-88,text,FALSE,,1789,0,93,193,http://43.138.68.47:8000/login/headicon/,83,0,0
+1.70296E+12,113600,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-93,text,FALSE,,1789,0,92,192,http://43.138.68.47:8000/login/headicon/,1354,0,0
+1.70296E+12,119020,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-26,text,FALSE,,1789,0,92,192,http://43.138.68.47:8000/login/headicon/,209,0,0
+1.70296E+12,138460,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-42,text,FALSE,,1789,0,90,190,http://43.138.68.47:8000/login/headicon/,1450,0,0
+1.70296E+12,141261,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-79,text,FALSE,,1789,0,89,189,http://43.138.68.47:8000/login/headicon/,1618,0,0
+1.70296E+12,77886,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-11,text,FALSE,,1789,0,89,189,http://43.138.68.47:8000/login/headicon/,2111,0,1038
+1.70296E+12,141871,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-74,text,FALSE,,1789,0,88,188,http://43.138.68.47:8000/login/headicon/,943,0,0
+1.70296E+12,70765,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-46,text,FALSE,,1789,0,86,186,http://43.138.68.47:8000/login/headicon/,20,0,0
+1.70296E+12,5899,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-98,text,FALSE,,1789,0,85,185,http://43.138.68.47:8000/login/headicon/,350,0,0
+1.70296E+12,51799,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-4,text,FALSE,,1789,0,85,185,http://43.138.68.47:8000/login/headicon/,417,0,0
+1.70296E+12,37079,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-38,text,FALSE,,1789,0,85,185,http://43.138.68.47:8000/login/headicon/,557,0,0
+1.70296E+12,65550,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-60,text,FALSE,,1789,0,82,182,http://43.138.68.47:8000/login/headicon/,583,0,0
+1.70296E+12,73217,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-91,text,FALSE,,1789,0,81,181,http://43.138.68.47:8000/login/headicon/,20,0,0
+1.70296E+12,18943,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-32,text,FALSE,,1878,0,80,180,http://43.138.68.47:8000/login/headicon/,237,0,0
+1.70296E+12,132740,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-23,text,FALSE,,1789,0,80,180,http://43.138.68.47:8000/login/headicon/,2486,0,0
+1.70296E+12,71970,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-15,text,FALSE,,1789,0,78,178,http://43.138.68.47:8000/login/headicon/,2136,0,1056
+1.70296E+12,60840,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-22,text,FALSE,,1789,0,77,177,http://43.138.68.47:8000/login/headicon/,1567,0,1029
+1.70296E+12,55814,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-40,text,FALSE,,1789,0,77,177,http://43.138.68.47:8000/login/headicon/,1047,0,15
+1.70296E+12,52090,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-67,text,FALSE,,1789,0,75,175,http://43.138.68.47:8000/login/headicon/,17,0,0
+1.70296E+12,55571,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-33,text,FALSE,,1789,0,74,174,http://43.138.68.47:8000/login/headicon/,38,0,16
+1.70296E+12,88554,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-50,text,FALSE,,1789,0,73,173,http://43.138.68.47:8000/login/headicon/,1029,0,0
+1.70296E+12,28314,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-61,text,FALSE,,1789,0,72,172,http://43.138.68.47:8000/login/headicon/,332,0,0
+1.70296E+12,119025,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-27,text,FALSE,,1789,0,71,171,http://43.138.68.47:8000/login/headicon/,269,0,0
+1.70296E+12,140787,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-54,text,FALSE,,1789,0,70,170,http://43.138.68.47:8000/login/headicon/,761,0,0
+1.70296E+12,117239,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-58,text,FALSE,,1789,0,69,169,http://43.138.68.47:8000/login/headicon/,217,0,0
+1.70296E+12,47805,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-57,text,FALSE,,1789,0,69,169,http://43.138.68.47:8000/login/headicon/,14,0,0
+1.70296E+12,21443,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-68,text,FALSE,,1878,0,67,167,http://43.138.68.47:8000/login/headicon/,928,0,0
+1.70296E+12,100934,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-21,text,FALSE,,1789,0,67,167,http://43.138.68.47:8000/login/headicon/,975,0,0
+1.70296E+12,16827,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-99,text,FALSE,,1789,0,65,165,http://43.138.68.47:8000/login/headicon/,16,0,0
+1.70296E+12,33277,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-36,text,FALSE,,1789,0,64,164,http://43.138.68.47:8000/login/headicon/,20,0,0
+1.70296E+12,40534,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-90,text,FALSE,,1789,0,63,163,http://43.138.68.47:8000/login/headicon/,402,0,29
+1.70296E+12,142946,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-80,text,FALSE,,1789,0,62,162,http://43.138.68.47:8000/login/headicon/,1709,0,0
+1.70296E+12,55851,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-1,text,FALSE,,1878,0,61,161,http://43.138.68.47:8000/login/headicon/,18,0,0
+1.70296E+12,21669,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-8,text,FALSE,,1789,0,61,161,http://43.138.68.47:8000/login/headicon/,24,0,0
+1.70296E+12,137086,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-82,text,FALSE,,1789,0,60,160,http://43.138.68.47:8000/login/headicon/,1477,0,0
+1.70296E+12,7350,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-97,text,FALSE,,1789,0,59,159,http://43.138.68.47:8000/login/headicon/,16,0,0
+1.70296E+12,113995,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-20,text,FALSE,,1789,0,58,158,http://43.138.68.47:8000/login/headicon/,1046,0,0
+1.70296E+12,146920,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-5,text,FALSE,,1789,0,57,157,http://43.138.68.47:8000/login/headicon/,29516,0,0
+1.70296E+12,85906,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-43,text,FALSE,,1789,0,56,156,http://43.138.68.47:8000/login/headicon/,1640,0,1026
+1.70296E+12,137351,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-41,text,FALSE,,1789,0,55,155,http://43.138.68.47:8000/login/headicon/,2289,0,0
+1.70296E+12,123381,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-75,text,FALSE,,1789,0,53,153,http://43.138.68.47:8000/login/headicon/,1739,0,0
+1.70296E+12,19995,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-81,text,FALSE,,1789,0,52,152,http://43.138.68.47:8000/login/headicon/,54,0,0
+1.70296E+12,83460,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-3,text,FALSE,,1789,0,52,152,http://43.138.68.47:8000/login/headicon/,138,0,0
+1.70296E+12,115263,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-34,text,FALSE,,1789,0,50,150,http://43.138.68.47:8000/login/headicon/,1950,0,0
+1.70296E+12,54386,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-76,text,FALSE,,1789,0,49,149,http://43.138.68.47:8000/login/headicon/,570,0,30
+1.70296E+12,54386,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-77,text,FALSE,,1789,0,49,149,http://43.138.68.47:8000/login/headicon/,1817,0,1034
+1.70296E+12,107477,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-87,text,FALSE,,1789,0,47,147,http://43.138.68.47:8000/login/headicon/,380,0,0
+1.70296E+12,129625,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-13,text,FALSE,,1789,0,46,146,http://43.138.68.47:8000/login/headicon/,1581,0,0
+1.70296E+12,77824,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-16,text,FALSE,,1789,0,45,145,http://43.138.68.47:8000/login/headicon/,1377,0,20
+1.70296E+12,145397,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-95,text,FALSE,,1789,0,44,144,http://43.138.68.47:8000/login/headicon/,16618,0,0
+1.70296E+12,85917,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-44,text,FALSE,,1878,0,44,144,http://43.138.68.47:8000/login/headicon/,1585,0,1028
+1.70296E+12,88766,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-62,text,FALSE,,1789,0,42,142,http://43.138.68.47:8000/login/headicon/,171,0,0
+1.70296E+12,8417,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-69,text,FALSE,,1878,0,42,142,http://43.138.68.47:8000/login/headicon/,21,0,0
+1.70296E+12,101585,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-17,text,FALSE,,1789,0,40,140,http://43.138.68.47:8000/login/headicon/,1746,0,0
+1.70296E+12,55099,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-84,text,FALSE,,1789,0,39,139,http://43.138.68.47:8000/login/headicon/,1276,0,1031
+1.70296E+12,129919,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-7,text,FALSE,,1789,0,39,139,http://43.138.68.47:8000/login/headicon/,4972,0,0
+1.70296E+12,131860,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-66,text,FALSE,,1789,0,37,137,http://43.138.68.47:8000/login/headicon/,1260,0,0
+1.70296E+12,107827,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-29,text,FALSE,,1789,0,36,136,http://43.138.68.47:8000/login/headicon/,870,0,0
+1.70296E+12,77882,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-9,text,FALSE,,1789,0,35,135,http://43.138.68.47:8000/login/headicon/,2563,0,1026
+1.70296E+12,25878,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-47,text,FALSE,,1789,0,35,135,http://43.138.68.47:8000/login/headicon/,840,0,0
+1.70296E+12,50358,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-18,text,FALSE,,1789,0,34,134,http://43.138.68.47:8000/login/headicon/,523,0,0
+1.70296E+12,40570,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-86,text,FALSE,,1878,0,32,132,http://43.138.68.47:8000/login/headicon/,48,0,16
+1.70296E+12,54852,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-83,text,FALSE,,1789,0,32,132,http://43.138.68.47:8000/login/headicon/,151,0,15
+1.70296E+12,54888,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-30,text,FALSE,,1789,0,30,130,http://43.138.68.47:8000/login/headicon/,1157,0,1022
+1.70296E+12,137216,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-59,text,FALSE,,1789,0,30,130,http://43.138.68.47:8000/login/headicon/,2061,0,0
+1.70296E+12,119665,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-24,text,FALSE,,1789,0,28,128,http://43.138.68.47:8000/login/headicon/,718,0,0
+1.70296E+12,71994,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-10,text,FALSE,,1789,0,28,128,http://43.138.68.47:8000/login/headicon/,1587,0,1061
+1.70296E+12,114274,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-92,text,FALSE,,1789,0,26,126,http://43.138.68.47:8000/login/headicon/,368,0,0
+1.70296E+12,103544,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-71,text,FALSE,,1789,0,25,125,http://43.138.68.47:8000/login/headicon/,1193,0,0
+1.70296E+12,85805,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-56,text,FALSE,,1789,0,24,124,http://43.138.68.47:8000/login/headicon/,465,0,26
+1.70296E+12,54856,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-78,text,FALSE,,1878,0,24,124,http://43.138.68.47:8000/login/headicon/,1220,0,16
+1.70296E+12,21185,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-2,text,FALSE,,1878,0,22,122,http://43.138.68.47:8000/login/headicon/,27,0,0
+1.70296E+12,59784,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-25,text,FALSE,,1789,0,21,121,http://43.138.68.47:8000/login/headicon/,833,0,0
+1.70296E+12,7026,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-100,text,FALSE,,1878,0,20,120,http://43.138.68.47:8000/login/headicon/,752,0,0
+1.70296E+12,60214,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-6,text,FALSE,,1789,0,20,120,http://43.138.68.47:8000/login/headicon/,81,0,0
+1.70296E+12,66365,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-28,text,FALSE,,1789,0,18,118,http://43.138.68.47:8000/login/headicon/,1053,0,0
+1.70296E+12,86108,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-53,text,FALSE,,1789,0,17,117,http://43.138.68.47:8000/login/headicon/,36,0,17
+1.70296E+12,135209,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-73,text,FALSE,,1878,0,17,117,http://43.138.68.47:8000/login/headicon/,1665,0,0
+1.70296E+12,114994,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-19,text,FALSE,,1789,0,15,115,http://43.138.68.47:8000/login/headicon/,5012,0,0
+1.70296E+12,91333,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-64,text,FALSE,,1789,0,15,115,http://43.138.68.47:8000/login/headicon/,16,0,0
+1.70296E+12,31415,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-48,text,FALSE,,1789,0,13,113,http://43.138.68.47:8000/login/headicon/,146,0,0
+1.70296E+12,145762,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-49,text,FALSE,,1789,0,12,112,http://43.138.68.47:8000/login/headicon/,9662,0,0
+1.70296E+12,7646,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-94,text,FALSE,,1789,0,12,112,http://43.138.68.47:8000/login/headicon/,16,0,0
+1.70296E+12,83911,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-45,text,FALSE,,1789,0,12,112,http://43.138.68.47:8000/login/headicon/,1286,0,0
+1.70296E+12,120176,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-37,text,FALSE,,1789,0,9,109,http://43.138.68.47:8000/login/headicon/,591,0,0
+1.70296E+12,145768,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-63,text,FALSE,,1789,0,9,109,http://43.138.68.47:8000/login/headicon/,8929,0,0
+1.70296E+12,14862,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-89,text,FALSE,,1789,0,9,109,http://43.138.68.47:8000/login/headicon/,241,0,0
+1.70296E+12,117005,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-72,text,FALSE,,1789,0,9,109,http://43.138.68.47:8000/login/headicon/,894,0,0
+1.70296E+12,15199,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-35,text,FALSE,,1789,0,9,109,http://43.138.68.47:8000/login/headicon/,362,0,0
+1.70296E+12,75917,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-39,text,FALSE,,1789,0,9,109,http://43.138.68.47:8000/login/headicon/,824,0,0
+1.70296E+12,9651,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-70,text,FALSE,,1789,0,8,108,http://43.138.68.47:8000/login/headicon/,20,0,0
+1.70296E+12,25492,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-65,text,FALSE,,1789,0,7,106,http://43.138.68.47:8000/login/headicon/,575,0,0
+1.70296E+12,103454,loginIcon,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,login 1-14,text,FALSE,,1789,0,7,106,http://43.138.68.47:8000/login/headicon/,1489,0,0
