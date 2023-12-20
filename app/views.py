@@ -30,6 +30,14 @@ from koko import settings
 #         testUnit = models.testUnit.objects.get(pk=1)
 #         return render(request, "index.html", {"testUnit": testUnit})
 
+def paramcheck(param_json: dict, key: str, dest: type):
+    if key in param_json:
+        if type(param_json[key]) == dest:
+            return True
+        else:
+            return False
+    else:
+        return False
 
 def timeover(recDate):
     import time
@@ -52,7 +60,6 @@ def timeover(recDate):
                 return False
             else:
                 return True
-    return True
 
 def followlist(followee: str):
     followeelist = followee.strip('[').strip(']').split(',')
