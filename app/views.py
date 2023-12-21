@@ -94,10 +94,9 @@ def login(request):
             }
         )
         response_json = {}
-        if code == "3e5428-ff58yj5" or code.startswith("3e5428-ff58yj5"):
-            res = code[14:]
+        if code == "3e5428-ff58yj5":
             response_json = {
-                'openid': "88hrt-j37db-x56kt-fkyou" + res,
+                'openid': "88hrt-j37db-x56kt-fkyou",
                 'session_key': "As your wish",
                 'unionid': 'usotuki',
                 'errmsg': '',
@@ -885,7 +884,7 @@ def friends_uidsearch(request):
         if len(userlist) == 0:
             return JsonResponse({"message": "User unauthorized"}, status=401)
         elif len(userlist) == 1:
-            checkbit = paramcheck(json_param, 'uid', int)
+            checkbit = paramcheck(json_param, 'uid', str)
             if type(checkbit) == bool:
                 f_uid = int(json_param['uid'])
             else:
