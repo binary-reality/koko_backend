@@ -130,7 +130,7 @@ def login(request):
             # info
             user_data_info = {}
             user_data_info['openid'] = curuser.open_id
-            user_data_info['uid'] = str(curuser.uid)
+            user_data_info['uid'] = curuser.uid
             user_data_info['nickname'] = curuser.nickname
             user_data_info['timeline'] = curuser.reserved_time
             user_data_info['followees'] = followlist(curuser.followee)
@@ -151,7 +151,7 @@ def login(request):
                 flwb_content['intro'] = flwb_info.intro
                 flwb_content['coverUrl'] = flwb_info.image_name
                 flwb_content['id'] = flwb_info.index
-                flwb_content['owner_uid'] = flwb_info.owner_openid.uid
+                flwb_content['uid'] = flwb_info.owner_openid.uid
                 flwb_content['following'] = 1
                 words = []
                 wdlist = flwb_info.wordlist.all()
@@ -391,7 +391,7 @@ def getlist(request):
     if request.method == "POST":
         # print(files)
         json_param = json.loads(request.body)
-        checkbit = paramcheck(json_param, 'type', str)
+        checkbit = paramcheck(json_param, 'type', int)
         if type(checkbit) == bool:
             word = json_param["type"]
         else:
@@ -857,7 +857,7 @@ def friends_namesearch(request):
                     if xuser.open_id == openid:
                         continue
                     f_info = []
-                    f_info.append(str(xuser.uid))
+                    f_info.append(xuser.uid)
                     f_info.append(xuser.nickname)
                     f_info.append(xuser.headicon_name)
                     if xuser.uid in cur_list:
@@ -884,7 +884,7 @@ def friends_uidsearch(request):
         if len(userlist) == 0:
             return JsonResponse({"message": "User unauthorized"}, status=401)
         elif len(userlist) == 1:
-            checkbit = paramcheck(json_param, 'uid', str)
+            checkbit = paramcheck(json_param, 'uid', int)
             if type(checkbit) == bool:
                 f_uid = int(json_param['uid'])
             else:
@@ -897,7 +897,7 @@ def friends_uidsearch(request):
                 f_info = []
                 if f_user.open_id != openid:
                     f_info_content = []
-                    f_info_content.append(str(f_user.uid))
+                    f_info_content.append(f_user.uid)
                     f_info_content.append(f_user.nickname)
                     f_info_content.append(f_user.headicon_name)
                     cur_flist = followlist(userlist[0].followee)
@@ -932,12 +932,12 @@ def friends_list(request):
             true_f_list = []
             f_info_list = []
             for x in f_list:
-                f_uid = int(x)
+                f_uid = x
                 f_userlist = models.user.objects.filter(uid=f_uid)
                 if len(f_userlist) == 1:
                     f_user = f_userlist[0]
                     f_info = []
-                    f_info.append(str(f_user.uid))
+                    f_info.append(f_user.uid)
                     f_info.append(f_user.nickname)
                     f_info.append(f_user.headicon_name)
                     f_info_list.append(f_info)
@@ -964,9 +964,9 @@ def friends_follow(request):
             return JsonResponse({"message": "User unauthorized"}, status=401)
         elif len(userlist) == 1:
             user = userlist[0]
-            checkbit = paramcheck(json_param, 'uid', str)
+            checkbit = paramcheck(json_param, 'uid', int)
             if type(checkbit) == bool:
-                f_uid = int(json_param['uid'])
+                f_uid = json_param['uid']
             else:
                 return JsonResponse({'message': checkbit}, status=400)
             f_userlist = models.user.objects.filter(uid=f_uid)
@@ -1002,9 +1002,9 @@ def friends_unfollow(request):
             return JsonResponse({"message": "User unauthorized"}, status=401)
         elif len(userlist) == 1:
             user = userlist[0]
-            checkbit = paramcheck(json_param, 'uid', str)
+            checkbit = paramcheck(json_param, 'uid', int)
             if type(checkbit) == bool:
-                f_uid = int(json_param['uid'])
+                f_uid = json_param['uid']
             else:
                 return JsonResponse({'message': checkbit}, status=400)
             f_userlist = models.user.objects.filter(uid=f_uid)
@@ -1040,9 +1040,9 @@ def friends_headicon(request):
         if len(userlist) == 0:
             return JsonResponse({"message": "User unauthorized"}, status=401)
         elif len(userlist) == 1:
-            checkbit = paramcheck(json_param, 'uid', str)
+            checkbit = paramcheck(json_param, 'uid', int)
             if type(checkbit) == bool:
-                f_uid = int(json_param['uid'])
+                f_uid = json_param['uid']
             else:
                 return JsonResponse({'message': checkbit}, status=400)
             f_userlist = models.user.objects.filter(uid=f_uid)
@@ -1073,9 +1073,9 @@ def friends_info(request):
             return JsonResponse({"message": "User unauthorized"}, status=401)
         elif len(userlist) == 1:
             user = userlist[0]
-            checkbit = paramcheck(json_param, 'uid', str)
+            checkbit = paramcheck(json_param, 'uid', int)
             if type(checkbit) == bool:
-                f_uid = int(json_param['uid'])
+                f_uid = json_param['uid']
             else:
                 return JsonResponse({'message': checkbit}, status=400)
             f_userlist = models.user.objects.filter(uid=f_uid)
@@ -1146,9 +1146,9 @@ def friends_subscribe(request):
             return JsonResponse({"message": "User unauthorized"}, status=401)
         elif len(userlist) == 1:
             user = userlist[0]
-            checkbit = paramcheck(json_param, 'uid', str)
+            checkbit = paramcheck(json_param, 'uid', int)
             if type(checkbit) == bool:
-                f_uid = int(json_param['uid'])
+                f_uid = json_param['uid']
             else:
                 return JsonResponse({'message': checkbit}, status=400)
             f_userlist = models.user.objects.filter(uid=f_uid)
@@ -1196,9 +1196,9 @@ def friends_unsubscribe(request):
             return JsonResponse({"message": "User unauthorized"}, status=401)
         elif len(userlist) == 1:
             user = userlist[0]
-            checkbit = paramcheck(json_param, 'uid', str)
+            checkbit = paramcheck(json_param, 'uid', int)
             if type(checkbit) == bool:
-                f_uid = int(json_param['uid'])
+                f_uid = json_param['uid']
             else:
                 return JsonResponse({'message': checkbit}, status=400)
             f_userlist = models.user.objects.filter(uid=f_uid)
@@ -1242,6 +1242,7 @@ def friends_unsubscribe(request):
 def friends_wbcover(request):
     if request.method == "POST":
         json_param = json.loads(request.body)
+        print(json_param)
         checkbit = paramcheck(json_param, 'openid', str)
         if type(checkbit) == bool:
             openid = json_param["openid"]
@@ -1251,9 +1252,9 @@ def friends_wbcover(request):
         if len(userlist) == 0:
             return JsonResponse({"message": "User unauthorized"}, status=401)
         elif len(userlist) == 1:
-            checkbit = paramcheck(json_param, 'uid', str)
+            checkbit = paramcheck(json_param, 'uid', int)
             if type(checkbit) == bool:
-                f_uid = int(json_param['uid'])
+                f_uid = json_param['uid']
             else:
                 return JsonResponse({'message': checkbit}, status=400)
             f_userlist = models.user.objects.filter(uid=f_uid)
