@@ -30,6 +30,16 @@ from koko import settings
 #         testUnit = models.testUnit.objects.get(pk=1)
 #         return render(request, "index.html", {"testUnit": testUnit})
 
+def paramcheck(param_json: dict, key: str, dest: type):
+    if key in param_json:
+        if type(param_json[key]) == dest:
+            return True
+        else:
+            print('Request key type error: ' + key)
+            return 'Request key type error: ' + key
+    else:
+        print('Request key missing: ' + key)
+        return 'Request key missing: ' + key
 
 def timeover(recDate):
     import time
@@ -52,7 +62,6 @@ def timeover(recDate):
                 return False
             else:
                 return True
-    return True
 
 def followlist(followee: str):
     followeelist = followee.strip('[').strip(']').split(',')
@@ -68,7 +77,11 @@ def login(request):
 
     if request.method == "POST":
         json_param = json.loads(request.body)
-        code = json_param['code']
+        checkbit = paramcheck(json_param, 'code', str)
+        if type(checkbit) == bool:
+            code = json_param['code']
+        else:
+            return JsonResponse({'message': checkbit}, status=400)
         # print(request)
 
         login_response = requests.get(
@@ -81,10 +94,9 @@ def login(request):
             }
         )
         response_json = {}
-        if code == "3e5428-ff58yj5" or code.startswith("3e5428-ff58yj5"):
-            res = code[14:]
+        if code == "3e5428-ff58yj5":
             response_json = {
-                'openid': "88hrt-j37db-x56kt-fkyou" + res,
+                'openid': "88hrt-j37db-x56kt-fkyou",
                 'session_key': "As your wish",
                 'unionid': 'usotuki',
                 'errmsg': '',
@@ -118,7 +130,7 @@ def login(request):
             # info
             user_data_info = {}
             user_data_info['openid'] = curuser.open_id
-            user_data_info['uid'] = str(curuser.uid)
+            user_data_info['uid'] = curuser.uid
             user_data_info['nickname'] = curuser.nickname
             user_data_info['timeline'] = curuser.reserved_time
             user_data_info['followees'] = followlist(curuser.followee)
@@ -139,7 +151,7 @@ def login(request):
                 flwb_content['intro'] = flwb_info.intro
                 flwb_content['coverUrl'] = flwb_info.image_name
                 flwb_content['id'] = flwb_info.index
-                flwb_content['owner_uid'] = flwb_info.owner_openid.uid
+                flwb_content['uid'] = flwb_info.owner_openid.uid
                 flwb_content['following'] = 1
                 words = []
                 wdlist = flwb_info.wordlist.all()
@@ -225,21 +237,27 @@ def login(request):
 
         return JsonResponse(response_json, status = 200)
     else:
-        return JsonResponse({"code": "405", "message": "Method not allowed"}, status = 405)
+        return JsonResponse({"message": "Method not allowed"}, status = 405)
 
 @csrf_exempt
 def getlogheadicon(request):
     if request.method == "POST":
         json_param = json.loads(request.body)
-        user_id = json_param['openid']
+        checkbit = paramcheck(json_param, 'openid', str)
+        if type(checkbit) == bool:
+            user_id = json_param['openid']
+        else:
+            return JsonResponse({'message': checkbit}, status=400)
         list = models.user.objects.filter(open_id=user_id)
         if (len(list) == 0):
-            return JsonResponse({'code': '401', "message": "User Unauthorized"}, status=401)
+            return JsonResponse({"message": "User unauthorized"}, status=401)
         elif len(list) == 1:
             image = list[0].headicon
             return FileResponse(image, as_attachment=True, filename="headicon.jpg", status=200)
+        else:
+            pass
     else:
-        return JsonResponse({'code': '405', "message": "Method not allowed"}, status=405)
+        return JsonResponse({"message": "Method not allowed"}, status=405)
 
 @csrf_exempt
 def read(request):
@@ -280,15 +298,14 @@ def read(request):
 
         return JsonResponse(
             {
-                "code": 0,
-                "info": "Success in word analyzing",
+                "message": "Success in word analyzing",
                 "accent": result
             },
             status = 200
         )
 
     else:
-        return JsonResponse({"code": "405", "message": "Method not allowed"}, status = 405)
+        return JsonResponse({"message": "Method not allowed"}, status = 405)
     
 diction=Dic()
 @csrf_exempt
@@ -296,9 +313,17 @@ def search(request):
     if request.method == "POST":
         # print(files)
         json_param = json.loads(request.body)
-        word = json_param["searchWord"]
+        checkbit = paramcheck(json_param, 'searchWord', str)
+        if type(checkbit) == bool:
+            word = json_param["searchWord"]
+        else:
+            return JsonResponse({'message': checkbit}, status=400)
         # print(wave)
-        openid = json_param['openid']
+        checkbit = paramcheck(json_param, 'openid', str)
+        if type(checkbit) == bool:
+            openid = json_param['openid']
+        else:
+            return JsonResponse({'message': checkbit}, status=400)
         # print(word)
         # print(diction.search_results(word))
         # 获取首选项中查询结果条数
@@ -314,25 +339,33 @@ def search(request):
         # print(resultNum)
         return JsonResponse(
             {
-                "code": 0,
-                "info": "Success in word searching",
+                "message": "Success in word searching",
                 "results": diction.search_results(word,num=resultNum)
             },
             status = 200
         )
 
     else:
-        return JsonResponse({"code": "405", "message": "Method not allowed"}, status = 405)
+        return JsonResponse({"message": "Method not allowed"}, status = 405)
     
 @csrf_exempt
 def detail(request):
     if request.method == "POST":
         # print(files)
         json_param = json.loads(request.body)
-        word = json_param["word"]
+        checkbit = paramcheck(json_param, 'word', str)
+        if type(checkbit) == bool:
+            word = json_param["word"]
+        else:
+            return JsonResponse({'message': checkbit}, status=400)
         
         # print(wave)
-        openid = json_param['openid']
+        checkbit = paramcheck(json_param, 'openid', str)
+        if type(checkbit) == bool:
+            openid = json_param["openid"]
+        else:
+            return JsonResponse({'message': checkbit}, status=400)
+
         user = models.user.objects.get(open_id=openid)
         userlist = user.searchrecord.filter(content=word)
         if len(userlist) == 0:
@@ -344,37 +377,42 @@ def detail(request):
             pass
         return JsonResponse(
             {
-                "code": 0,
-                "info": "Success in word searching",
+                "message": "Success in word searching",
                 "detail": diction.get_detail(word)
             },
             status = 200
         )
 
     else:
-        return JsonResponse({"code": "405", "message": "Method not allowed"}, status = 405)
+        return JsonResponse({"message": "Method not allowed"}, status = 405)
     
 @csrf_exempt
 def getlist(request):
     if request.method == "POST":
         # print(files)
         json_param = json.loads(request.body)
-        word = json_param["type"]
-        
+        checkbit = paramcheck(json_param, 'type', int)
+        if type(checkbit) == bool:
+            word = json_param["type"]
+        else:
+            return JsonResponse({'message': checkbit}, status=400)
+        checkbit = paramcheck(json_param, 'openid', str)
+        if type(checkbit) == bool:
+            openid = json_param["openid"]
+        else:
+            return JsonResponse({'message': checkbit}, status=400)
         # print(wave)
-        openid = request.POST.get("openid")
         
         return JsonResponse(
             {
-                "code": 0,
-                "info": "Success in word searching",
+                "message": "Success in word searching",
                 "medicine": diction.medical_list(word)
             },
             status = 200
         )
 
     else:
-        return JsonResponse({"code": "405", "message": "Method not allowed"}, status = 405)
+        return JsonResponse({"message": "Method not allowed"}, status = 405)
 
 @csrf_exempt
 def headicon_change(request):
@@ -387,7 +425,7 @@ def headicon_change(request):
         image_name = openid + "." + image_url_list[1]
         userlist = models.user.objects.filter(open_id=openid)
         if len(userlist) == 0:
-            return JsonResponse({"code": "401", "message": "User Unauthorized"}, status=401)
+            return JsonResponse({"message": "User unauthorized"}, status=401)
         elif len(userlist) == 1:
             user = userlist[0]
             if user.headicon_name != 'headicon.png':
@@ -395,136 +433,193 @@ def headicon_change(request):
             user.headicon_name = image_name
             user.headicon = image
             user.save()
-            return JsonResponse({"code": 0, "message": "Headicon successfully changed!"}, status=200)
+            return JsonResponse({"message": "Headicon successfully changed"}, status=200)
         else:
             pass
     else:
-        return JsonResponse({"code": "405", "message": "Method not allowed"}, status=405)
+        return JsonResponse({"message": "Method not allowed"}, status=405)
 
 @csrf_exempt
 def nickname_change(request):
     if request.method == "POST":
         json_param = json.loads(request.body)
-        openid = json_param['openid']
-        new_nickname = json_param['nickname']
+        checkbit = paramcheck(json_param, 'openid', str)
+        if type(checkbit) == bool:
+            openid = json_param["openid"]
+        else:
+            return JsonResponse({'message': checkbit}, status=400)
+        checkbit = paramcheck(json_param, 'nickname', str)
+        if type(checkbit) == bool:
+            new_nickname = json_param["nickname"]
+        else:
+            return JsonResponse({'message': checkbit}, status=400)
         print(new_nickname)
         userlist = models.user.objects.filter(open_id=openid)
         if len(userlist) == 0:
-            return JsonResponse({"code": "401", "message": "User Unauthorized"}, status=401)
+            return JsonResponse({"message": "User unauthorized"}, status=401)
         elif len(userlist) == 1:
             user = userlist[0]
             user.nickname = new_nickname
             user.save()
-            return JsonResponse({"code": 0, "message": "Nickname successfully changed!"}, status=200)
+            return JsonResponse({"message": "Nickname successfully changed"}, status=200)
         else:
             pass
     else:
-        return JsonResponse({"code": "405", "message": "Method not allowed"}, status=405)
+        return JsonResponse({"message": "Method not allowed"}, status=405)
 
 @csrf_exempt 
 def timeline_change(request):
     if request.method == "POST":
         json_param = json.loads(request.body)
-        openid = json_param['openid']
-        new_timeline = json_param['timeline']
+        checkbit = paramcheck(json_param, 'openid', str)
+        if type(checkbit) == bool:
+            openid = json_param["openid"]
+        else:
+            return JsonResponse({'message': checkbit}, status=400)
+        
+        checkbit = paramcheck(json_param, 'timeline', str)
+        if type(checkbit) == bool:
+            new_timeline = json_param["timeline"]
+        else:
+            return JsonResponse({'message': checkbit}, status=400)
         userlist = models.user.objects.filter(open_id=openid)
         if len(userlist) == 0:
-            return JsonResponse({"code": "401", "message": "User Unauthorized"}, status=401)
+            return JsonResponse({"message": "User unauthorized"}, status=401)
         elif len(userlist) == 1:
             user = userlist[0]
             user.reserved_time = new_timeline
             user.save()
-            return JsonResponse({"code": 0, "message": "Timeline successfully changed!"}, status=200)
+            return JsonResponse({"message": "Timeline successfully changed"}, status=200)
         else:
             pass
     else:
-        return JsonResponse({"code": "405", "message": "Method not allowed"}, status=405)
+        return JsonResponse({"message": "Method not allowed"}, status=405)
 
 @csrf_exempt
 def record_change(request):
     if request.method == "POST":
         json_param = json.loads(request.body)
-        openid = json_param['openid']
-        new_record = json_param['recordOn']
+        checkbit = paramcheck(json_param, 'openid', str)
+        if type(checkbit) == bool:
+            openid = json_param["openid"]
+        else:
+            return JsonResponse({'message': checkbit}, status=400)
+        checkbit = paramcheck(json_param, 'recordOn', str)
+        if type(checkbit) == bool:
+            new_record = json_param["recordOn"]
+        else:
+            return JsonResponse({'message': checkbit}, status=400)
         userlist = models.user.objects.filter(open_id=openid)
         if len(userlist) == 0:
-            return JsonResponse({"code": "401", "message": "User Unauthorized"}, status=401)
+            return JsonResponse({"message": "User unauthorized"}, status=401)
         elif len(userlist) == 1:
             user = userlist[0]
-            if new_record == "False" or new_record == "false" or new_record == 0 or new_record == "0":
+            if new_record == "False" or new_record == "false" or new_record == "0":
                 user.read_keep = 0
-            elif new_record == "True" or new_record == "true" or new_record == 1 or new_record == "1":
+            elif new_record == "True" or new_record == "true" or new_record == "1":
                 user.read_keep = 1
             else:
-                return JsonResponse({"code": "400", "message": "Bad request: invalid request argument"}, status=400)
+                return JsonResponse({"message": "Invalid request argument: recordOn"}, status=400)
             user.save()
-            return JsonResponse({"code": 0, "message": "Record button successfully changed!"}, status=200)
+            return JsonResponse({"message": "Record button successfully changed"}, status=200)
         else:
             pass
     else:
-        return JsonResponse({"code": "405", "message": "Method not allowed"}, status=405)
+        return JsonResponse({"message": "Method not allowed"}, status=405)
 
 @csrf_exempt
 def wb_create(request):
     if request.method == "POST":
         json_param = json.loads(request.body)
-        openid = json_param['openid']
+        checkbit = paramcheck(json_param, 'openid', str)
+        if type(checkbit) == bool:
+            openid = json_param["openid"]
+        else:
+            return JsonResponse({'message': checkbit}, status=400)
         userlist = models.user.objects.filter(open_id=openid)
         if len(userlist) == 0:
-            return JsonResponse({"code": "401", "message": "User Unauthorized"}, status=401)
+            return JsonResponse({"message": "User unauthorized"}, status=401)
         elif len(userlist) == 1:
             user = userlist[0]
             cur_wbnumber = user.wdlistnumber
             user.wbinfo.create(owner_openid=user, index=cur_wbnumber+1, name="未命名单词本"+str(cur_wbnumber+1), intro="这是单词本的介绍")
             user.wdlistnumber = user.wdlistnumber + 1
             user.save()
-            return JsonResponse({"code": 0, "message": "New wordbook successfully created!"}, status=200)
+            return JsonResponse({"message": "New wordbook successfully created"}, status=200)
         else:
             pass
     else:
-        return JsonResponse({"code": "405", "message": "Method not allowed"}, status=405)
+        return JsonResponse({"message": "Method not allowed"}, status=405)
 
 @csrf_exempt
 def wb_info_change(request):
     if request.method == "POST":
         json_param = json.loads(request.body)
-        openid = json_param['openid']
+        checkbit = paramcheck(json_param, 'openid', str)
+        if type(checkbit) == bool:
+            openid = json_param["openid"]
+        else:
+            return JsonResponse({'message': checkbit}, status=400)
         userlist = models.user.objects.filter(open_id=openid)
         if len(userlist) == 0:
-            return JsonResponse({"code": "401", "message": "User Unauthorized"}, status=401)
+            return JsonResponse({"message": "User unauthorized"}, status=401)
         elif len(userlist) == 1:
             user = userlist[0]
-            wbindex = json_param['index']
+
+            checkbit = paramcheck(json_param, 'index', int)
+            if type(checkbit) == bool:
+                wbindex = json_param["index"]
+            else:
+                return JsonResponse({'message': checkbit}, status=400)
+            
             wblist = user.wbinfo.filter(index=wbindex)
             if len(wblist) == 0:
-                return JsonResponse({"code": "404", "message": "Wordbook not found"}, status=404)
+                return JsonResponse({"message": "Wordbook not found"}, status=404)
             elif len(wblist) == 1:
                 user_wb = wblist[0]
+                checkbit = paramcheck(json_param, 'name', str)
+                if type(checkbit) == bool:
+                    pass
+                else:
+                    return JsonResponse({'message': checkbit}, status=400)
+                checkbit = paramcheck(json_param, 'intro', str)
+                if type(checkbit) == bool:
+                    pass
+                else:
+                    return JsonResponse({'message': checkbit}, status=400)
                 user_wb.name = json_param['name']
                 user_wb.intro = json_param['intro']
                 user_wb.save()
-                return JsonResponse({"code": 0, "message": "Wordbook information successfully changed!"}, status=200)
+                return JsonResponse({"message": "Wordbook information successfully changed"}, status=200)
             else:
                 pass
         else:
             pass
     else:
-        return JsonResponse({"code": "405", "message": "Method not allowed"}, status=405)
+        return JsonResponse({"message": "Method not allowed"}, status=405)
 
 @csrf_exempt
 def wb_image_get(request):
     if request.method == "POST":
         json_param = json.loads(request.body)
-        openid = json_param['openid']
+        checkbit = paramcheck(json_param, 'openid', str)
+        if type(checkbit) == bool:
+            openid = json_param["openid"]
+        else:
+            return JsonResponse({'message': checkbit}, status=400)
         userlist = models.user.objects.filter(open_id=openid)
         if len(userlist) == 0:
-            return JsonResponse({"code": "401", "message": "User Unauthorized"}, status=401)
+            return JsonResponse({"message": "User unauthorized"}, status=401)
         elif len(userlist) == 1:
             user = userlist[0]
-            wbindex = json_param['index']
+            checkbit = paramcheck(json_param, 'index', int)
+            if type(checkbit) == bool:
+                wbindex = json_param["index"]
+            else:
+                return JsonResponse({'message': checkbit}, status=400)
             wblist = user.wbinfo.filter(index=wbindex)
             if len(wblist) == 0:
-                return JsonResponse({"code": "404", "message": "Wordbook not found"}, status=404)
+                return JsonResponse({"message": "Wordbook not found"}, status=404)
             elif len(wblist) == 1:
                 return FileResponse(wblist[0].image, as_attachment=True, filename=wblist[0].image_name, status=200)
             else:
@@ -532,7 +627,7 @@ def wb_image_get(request):
         else:
             pass
     else:
-        return JsonResponse({"code": "405", "message": "Method not allowed"}, status=405)
+        return JsonResponse({"message": "Method not allowed"}, status=405)
 
 @csrf_exempt
 def wb_image_set(request):
@@ -540,13 +635,13 @@ def wb_image_set(request):
         openid = request.POST.get("openid")
         userlist = models.user.objects.filter(open_id=openid)
         if len(userlist) == 0:
-            return JsonResponse({"code": "401", "message": "User Unauthorized"}, status=401)
+            return JsonResponse({"message": "User Unauthorized"}, status=401)
         elif len(userlist) == 1:
             user = userlist[0]
             wbindex = request.POST.get("index")
             wblist = user.wbinfo.filter(index=wbindex)
             if len(wblist) == 0:
-                return JsonResponse({"code": "404", "message": "Wordbook not found"}, status=404)
+                return JsonResponse({"message": "Wordbook not found"}, status=404)
             elif len(wblist) == 1:
                 name = request.POST.get("name")
                 name_list = name.split(".")
@@ -560,28 +655,36 @@ def wb_image_set(request):
                 user_wb.image_name = image_name
                 user_wb.image = new_image
                 user_wb.save()
-                return JsonResponse({"code": 0, "message": "Wordbook image successfully changed!"}, status=200)
+                return JsonResponse({"message": "Wordbook image successfully changed!"}, status=200)
             else:
                 pass
         else:
             pass
     else:
-        return JsonResponse({"code": "405", "message": "Method not allowed"}, status=405)
+        return JsonResponse({"message": "Method not allowed"}, status=405)
 
 @csrf_exempt
 def wb_remove(request):
     if request.method == "POST":
         json_param = json.loads(request.body)
-        openid = json_param['openid']
+        checkbit = paramcheck(json_param, 'openid', str)
+        if type(checkbit) == bool:
+            openid = json_param["openid"]
+        else:
+            return JsonResponse({'message': checkbit}, status=400)
         userlist = models.user.objects.filter(open_id=openid)
         if len(userlist) == 0:
-            return JsonResponse({"code": "401", "message": "User Unauthorized"}, status=401)
+            return JsonResponse({"message": "User Unauthorized"}, status=401)
         elif len(userlist) == 1:
             user = userlist[0]
-            wbindex = json_param['index']
+            checkbit = paramcheck(json_param, 'index', int)
+            if type(checkbit) == bool:
+                wbindex = json_param["index"]
+            else:
+                return JsonResponse({'message': checkbit}, status=400)
             wblist = user.wbinfo.filter(index=wbindex)
             if len(wblist) == 0:
-                return JsonResponse({"code": "404", "message": "Wordbook not found"}, status=404)
+                return JsonResponse({"message": "Wordbook not found"}, status=404)
             elif len(wblist) == 1:
                 wblist[0].delete()
                 for i in range(wbindex + 1, user.wdlistnumber + 1):
@@ -590,64 +693,88 @@ def wb_remove(request):
                     rev_wb.save()
                 user.wdlistnumber = user.wdlistnumber - 1
                 user.save()
-                return JsonResponse({"code": 0, "message": "Wordbook removed successfully!"}, status=200)
+                return JsonResponse({"message": "Wordbook removed successfully"}, status=200)
             else:
                 pass
         else:
             pass
     else:
-        return JsonResponse({"code": "405", "message": "Method not allowed"}, status=405)
+        return JsonResponse({"message": "Method not allowed"}, status=405)
 
 @csrf_exempt
 def wb_type(request):
     if request.method == "POST":
         json_param = json.loads(request.body)
-        openid = json_param['openid']
+        checkbit = paramcheck(json_param, 'openid', str)
+        if type(checkbit) == bool:
+            openid = json_param["openid"]
+        else:
+            return JsonResponse({'message': checkbit}, status=400)
         userlist = models.user.objects.filter(open_id=openid)
         if len(userlist) == 0:
-            return JsonResponse({"code": "401", "message": "User Unauthorized"}, status=401)
+            return JsonResponse({"message": "User Unauthorized"}, status=401)
         elif len(userlist) == 1:
             user = userlist[0]
-            wbindex = json_param['index']
+            checkbit = paramcheck(json_param, 'index', int)
+            if type(checkbit) == bool:
+                wbindex = json_param["index"]
+            else:
+                return JsonResponse({'message': checkbit}, status=400)
             wblist = user.wbinfo.filter(index=wbindex)
             if len(wblist) == 0:
-                return JsonResponse({"code": "404", "message": "Wordbook not found"}, status=404)
+                return JsonResponse({"message": "Wordbook not found"}, status=404)
             elif len(wblist) == 1:
-                privacy = json_param['type']
+                checkbit = paramcheck(json_param, 'type', int)
+                if type(checkbit) == bool:
+                    privacy = json_param['type']
+                else:
+                    return JsonResponse({'message': checkbit}, status=400)
                 wb_info = wblist[0]
                 wb_info.public_ctrl = privacy
                 wb_info.save()
-                return JsonResponse({"code": 0, "message": "Wordbook privacy successfully changed"}, status=200)
+                return JsonResponse({"message": "Wordbook privacy successfully changed"}, status=200)
             else:
                 pass
         else:
             pass
     else:
-        return JsonResponse({"code": "405", "message": "Method not allowed"}, status=405)
+        return JsonResponse({"message": "Method not allowed"}, status=405)
 
 @csrf_exempt
 def word_add(request):
     if request.method == "POST":
         json_param = json.loads(request.body)
-        openid = json_param['openid']
+        checkbit = paramcheck(json_param, 'openid', str)
+        if type(checkbit) == bool:
+            openid = json_param["openid"]
+        else:
+            return JsonResponse({'message': checkbit}, status=400)
         userlist = models.user.objects.filter(open_id=openid)
         if len(userlist) == 0:
-            return JsonResponse({"code": "401", "message": "User Unauthorized"}, status=401)
+            return JsonResponse({"message": "User unauthorized"}, status=401)
         elif len(userlist) == 1:
             user = userlist[0]
-            wbindex = json_param['index']
+            checkbit = paramcheck(json_param, 'index', int)
+            if type(checkbit) == bool:
+                wbindex = json_param["index"]
+            else:
+                return JsonResponse({'message': checkbit}, status=400)
             wblist = user.wbinfo.filter(index=wbindex)
             if len(wblist) == 0:
-                return JsonResponse({"code": "404", "message": "Wordbook not found"}, status=404)
+                return JsonResponse({"message": "Wordbook not found"}, status=404)
             elif len(wblist) == 1:
-                new_word = json_param['word']
+                checkbit = paramcheck(json_param, 'word', str)
+                if type(checkbit) == bool:
+                    new_word = json_param['word']
+                else:
+                    return JsonResponse({'message': checkbit}, status=400)
                 wordbook = wblist[0]
                 exist_word = wordbook.wordlist.filter(content=new_word)
                 if len(exist_word) == 0:
                     wordbook.wordlist.create(list_info=wordbook, content=new_word)
-                    return JsonResponse({"code": 0, "message": "Word added successfully!"}, status=200)
+                    return JsonResponse({"message": "Word added successfully!"}, status=200)
                 elif len(exist_word) == 1:
-                    return JsonResponse({"code": 0, "message": "Word already exists"}, status=200)
+                    return JsonResponse({"message": "Word already exists"}, status=200)
                 else:
                     pass
             else:
@@ -656,54 +783,73 @@ def word_add(request):
             pass
 
     else:
-        return JsonResponse({"code": "405", "message": "Method not allowed"}, status=405)
+        return JsonResponse({"message": "Method not allowed"}, status=405)
 
 @csrf_exempt
 def word_remove(request):
     if request.method == "POST":
         json_param = json.loads(request.body)
-        openid = json_param['openid']
+        checkbit = paramcheck(json_param, 'openid', str)
+        if type(checkbit) == bool:
+            openid = json_param["openid"]
+        else:
+            return JsonResponse({'message': checkbit}, status=400)
         userlist = models.user.objects.filter(open_id=openid)
         if len(userlist) == 0:
-            return JsonResponse({"code": "401", "message": "User Unauthorized"}, status=401)
+            return JsonResponse({"message": "User unauthorized"}, status=401)
         elif len(userlist) == 1:
             user = userlist[0]
-            wbindex = json_param['index']
+            checkbit = paramcheck(json_param, 'index', int)
+            if type(checkbit) == bool:
+                wbindex = json_param["index"]
+            else:
+                return JsonResponse({'message': checkbit}, status=400)
             wblist = user.wbinfo.filter(index=wbindex)
             if len(wblist) == 0:
-                return JsonResponse({"code": "404", "message": "Wordbook not found"}, status=404)
+                return JsonResponse({"message": "Wordbook not found"}, status=404)
             elif len(wblist) == 1:
-                word = json_param['word']
+                checkbit = paramcheck(json_param, 'word', str)
+                if type(checkbit) == bool:
+                    word = json_param['word']
+                else:
+                    return JsonResponse({'message': checkbit}, status=400)
                 wordbook = wblist[0]
                 exist_word = wordbook.wordlist.filter(content=word)
                 if len(exist_word) == 0:
-                    return JsonResponse({"code": "404", "message": "Word doesn't exist"}, status=404)
+                    return JsonResponse({"message": "Word doesn't exist"}, status=404)
                 elif len(exist_word) == 1:
                     exist_word[0].delete()
-                    return JsonResponse({"code": 0, "message": "Word removed successfully"}, status=200)
+                    return JsonResponse({"message": "Word removed successfully"}, status=200)
                 else:
                     pass
-                return JsonResponse({"code": 0, "message": "Word added successfully!"}, status=200)
             else:
                 pass
         else:
             pass
     else:
-        return JsonResponse({"code": "405", "message": "Method not allowed"}, status=405)
+        return JsonResponse({"message": "Method not allowed"}, status=405)
 
 @csrf_exempt
 def friends_namesearch(request):
     if request.method == "POST":
         json_param = json.loads(request.body)
-        openid = json_param['openid']
+        checkbit = paramcheck(json_param, 'openid', str)
+        if type(checkbit) == bool:
+            openid = json_param["openid"]
+        else:
+            return JsonResponse({'message': checkbit}, status=400)
         userlist = models.user.objects.filter(open_id=openid)
         if len(userlist) == 0:
-            return JsonResponse({"code": "401", "message": "User Unauthorized"}, status=401)
+            return JsonResponse({"message": "User unauthorized"}, status=401)
         elif len(userlist) == 1:
-            f_name = json_param['name']
+            checkbit = paramcheck(json_param, 'name', str)
+            if type(checkbit) == bool:
+                f_name = json_param['name']
+            else:
+                return JsonResponse({'message': checkbit}, status=400)
             f_list = models.user.objects.filter(nickname=f_name)
             if len(f_list) == 0:
-                return JsonResponse({"code": "404", "message": "User not found"}, status=404)
+                return JsonResponse({"message": "User not found"}, status=404)
             else:
                 f_list_info = []
                 cur_list = followlist(userlist[0].followee)
@@ -711,7 +857,7 @@ def friends_namesearch(request):
                     if xuser.open_id == openid:
                         continue
                     f_info = []
-                    f_info.append(str(xuser.uid))
+                    f_info.append(xuser.uid)
                     f_info.append(xuser.nickname)
                     f_info.append(xuser.headicon_name)
                     if xuser.uid in cur_list:
@@ -719,31 +865,39 @@ def friends_namesearch(request):
                     else:
                         f_info.append(0)
                     f_list_info.append(f_info)
-                return JsonResponse({'result': f_list_info, 'code': 0}, status=200)
+                return JsonResponse({'result': f_list_info}, status=200)
         else:
             pass
     else:
-        return JsonResponse({"code": "405", "message": "Method not allowed"}, status=405)
+        return JsonResponse({"message": "Method not allowed"}, status=405)
 
 @csrf_exempt
 def friends_uidsearch(request):
     if request.method == "POST":
         json_param = json.loads(request.body)
-        openid = json_param['openid']
+        checkbit = paramcheck(json_param, 'openid', str)
+        if type(checkbit) == bool:
+            openid = json_param["openid"]
+        else:
+            return JsonResponse({'message': checkbit}, status=400)
         userlist = models.user.objects.filter(open_id=openid)
         if len(userlist) == 0:
-            return JsonResponse({"code": "401", "message": "User Unauthorized"}, status=401)
+            return JsonResponse({"message": "User unauthorized"}, status=401)
         elif len(userlist) == 1:
-            f_uid = int(json_param['uid'])
+            checkbit = paramcheck(json_param, 'uid', str)
+            if type(checkbit) == bool:
+                f_uid = int(json_param['uid'])
+            else:
+                return JsonResponse({'message': checkbit}, status=400)
             f_list = models.user.objects.filter(uid=f_uid)
             if len(f_list) == 0:
-                return JsonResponse({"code": "404", "message": "User not found"}, status=404)
+                return JsonResponse({"message": "User not found"}, status=404)
             elif len(f_list) == 1:
                 f_user = f_list[0]
                 f_info = []
                 if f_user.open_id != openid:
                     f_info_content = []
-                    f_info_content.append(str(f_user.uid))
+                    f_info_content.append(f_user.uid)
                     f_info_content.append(f_user.nickname)
                     f_info_content.append(f_user.headicon_name)
                     cur_flist = followlist(userlist[0].followee)
@@ -752,87 +906,107 @@ def friends_uidsearch(request):
                     else:
                         f_info_content.append(0)
                     f_info.append(f_info_content)
-                return JsonResponse({'result': f_info, 'code': 0}, status=200)
+                return JsonResponse({'result': f_info}, status=200)
             else:
                 pass
         else:
             pass
     else:
-        return JsonResponse({"code": "405", "message": "Method not allowed"}, status=405)
+        return JsonResponse({"message": "Method not allowed"}, status=405)
 
 @csrf_exempt
 def friends_list(request):
     if request.method == "POST":
         json_param = json.loads(request.body)
-        openid = json_param['openid']
+        checkbit = paramcheck(json_param, 'openid', str)
+        if type(checkbit) == bool:
+            openid = json_param["openid"]
+        else:
+            return JsonResponse({'message': checkbit}, status=400)
         userlist = models.user.objects.filter(open_id=openid)
         if len(userlist) == 0:
-            return JsonResponse({"code": "401", "message": "User Unauthorized"}, status=401)
+            return JsonResponse({"message": "User unauthorized"}, status=401)
         elif len(userlist) == 1:
             user = userlist[0]
             f_list = followlist(user.followee)
             true_f_list = []
             f_info_list = []
             for x in f_list:
-                f_uid = int(x)
+                f_uid = x
                 f_userlist = models.user.objects.filter(uid=f_uid)
                 if len(f_userlist) == 1:
                     f_user = f_userlist[0]
                     f_info = []
-                    f_info.append(str(f_user.uid))
+                    f_info.append(f_user.uid)
                     f_info.append(f_user.nickname)
                     f_info.append(f_user.headicon_name)
                     f_info_list.append(f_info)
                     true_f_list.append(x)
             user.followee = str(true_f_list)
             user.save()
-            return JsonResponse({'result': f_info_list, 'code': 0}, status=200)
+            return JsonResponse({'result': f_info_list}, status=200)
         else:
             pass
     else:
-        return JsonResponse({"code": "405", "message": "Method not allowed"}, status=405)
+        return JsonResponse({"message": "Method not allowed"}, status=405)
       
 @csrf_exempt
 def friends_follow(request):
     if request.method == "POST":
         json_param = json.loads(request.body)
-        openid = json_param['openid']
+        checkbit = paramcheck(json_param, 'openid', str)
+        if type(checkbit) == bool:
+            openid = json_param["openid"]
+        else:
+            return JsonResponse({'message': checkbit}, status=400)
         userlist = models.user.objects.filter(open_id=openid)
         if len(userlist) == 0:
-            return JsonResponse({"code": "401", "message": "User Unauthorized"}, status=401)
+            return JsonResponse({"message": "User unauthorized"}, status=401)
         elif len(userlist) == 1:
             user = userlist[0]
-            f_uid = int(json_param['uid'])
+            checkbit = paramcheck(json_param, 'uid', int)
+            if type(checkbit) == bool:
+                f_uid = json_param['uid']
+            else:
+                return JsonResponse({'message': checkbit}, status=400)
             f_userlist = models.user.objects.filter(uid=f_uid)
             if len(f_userlist) == 1:
                 f_curlist = followlist(user.followee)
                 if f_uid in f_curlist:
-                    return JsonResponse({"code": 0, "message": "Already followed"}, status=200)
+                    return JsonResponse({"message": "Already followed"}, status=200)
                 else:
                     f_curlist.append(f_uid)
                     user.followee = str(f_curlist)
                     user.save()
-                    return JsonResponse({"code": 0, "message": "successfully follow"}, status=200)
+                    return JsonResponse({"message": "successfully follow"}, status=200)
             elif len(f_userlist) == 0:
-                return JsonResponse({"code": "404", "message": "User not found"}, status=406)
+                return JsonResponse({"message": "User not found"}, status=406)
             else:
                 pass
         else:
             pass
     else:
-        return JsonResponse({"code": "405", "message": "Method not allowed"}, status=405)
+        return JsonResponse({"message": "Method not allowed"}, status=405)
 
 @csrf_exempt
 def friends_unfollow(request):
     if request.method == "POST":
         json_param = json.loads(request.body)
-        openid = json_param['openid']
+        checkbit = paramcheck(json_param, 'openid', str)
+        if type(checkbit) == bool:
+            openid = json_param["openid"]
+        else:
+            return JsonResponse({'message': checkbit}, status=400)
         userlist = models.user.objects.filter(open_id=openid)
         if len(userlist) == 0:
-            return JsonResponse({"code": "401", "message": "User Unauthorized"}, status=401)
+            return JsonResponse({"message": "User unauthorized"}, status=401)
         elif len(userlist) == 1:
             user = userlist[0]
-            f_uid = int(json_param['uid'])
+            checkbit = paramcheck(json_param, 'uid', int)
+            if type(checkbit) == bool:
+                f_uid = json_param['uid']
+            else:
+                return JsonResponse({'message': checkbit}, status=400)
             f_userlist = models.user.objects.filter(uid=f_uid)
             if len(f_userlist) == 1:
                 f_curlist = followlist(user.followee)
@@ -840,55 +1014,70 @@ def friends_unfollow(request):
                     f_curlist.remove(f_uid)
                     user.followee = str(f_curlist)
                     user.save()
-                    return JsonResponse({"code": 0, "message": "successfully unfollow"}, status=200)
+                    return JsonResponse({"message": "successfully unfollow"}, status=200)
                 else:
-                    return JsonResponse({"code": 0, "message": "Not followed"}, status=200)
+                    return JsonResponse({"message": "Not followed"}, status=200)
                     
             elif len(f_userlist) == 0:
-                return JsonResponse({"code": "404", "message": "User not found"}, status=406)
+                return JsonResponse({"message": "User not found"}, status=406)
             else:
                 pass
         else:
             pass
     else:
-        return JsonResponse({"code": "405", "message": "Method not allowed"}, status=405)
+        return JsonResponse({"message": "Method not allowed"}, status=405)
     
 @csrf_exempt
 def friends_headicon(request):
     if request.method == "POST":
         json_param = json.loads(request.body)
-        openid = json_param['openid']
+        checkbit = paramcheck(json_param, 'openid', str)
+        if type(checkbit) == bool:
+            openid = json_param["openid"]
+        else:
+            return JsonResponse({'message': checkbit}, status=400)
         userlist = models.user.objects.filter(open_id=openid)
         if len(userlist) == 0:
-            return JsonResponse({"code": "401", "message": "User Unauthorized"}, status=401)
+            return JsonResponse({"message": "User unauthorized"}, status=401)
         elif len(userlist) == 1:
-            user = userlist[0]
-            f_uid = int(json_param['uid'])
+            checkbit = paramcheck(json_param, 'uid', int)
+            if type(checkbit) == bool:
+                f_uid = json_param['uid']
+            else:
+                return JsonResponse({'message': checkbit}, status=400)
             f_userlist = models.user.objects.filter(uid=f_uid)
             if len(f_userlist) == 1:
                 image = f_userlist[0].headicon
                 return FileResponse(image, as_attachment=True, filename=f_userlist[0].headicon_name, status=200)
                     
             elif len(f_userlist) == 0:
-                return JsonResponse({"code": "404", "message": "User not found"}, status=406)
+                return JsonResponse({"message": "User not found"}, status=406)
             else:
                 pass
         else:
             pass
     else:
-        return JsonResponse({"code": "405", "message": "Method not allowed"}, status=405)
+        return JsonResponse({"message": "Method not allowed"}, status=405)
     
 @csrf_exempt
 def friends_info(request):
     if request.method == "POST":
         json_param = json.loads(request.body)
-        openid = json_param['openid']
+        checkbit = paramcheck(json_param, 'openid', str)
+        if type(checkbit) == bool:
+            openid = json_param["openid"]
+        else:
+            return JsonResponse({'message': checkbit}, status=400)
         userlist = models.user.objects.filter(open_id=openid)
         if len(userlist) == 0:
-            return JsonResponse({"code": "401", "message": "User Unauthorized"}, status=401)
+            return JsonResponse({"message": "User unauthorized"}, status=401)
         elif len(userlist) == 1:
             user = userlist[0]
-            f_uid = int(json_param['uid'])
+            checkbit = paramcheck(json_param, 'uid', int)
+            if type(checkbit) == bool:
+                f_uid = json_param['uid']
+            else:
+                return JsonResponse({'message': checkbit}, status=400)
             f_userlist = models.user.objects.filter(uid=f_uid)
             if len(f_userlist) == 1:
                 cur_list = followlist(user.followee)
@@ -932,10 +1121,10 @@ def friends_info(request):
                     wd_content['words'] = words
                     user_data_wdbks.append(wd_content)
                 user_data['wordbooks'] = user_data_wdbks
-                return JsonResponse({"code": 0, "detail": user_data}, status=200)
+                return JsonResponse({"detail": user_data}, status=200)
                     
             elif len(f_userlist) == 0:
-                return JsonResponse({"code": "404", "message": "User not found"}, status=406)
+                return JsonResponse({"message": "User not found"}, status=406)
             else:
                 pass
         else:
@@ -947,98 +1136,134 @@ def friends_info(request):
 def friends_subscribe(request):
     if request.method == "POST":
         json_param = json.loads(request.body)
-        openid = json_param['openid']
+        checkbit = paramcheck(json_param, 'openid', str)
+        if type(checkbit) == bool:
+            openid = json_param["openid"]
+        else:
+            return JsonResponse({'message': checkbit}, status=400)
         userlist = models.user.objects.filter(open_id=openid)
         if len(userlist) == 0:
-            return JsonResponse({"code": "401", "message": "User Unauthorized"}, status=401)
+            return JsonResponse({"message": "User unauthorized"}, status=401)
         elif len(userlist) == 1:
             user = userlist[0]
-            f_uid = int(json_param['uid'])
+            checkbit = paramcheck(json_param, 'uid', int)
+            if type(checkbit) == bool:
+                f_uid = json_param['uid']
+            else:
+                return JsonResponse({'message': checkbit}, status=400)
             f_userlist = models.user.objects.filter(uid=f_uid)
             if len(f_userlist) == 1:
                 cur_list = followlist(user.followee)
                 if f_uid in cur_list:
                     f_user = f_userlist[0]
-                    f_wbid = json_param['id']
+                    checkbit = paramcheck(json_param, 'id', int)
+                    if type(checkbit) == bool:
+                        f_wbid = json_param['id']
+                    else:
+                        return JsonResponse({'message': checkbit}, status=400)
                     f_wblist = f_user.wbinfo.filter(index=f_wbid)
                     if len(f_wblist) == 1:
                         f_wbinfo = f_wblist[0]
                         user.flwbs.create(wb_info=f_wbinfo)
-                        return JsonResponse({"code": 0, "message": "successfully subscribe"}, status=200)
+                        return JsonResponse({"message": "successfully subscribe"}, status=200)
                     elif len(f_wblist) == 0:
-                        return JsonResponse({"code": "404", "message": "Wordbook not found"}, status=404)
+                        return JsonResponse({"message": "Wordbook not found"}, status=404)
                     else:
                         pass
                 else:
-                    return JsonResponse({"code": "406", "message": "Not followed"}, status=406)
+                    return JsonResponse({"message": "Not followed"}, status=406)
                     
             elif len(f_userlist) == 0:
-                return JsonResponse({"code": "404", "message": "User not found"}, status=404)
+                return JsonResponse({"message": "User not found"}, status=404)
             else:
                 pass
         else:
             pass
     else:
-        return JsonResponse({"code": "405", "message": "Method not allowed"}, status=405)
+        return JsonResponse({"message": "Method not allowed"}, status=405)
     
 @csrf_exempt
 def friends_unsubscribe(request):
     if request.method == "POST":
         json_param = json.loads(request.body)
-        openid = json_param['openid']
+        checkbit = paramcheck(json_param, 'openid', str)
+        if type(checkbit) == bool:
+            openid = json_param["openid"]
+        else:
+            return JsonResponse({'message': checkbit}, status=400)
         userlist = models.user.objects.filter(open_id=openid)
         if len(userlist) == 0:
-            return JsonResponse({"code": "401", "message": "User Unauthorized"}, status=401)
+            return JsonResponse({"message": "User unauthorized"}, status=401)
         elif len(userlist) == 1:
             user = userlist[0]
-            f_uid = int(json_param['uid'])
+            checkbit = paramcheck(json_param, 'uid', int)
+            if type(checkbit) == bool:
+                f_uid = json_param['uid']
+            else:
+                return JsonResponse({'message': checkbit}, status=400)
             f_userlist = models.user.objects.filter(uid=f_uid)
             if len(f_userlist) == 1:
                 cur_list = followlist(user.followee)
                 if f_uid in cur_list:
                     f_user = f_userlist[0]
-                    f_wbid = json_param['id']
+                    checkbit = paramcheck(json_param, 'id', int)
+                    if type(checkbit) == bool:
+                        f_wbid = json_param['id']
+                    else:
+                        return JsonResponse({'message': checkbit}, status=400)
                     f_wblist = f_user.wbinfo.filter(index=f_wbid)
                     if len(f_wblist) == 1:
                         f_wbinfo = f_wblist[0]
                         user_flwb_list = user.flwbs.filter(wb_info=f_wbinfo)
                         if len(user_flwb_list) == 1:
                             user_flwb_list[0].delete()
-                            return JsonResponse({"code": 0, "message": "successfully unsubscribe"}, status=200)
+                            return JsonResponse({"message": "successfully unsubscribe"}, status=200)
                         elif len(user_flwb_list) == 0:
-                            return JsonResponse({"code": "406", "message": "Wordbook not subscribed"}, status=406)
+                            return JsonResponse({"message": "Wordbook not subscribed"}, status=406)
                         else:
                             pass
                     elif len(f_wblist) == 0:
-                        return JsonResponse({"code": "404", "message": "Wordbook not found"}, status=404)
+                        return JsonResponse({"message": "Wordbook not found"}, status=404)
                     else:
                         pass
                 else:
-                    return JsonResponse({"code": "406", "message": "Not followed"}, status=406)
+                    return JsonResponse({"message": "Not followed"}, status=406)
                     
             elif len(f_userlist) == 0:
-                return JsonResponse({"code": "404", "message": "User not found"}, status=404)
+                return JsonResponse({"message": "User not found"}, status=404)
             else:
                 pass
         else:
             pass
     else:
-        return JsonResponse({"code": "405", "message": "Method not allowed"}, status=405)
+        return JsonResponse({"message": "Method not allowed"}, status=405)
 
 @csrf_exempt
 def friends_wbcover(request):
     if request.method == "POST":
         json_param = json.loads(request.body)
-        openid = json_param['openid']
+        print(json_param)
+        checkbit = paramcheck(json_param, 'openid', str)
+        if type(checkbit) == bool:
+            openid = json_param["openid"]
+        else:
+            return JsonResponse({'message': checkbit}, status=400)
         userlist = models.user.objects.filter(open_id=openid)
         if len(userlist) == 0:
-            return JsonResponse({"code": "401", "message": "User Unauthorized"}, status=401)
+            return JsonResponse({"message": "User unauthorized"}, status=401)
         elif len(userlist) == 1:
-            user = userlist[0]
-            f_uid = int(json_param['uid'])
+            checkbit = paramcheck(json_param, 'uid', int)
+            if type(checkbit) == bool:
+                f_uid = json_param['uid']
+            else:
+                return JsonResponse({'message': checkbit}, status=400)
             f_userlist = models.user.objects.filter(uid=f_uid)
             if len(f_userlist) == 1:
-                f_wbid = json_param['id']
+                checkbit = paramcheck(json_param, 'id', int)
+                if type(checkbit) == bool:
+                    f_wbid = json_param['id']
+                else:
+                    return JsonResponse({'message': checkbit}, status=400)
                 f_user = f_userlist[0]
                 f_wblist = f_user.wbinfo.filter(index=f_wbid)
                 if len(f_wblist) == 1:
@@ -1046,17 +1271,17 @@ def friends_wbcover(request):
                     image = f_wb.image
                     return FileResponse(image, as_attachment=True, filename=f_wb.image_name, status=200)
                 elif len(f_wblist) == 0:
-                    return JsonResponse({"code": "404", "message": "Wordbook not found"}, status=404)
+                    return JsonResponse({"message": "Wordbook not found"}, status=404)
                 else:
                     pass
             elif len(f_userlist) == 0:
-                return JsonResponse({"code": "404", "message": "User not found"}, status=404)
+                return JsonResponse({"message": "User not found"}, status=404)
             else:
                 pass
         else:
             pass
     else:
-        return JsonResponse({"code": "405", "message": "Method not allowed"}, status=405)
+        return JsonResponse({"message": "Method not allowed"}, status=405)
 
 @csrf_exempt
 def test_subscribeall(request):
