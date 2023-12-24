@@ -477,7 +477,7 @@ def timeline_change(request):
         else:
             return JsonResponse({'message': checkbit}, status=400)
         
-        checkbit = paramcheck(json_param, 'timeline', str)
+        checkbit = paramcheck(json_param, 'timeline', int)
         if type(checkbit) == bool:
             new_timeline = json_param["timeline"]
         else:
@@ -1121,6 +1121,22 @@ def friends_info(request):
                     wd_content['words'] = words
                     user_data_wdbks.append(wd_content)
                 user_data['wordbooks'] = user_data_wdbks
+
+                # readHistory
+                f_rdHis = []
+                f_user_rdHis = f_user.readingrecord.all()
+                for x in f_user_rdHis:
+                    if timeover(x.date):
+                        x.delete()
+                    else:
+                        record = []
+                        record.append(x.content)
+                        record.append(x.date)
+                        record.append(x.lastrd)
+                        record.append(x.lastres)
+                        f_rdHis.append(record)
+                user_data['readHistory'] = f_rdHis
+
                 return JsonResponse({"detail": user_data}, status=200)
                     
             elif len(f_userlist) == 0:
@@ -1164,8 +1180,14 @@ def friends_subscribe(request):
                     f_wblist = f_user.wbinfo.filter(index=f_wbid)
                     if len(f_wblist) == 1:
                         f_wbinfo = f_wblist[0]
-                        user.flwbs.create(wb_info=f_wbinfo)
-                        return JsonResponse({"message": "successfully subscribe"}, status=200)
+                        f_wblist = user.flwbs.filter(wb_info=f_wbinfo)
+                        if len(f_wblist) == 0:
+                            user.flwbs.create(wb_info=f_wbinfo)
+                            return JsonResponse({"message": "successfully subscribe"}, status=200)
+                        elif len(f_wblist) == 1:
+                            return JsonResponse({'mseeage': "Already followed"}, status=200)
+                        else:
+                            pass
                     elif len(f_wblist) == 0:
                         return JsonResponse({"message": "Wordbook not found"}, status=404)
                     else:
