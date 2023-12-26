@@ -18,12 +18,8 @@ from django.urls import path
 from app import views
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    # path("", views.helloView),
-
     path("login/", views.login, name='login'),#已测试
     path("login/headicon/", views.getlogheadicon, name='getlogheadicon'),#已测试
-
     path("read/", views.read, name='read'),#已测试
     path("search/", views.search, name='search'),#已测试
     path("detail/", views.detail, name='detail'),#已测试
@@ -54,6 +50,4 @@ urlpatterns = [
     path("friends/subscribe/", views.friends_subscribe, name='frineds_subscribe'),
     path("friends/unsubscribe/", views.friends_unsubscribe, name='friends_unsubsrcibe'),
     path("friends/wbcover/", views.friends_wbcover, name='friends_wbcover'),
-
-    path("test/subscribeall/", views.test_subscribeall),         # deleted, no use, only test
 ]
