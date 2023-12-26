@@ -1,13 +1,13 @@
 from django.http import JsonResponse
 
-def headicon_change(request, json_param, user):
+def headicon_change(request, user):
     import os
     from koko import settings
     files = request.FILES
     image = files.get("headIcon")
-    name = json_param['name']
+    name = request.POST.get('name')
     image_url_list = name.split('.')
-    openid = json_param['openid']
+    openid = request.POST.get('openid')
     image_name = openid + "." + image_url_list[1]
     if user.headicon_name != 'headicon.png':
         os.remove(os.path.join(settings.MEDIA_ROOT, user.headicon.name))

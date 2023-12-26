@@ -4,17 +4,17 @@ from dicts import dic_func
 
 diction = dic_func.Dic()
 
-def read(request, json_param, user):
+def read(request, user):
     from mine import final
     import os
     files = request.FILES
-    wavelist = json_param['wave']
-    word = json_param['word']
+    wavelist = request.POST.get('wave')
+    word = request.POST.get('word')
     wave = []
     for x in wavelist:
         if x.isdigit():
             wave.append(int(x))
-    openid = json_param['openid']
+    openid = request.POST.get('openid')
     audio = files['word.mp3'].read()
     acc_fileName = "./mine/" + openid + "_tmp"
     with open(acc_fileName + ".mp3", "wb") as f:

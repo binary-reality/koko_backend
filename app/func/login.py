@@ -4,7 +4,7 @@ from django.http import FileResponse
 import json
 import requests
 
-from app.mywapper import followlist, timeover
+from app.mywrapper import followlist, timeover
 from app import models
 
 def login(request, json_param):
@@ -20,6 +20,10 @@ def login(request, json_param):
             }
     )
     response_json = json.loads(login_response.text)
+    if 'errcode' in response_json:
+        pass
+    else:
+        response_json['errcode'] = 0
     if response_json['errcode'] == 0:
         user_id = response_json['openid']
         del response_json['session_key']

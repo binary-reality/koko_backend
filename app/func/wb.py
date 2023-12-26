@@ -17,12 +17,12 @@ def wb_info_change(request, json_param, user, user_wb):
 def wb_image_get(request, json_param, user, user_wb):
     return FileResponse(user_wb.image, as_attachment=True, filename=user_wb.image_name, status=200)
 
-def wb_image_set(request, json_param, user, user_wb):
+def wb_image_set(request, user, user_wb):
     import os
     from koko import settings
-    name = json_param['name']
-    openid = json_param['openid']
-    wbindex = json_param['index']
+    name = request.POST.get('name')
+    openid = request.POST.get('openid')
+    wbindex = request.POST.get('index')
     name_list = name.split(".")
     new_image = request.FILES.get("image")
     image_name = "wb" + str(wbindex) + "_" + openid + "." + name_list[1]
