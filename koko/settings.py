@@ -78,9 +78,9 @@ WSGI_APPLICATION = "koko.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
-        "NAME": "test",
+        "NAME": "koko_database",
         "USER": "root",
-        "PASSWORD": "12345",
+        "PASSWORD": "Pro:xeyes-DieTwice",
         "HOST": "db",
         "PORT": "3306",
     }

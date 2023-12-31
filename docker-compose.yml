@@ -24,7 +24,7 @@ services:
       - "./db/my.cnf:/etc/my.cnf"
       - "./db/datadir:/var/lib/mysql"
     environment:
-      MYSQL_ROOT_PASSWORD: 12345
+      MYSQL_ROOT_PASSWORD: Pro:xeyes-DieTwice
     networks:
       - db_net
     restart: always
