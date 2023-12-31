@@ -1,5 +1,5 @@
 from django.http import JsonResponse
-from django.http import FileResponse
+from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 
 import json, os
@@ -8,6 +8,10 @@ from app.mywrapper import paramcheck, paramcheck_file
 from koko import settings
 
 # Create your views here.
+
+@csrf_exempt
+def hello(request):
+    return HttpResponse("Welcome to koko!", status=200)
 
 @csrf_exempt
 def login(request):
