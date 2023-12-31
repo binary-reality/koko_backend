@@ -18,6 +18,8 @@ from django.urls import path
 from app import views
 
 urlpatterns = [
+    path("/", views.hello),
+
     path("login/", views.login, name='login'),#已测试
     path("login/headicon/", views.getlogheadicon, name='getlogheadicon'),#已测试
     path("read/", views.read, name='read'),#已测试
