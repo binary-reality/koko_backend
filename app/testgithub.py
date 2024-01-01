@@ -2,18 +2,20 @@ from django.test import TestCase
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APIClient
-import json
+
 
 class LoginAPITestCase(TestCase):
     def setUp(self):
         self.client = APIClient()
-        self.login_url = reverse('login')  
+        self.login_url = reverse('login')
 
     def test_login_with_valid_credentials(self):
         """
         测试有效凭证的登录。
         """
-        response = self.client.post(self.login_url, {'code': '3e5428-ff58yj5'}, format='json')
+        response = self.client.post(
+            self.login_url, {
+                'code': '3e5428-ff58yj5'}, format='json')
         response_data = response.json()
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertIsNotNone(response_data.get('openid'))
@@ -24,25 +26,32 @@ class LoginAPITestCase(TestCase):
         """
         测试无效凭证的登录。
         """
-        response = self.client.post(self.login_url, {'code': '12354'}, format='json')
+        response = self.client.post(
+            self.login_url, {
+                'code': '12354'}, format='json')
         response_data = response.json()
-        self.assertEqual(response_data.get('errcode'), 40029)  
+        self.assertEqual(response_data.get('errcode'), 40029)
         self.assertIsInstance(response_data.get('errmsg'), str)
 
     def test_login_with_wrong_method(self):
         """
         测试使用错误的请求方式。
         """
-        response = self.client.get(self.login_url, {'code': '3e5428-ff58yj5'}, format='json')
+        response = self.client.get(
+            self.login_url, {
+                'code': '3e5428-ff58yj5'}, format='json')
         response_data = response.json()
-        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_405_METHOD_NOT_ALLOWED)
         self.assertEqual(response_data.get('code'), '405')
         self.assertEqual(response_data.get('message'), 'Method not allowed')
+
 
 class SearchAPITestCase(TestCase):
     def setUp(self):
         self.client = APIClient()
-        self.search_url = reverse('search')  
+        self.search_url = reverse('search')
 
     def test_search_with_valid_request(self):
         """
@@ -55,7 +64,9 @@ class SearchAPITestCase(TestCase):
         response_data = response.json()
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response_data.get('code'), 0)
-        self.assertEqual(response_data.get('info'), "Success in word searching")
+        self.assertEqual(
+            response_data.get('info'),
+            "Success in word searching")
         self.assertIsInstance(response_data.get('results'), list)
 
     def test_search_with_wrong_method(self):
@@ -67,7 +78,9 @@ class SearchAPITestCase(TestCase):
             "searchWord": "5"
         }, format='json')
         response_data = response.json()
-        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_405_METHOD_NOT_ALLOWED)
         self.assertEqual(response_data.get('code'), '405')
         self.assertEqual(response_data.get('message'), "Method not allowed")
 
@@ -82,13 +95,16 @@ class SearchAPITestCase(TestCase):
         response_data = response.json()
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response_data.get('code'), 0)
-        self.assertEqual(response_data.get('info'), "Success in word searching")
+        self.assertEqual(
+            response_data.get('info'),
+            "Success in word searching")
         self.assertIsInstance(response_data.get('results'), list)
+
 
 class WordDetailAPITestCase(TestCase):
     def setUp(self):
         self.client = APIClient()
-        self.detail_url = reverse('detail')  
+        self.detail_url = reverse('detail')
 
     def test_word_detail_with_valid_request(self):
         """
@@ -96,20 +112,22 @@ class WordDetailAPITestCase(TestCase):
         """
         response = self.client.post(self.detail_url, {
             "openid": "dskadhkskada",
-            "word":"赤い【あかい◎】",
+            "word": "赤い【あかい◎】",
         }, format='json')
         response_data = response.json()
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response_data.get('code'), 0)
-        self.assertEqual(response_data.get('info'), "Success in word searching")
+        self.assertEqual(
+            response_data.get('info'),
+            "Success in word searching")
         detail = response_data.get('detail')
         self.assertIsNotNone(detail)
-        self.assertEqual(detail.get('name'),"赤い【あかい◎】")
-        self.assertEqual(detail.get('accent'),0)
-        self.assertEqual(detail.get('kana'),["あ","か","い"])
-        self.assertEqual(detail.get('taka'),[0,1,1])
-        self.assertEqual(detail.get('wave'),[0,1,1])
-        self.assertEqual(detail.get('type'),"形")
+        self.assertEqual(detail.get('name'), "赤い【あかい◎】")
+        self.assertEqual(detail.get('accent'), 0)
+        self.assertEqual(detail.get('kana'), ["あ", "か", "い"])
+        self.assertEqual(detail.get('taka'), [0, 1, 1])
+        self.assertEqual(detail.get('wave'), [0, 1, 1])
+        self.assertEqual(detail.get('type'), "形")
         self.assertIsNotNone(detail.get('exsent'))
 
     def test_word_detail_with_wrong_method(self):
@@ -121,7 +139,9 @@ class WordDetailAPITestCase(TestCase):
             "word": "赤い&#8203;``【oaicite:0】``&#8203;"
         }, format='json')
         response_data = response.json()
-        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_405_METHOD_NOT_ALLOWED)
         self.assertEqual(response_data.get('code'), '405')
         self.assertEqual(response_data.get('message'), "Method not allowed")
 
@@ -139,11 +159,12 @@ class WordDetailAPITestCase(TestCase):
     #     self.assertEqual(response_data.get('info'), "Success in word searching")
     #     detail = response_data.get('detail')
     #     self.assertIsNotNone(detail)
-    
+
+
 class ListAPITestCase(TestCase):
     def setUp(self):
         self.client = APIClient()
-        self.list_url = reverse('list') 
+        self.list_url = reverse('list')
 
     def test_list_with_valid_request(self):
         """
@@ -156,10 +177,11 @@ class ListAPITestCase(TestCase):
         response_data = response.json()
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response_data.get('code'), 0)
-        self.assertEqual(response_data.get('info'), "Success in word searching")
+        self.assertEqual(
+            response_data.get('info'),
+            "Success in word searching")
         medicine = response_data.get('medicine')
         self.assertIsInstance(medicine, list)
-
 
     def test_list_with_wrong_method(self):
         """
@@ -170,16 +192,17 @@ class ListAPITestCase(TestCase):
             "type": 2
         }, format='json')
         response_data = response.json()
-        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_405_METHOD_NOT_ALLOWED)
         self.assertEqual(response_data.get('code'), '405')
         self.assertEqual(response_data.get('message'), "Method not allowed")
 
-from django.core.files.uploadedfile import SimpleUploadedFile
 
 class ReadAPITestCase(TestCase):
     def setUp(self):
         self.client = APIClient()
-        self.read_url = reverse('read')  
+        self.read_url = reverse('read')
 
     # def test_read_with_valid_request(self):
     #     """
@@ -190,7 +213,7 @@ class ReadAPITestCase(TestCase):
     #         "openid": "dskadhkskada",
     #         "file": mock_audio_file,
     #         "wave": [0, 1, 1, 0],
-    #         "word": "赤い【あかい◎】" 
+    #         "word": "赤い【あかい◎】"
     #     }, format='mutipart')
     #     response_data = response.json()
     #     self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -204,11 +227,13 @@ class ReadAPITestCase(TestCase):
         """
         response = self.client.get(self.read_url, {
             "openid": "dskadhkskada",
-            "file": ...,  
+            "file": ...,
             "wave": [0, 1, 1, 0],
-            "word": "赤い【あかい◎】" 
+            "word": "赤い【あかい◎】"
         }, format='multipart')
         response_data = response.json()
-        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_405_METHOD_NOT_ALLOWED)
         self.assertEqual(response_data.get('code'), '405')
         self.assertEqual(response_data.get('message'), "Method not allowed")

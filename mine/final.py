@@ -4,6 +4,7 @@ import os
 import json
 import numpy as np
 
+
 def call_script(script_name, args):
     try:
         subprocess.run([sys.executable, script_name] + args, check=True)
@@ -12,19 +13,18 @@ def call_script(script_name, args):
         sys.exit(1)
 
 
-
 def analyze_tones(json_file_path, accents):
     with open(json_file_path, 'r') as file:
         data = json.load(file)
 
-    freq_array = np.array(data['freq'],dtype=float)
-    time_array = np.array(data['time'],dtype=float)
+    freq_array = np.array(data['freq'], dtype=float)
+    time_array = np.array(data['time'], dtype=float)
     start_time = float(data['startTime'])  # 确保时间是浮点数
     end_time = float(data['endTime'])      # 确保时间是浮点数
 
     # Calculate intervals
     ac_length = len(accents)
-    if ac_length==0 :
+    if ac_length == 0:
         return []
     interval = (end_time - start_time) / ac_length
     start_points = np.arange(start_time, end_time, interval)
@@ -37,7 +37,8 @@ def analyze_tones(json_file_path, accents):
         # Frequencies for the current interval
         current_freqs = freq_array[mask]
         # Mean frequency excluding negative values (which might be invalid)
-        mean_freq = current_freqs[current_freqs >= 0].mean() if any(current_freqs >= 0) else -1
+        mean_freq = current_freqs[current_freqs >=
+                                  0].mean() if any(current_freqs >= 0) else -1
         mean_freqs.append(mean_freq)
 
     word_res = []
@@ -61,10 +62,6 @@ def analyze_tones(json_file_path, accents):
 
 
 # Example usage:
-
-
-
-
 
 
 # ...（其它函数不变）...
@@ -102,6 +99,7 @@ def main(audio_input, accents):
 
     # print(f"Analysis results written to {json_output}")
 
+
 if __name__ == "__main__":
     if len(sys.argv) != 3:
         print("Usage: python final.py audio_input json_input")
@@ -111,4 +109,3 @@ if __name__ == "__main__":
     json_input = sys.argv[2]
 
     main(audio_input, json_input)
-
