@@ -1,0 +1,17 @@
+{
+    "name": "koko小程序后端API说明书",
+    "description": "这是对koko小程序后端架构的API说明书。\n\n后端的函数实现统一在app/func文件夹下，调用统一于views.py。\n\n函数使用装饰器进行参数校验与处理。具体装饰器实现请见app/mywrapper.py。",
+    "title": "koko小程序后端API说明书",
+    "url": "http://43.138.68.47:8000",
+    "order": [
+        "func.login",
+        "func.read",
+        "func.setting",
+        "func.wb",
+        "func.word",
+        "func.friends"
+    ],
+    "template": {
+        "forceLanguage": "zh_cn"
+    }
+}
